@@ -34,10 +34,7 @@ jobs:
         run: |
           echo Add other actions to build,
           echo test, and deploy your project.
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
+
       - name: Generate Sitemap
         uses: cicirello/generate-sitemap@v1.10.0
         with:
