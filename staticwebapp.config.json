@@ -1,8 +1,43 @@
 {
   "routes": [
     {
+      "route": "/fletching.html",
+      "redirect": "/fletching",
+      "statusCode": 301
+    }
+        {
+      "route": "/home.html",
+      "redirect": "/home",
+      "statusCode": 301
+    }
+        {
+      "route": "/magic.html",
+      "redirect": "/magic",
+      "statusCode": 301
+    }
+        {
+      "route": "/melee.html",
+      "redirect": "/melee",
+      "statusCode": 301
+    }
+        {
+      "route": "/mining.html",
+      "redirect": "/mining",
+      "statusCode": 301
+    }
+        {
+      "route": "/range.html",
+      "redirect": "/range",
+      "statusCode": 301
+    }
+        {
       "route": "/smithing.html",
       "redirect": "/smithing",
+      "statusCode": 301
+    }
+        {
+      "route": "/woodcutting.html",
+      "redirect": "/woodcutting",
       "statusCode": 301
     }
   ]
