@@ -1,0 +1,9 @@
+{
+  "routes": [
+    {
+      "route": "/smithing.html",
+      "redirect": "/smithing",
+      "statusCode": 301
+    }
+  ]
+}
