@@ -65,7 +65,7 @@ function calculateHpLevel(total) {
 document.getElementById("calc_hits_lvl_btn").addEventListener("click", function() {
 	var total = calculateTotalExperience(att.value, def.value, str.value);
 	var hp = calculateHpLevel(total);
-	var hits_xp = Math.max(1154, Math.floor(total/3));
+	var hits_xp = Math.max(1154, Math.floor((total/3) + 1154));
 	var xpdiff = parseInt(xpforlvl[hp + 1] - hits_xp);
 	hits.value = hp;
 	cmb_lvl.innerHTML = "Hits lvl is a close minimum estimate!! About <b>" + xpdiff + " xp</b> for your next hits lvl";
