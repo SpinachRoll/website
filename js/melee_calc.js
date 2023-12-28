@@ -52,7 +52,7 @@ function calculateHpLevel(total) {
 		return 99;
 	}
 	else {
-		var level = Math.floor(total/3);
+		var level = Math.floor(total/3 + 1154);
 		for (var i = 1; i < xpforlvl.length; i++) {
 			if (xpforlvl[i] > level) {
 				return i - 1;
