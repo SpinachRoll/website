@@ -77,6 +77,10 @@ document.getElementById("calc_max_hit_btn").addEventListener("click", function()
 	var mh_str_calc_value = parseInt(mh_str_calc.value);
 	var mh_weap_pwr_calc = document.getElementById("mh_weap_pwr");
 	var mh_weap_pwr_calc_value = parseInt(mh_weap_pwr_calc.value);
+	var mh_ammy_calc = document.getElementById("mh_ammy");
+	var mh_ammy_calc_value = parseInt(mh_ammy_calc.value);
+	var mh_gaunlets_calc = document.getElementById("mh_gaunlets");
+	var mh_gaunlets_calc_value = parseInt(mh_gaunlets_calc.value);
 	var mh_pot_calc = document.getElementById("mh_potions");
 	var mh_pray_calc = document.getElementById("mh_prayer");
 	var mh_pray_bonus_calc = parseFloat(mh_pray_calc.value);
@@ -84,16 +88,16 @@ document.getElementById("calc_max_hit_btn").addEventListener("click", function()
 	var mh_cmb_style_calc_value = parseInt(mh_cmb_style_calc.value);
 	var max_hit_base;
 	if (parseInt(mh_pot_calc.value) === 0) {
-		max_hit_base = (Math.floor((Math.floor(mh_str_calc_value * mh_pray_bonus_calc) + 8 + mh_cmb_style_calc_value) * (mh_weap_pwr_calc_value + 64)) + 320) / 640;
+		max_hit_base = (Math.floor((Math.floor(mh_str_calc_value * mh_pray_bonus_calc) + 8 + mh_cmb_style_calc_value) * (mh_weap_pwr_calc_value + mh_ammy_calc_value + mh_gaunlets_calc_value + 64)) + 320) / 640;
 		max_hit_round.innerHTML = "Your Max Hit is: " + max_hit_base;
 	} else if (parseInt(mh_pot_calc.value) === 1) {
-		max_hit_base = (Math.floor((Math.floor((mh_str_calc_value + (mh_str_calc_value * 0.1) + 3) * mh_pray_bonus_calc) + 8 + mh_cmb_style_calc_value) * (mh_weap_pwr_calc_value + 64)) + 320) / 640;
+		max_hit_base = (Math.floor((Math.floor((mh_str_calc_value + (mh_str_calc_value * 0.1) + 3) * mh_pray_bonus_calc) + 8 + mh_cmb_style_calc_value) * (mh_weap_pwr_calc_value + mh_ammy_calc_value + mh_gaunlets_calc_value + 64)) + 320) / 640;
 		max_hit_round.innerHTML = "Your Max Hit is: " + max_hit_base;
 	} else if (parseInt(mh_pot_calc.value) === 2) {
-		max_hit_base = (Math.floor((Math.floor((mh_str_calc_value + (mh_str_calc_value * 0.15) + 5) * mh_pray_bonus_calc) + 8 + mh_cmb_style_calc_value) * (mh_weap_pwr_calc_value + 64)) + 320) / 640;
+		max_hit_base = (Math.floor((Math.floor((mh_str_calc_value + (mh_str_calc_value * 0.15) + 5) * mh_pray_bonus_calc) + 8 + mh_cmb_style_calc_value) * (mh_weap_pwr_calc_value + mh_ammy_calc_value + mh_gaunlets_calc_value + 64)) + 320) / 640;
 		max_hit_round.innerHTML = "Your Max Hit is: " + max_hit_base;
 	} else if (parseInt(mh_pot_calc.value) === 3) {
-		max_hit_base = (Math.floor((Math.floor((mh_str_calc_value + (mh_str_calc_value * 0.12) + 2) * mh_pray_bonus_calc) + 8 + mh_cmb_style_calc_value) * (mh_weap_pwr_calc_value + 64)) + 320) / 640;
+		max_hit_base = (Math.floor((Math.floor((mh_str_calc_value + (mh_str_calc_value * 0.12) + 2) * mh_pray_bonus_calc) + 8 + mh_cmb_style_calc_value) * (mh_weap_pwr_calc_value + mh_ammy_calc_value + mh_gaunlets_calc_value + 64)) + 320) / 640;
 		max_hit_round.innerHTML = "Your Max Hit is: " + max_hit_base;
 	};
 });
