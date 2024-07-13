@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Spinach Roll</title>
+		<link rel="icon" type="image/png" href="favicon.png"/>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<style>
+			/* this is where all the style goes */
+			body {
+				margin: 0;
+				background: #ababab;
+				font-family: Helvetica, sans-serif;
+			}
+
+			/* this is where we make the grid, and determine it's size */
+			.grid-container {
+				display: grid;
+				grid-template-columns: 140px 1fr;
+				grid-template-rows: 123px 40px 1fr 3em;
+				grid-template-areas:
+					'header header'
+					'navbar navbar'
+					'menu main'
+					'footer footer';
+				position: relative;
+				gap: 0px;
+				height: 100vh;
+			}
+
+			.grid-container>div {
+				text-align: center;
+			}
+
+			/* we found a cool font, and include it here */
+			@font-face {
+				font-family: RSFont;
+				src: url(rscbold.ttf);
+			}
+
+			/* this is where all the header style goes */
+			.header {
+				background: #B87030;
+				grid-area: header;
+				z-index: 3;
+			}
+
+			#spinach_roll {
+				position: absolute;
+				grid-area: header;
+				width: 100%;
+				height: 123px;
+				z-index: 1;
+				top: 0;
+				bottom: 0;
+				left: 0;
+				right: 0;
+				margin: auto;
+			}
+
+			#king {
+				position: absolute;
+				grid-area: header;
+				height: 73px;
+				width: 73px;
+				right: 0;
+				bottom: 0;
+				z-index: 2;
+			}
+
+			/* this is where all the top navigation bar style goes */
+			.navbar {
+				grid-area: navbar;
+				position: sticky;
+				top: 0;
+				z-index: 3;
+			}
+
+			#navbar {
+				background-color: #131313;
+			}
+
+			#navbar a {
+				font-family: RSFont;
+				float: left;
+				padding: 5px 0px 0px 0px;
+				text-decoration: none;
+				font-size: 1.25em;
+				color: #005F00;
+				width: 23%;
+			}
+
+			#navbar a:hover {
+				color: #B87030;
+			}
+
+			#navbar img {
+				float: none;
+				margin-bottom: -0.2em;
+			}
+
+			/*position : absolute, margin, padding, height and width to hardcode floating. look into display grid. udemy: python and django full stack web developer bootcamp, by jose portilla*/
+			/* this is where all the left navigation bar style goes */
+			.leftnav {
+				grid-area: menu;
+			}
+
+			#leftnav {
+				float: left;
+				height: 100%;
+				background-color: #131313;
+				text-align: center;
+				width: 100%;
+				z-index: 2;
+			}
+
+			#leftnav a {
+				font-family: RSFont;
+				padding: 0px;
+				float: left;
+				text-decoration: none;
+				font-size: 1.3em;
+				color: #005F00;
+				width: 100%;
+				margin: 17px 3px 3px -5px;
+			}
+
+			#leftnav a:hover {
+				color: #B87030;
+			}
+
+			#leftnav img {
+				float: none;
+				margin-bottom: -0.3em;
+			}
+
+			.sticky_leftnav {
+				position: sticky;
+				top: 40px;
+			}
+
+			ul {
+				list-style-type: none;
+				margin: 0;
+				padding: 0;
+			}
+
+			/* this is where all the content style goes */
+			.main {
+				grid-area: main;
+				position: relative;
+				z-index: 2;
+			}
+
+			#main {
+				font-family: RSFont;
+				text-align: center;
+				text-decoration: none;
+				padding: 0px 0px 0px 10px;
+			}
+
+			.flex_main {
+				display: flex;
+				flex-flow: row wrap;
+				justify-content: space-around;
+			}
+
+			form#woodcutting_lvl_calc {
+				margin: 0;
+				float: left;
+				text-align: center;
+				font-size: 1em;
+				padding-bottom: 50px;
+			}
+
+			form#woodcutting_lvl_calc label {
+				display: inline-block;
+				width: 200px;
+				text-align: center;
+				padding-top: 3px;
+			}
+
+			form#woodcutting_lvl_calc input {
+				box-sizing: border-box;
+				padding-top: 3px;
+				padding-bottom: 3px;
+				text-align: center;
+			}
+
+			#calc_woodcutting_lvl,
+			#woodcutting_lvl_reset {
+				font-family: "RSFont";
+				font-size: 1em;
+				height: 1.5em;
+				margin: 3px 0px;
+			}
+
+			table,
+			th,
+			td {
+				border: 1px solid black;
+				border-collapse: collapse;
+				border-radius: 10px;
+				text-align: center;
+			}
+
+			th {
+				font-size: 1.3em;
+			}
+
+			tr {
+				height: 3em;
+			}
+
+			#woodcutting_table input {
+				text-align: center;
+			}
+
+			#woodcutting_table img {
+				width: 50px;
+				height: 50px;
+			}
+
+			input[type='number'] {
+				width: 70px;
+			}
+
+			/* this is where all the footer style goes */
+			.footer {
+				grid-area: footer;
+				font-family: RSFont;
+				width: 100%;
+				font-size: 1em;
+				color: #818181;
+				background-color: #131313;
+				text-align: center;
+				overflow: hidden;
+				z-index: 3;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="grid-container">
+			<div class="header">
+				<a href="home.html">
+					<img id="spinach_roll" src="images/title_spinach_roll_3.png" alt="logo">
+				</a>
+				<a href="https://spinachroll.com">
+					<img id="king" src="images/king_t5.png" alt="Your King">
+				</a>
+			</div>
+			<div id="navbar" class="navbar">
+				<a href="melee.html"><img id="melee" src="images/combat.png" alt="melee">COMBAT</a>
+				<a href="javascript:void(0)"><img id="skills" src="images/overall.png" alt="skills">SKILLS</a>
+				<a href="HSTracker.html"><img id="melee" src="images/champsguild.png" alt="melee">CHAMPS</a>
+				<a href="javascript:void(0)"><img id="melee" src="images/fighting.png" alt="melee"><s>EXTRAS</s></a>
+			</div>
+			<div id="leftnav" class="leftnav">
+				<div class="sticky_leftnav">
+					<ul>
+						<li><a href="cooking.html"><img id="cooking" src="images/cooking.png" alt="cooking">Cooking</a></li>
+						<li><a href="javascript:void(0)"><img id="woodcutting" src="images/woodcutting.png" alt="woodcutting">Woodcutting</a></li>
+						<li><a href="fletching.html"><img id="fletching" src="images/fletching.png" alt="fletching">Fletching</a></li>
+						<li><a href="fishing.html"><img id="fishing" src="images/fishing.png" alt="fishing">Fishing</a></li>
+						<li><a href="firemaking.html"><img id="firemaking" src="images/firemaking.png" alt="firemaking">Firemaking</a></li>
+						<li><a href="crafting.html"><img id="crafting" src="images/crafting.png" alt="crafting">Crafting</a></li>
+						<li><a href="smithing.html"><img id="smithing" src="images/smithing.png" alt="smithing">Smithing</a></li>
+						<li><a href="mining.html"><img id="mining" src="images/mining.png" alt="mining">Mining</a></li>
+						<li><a href="herblaw.html"><img id="Herblaw" src="images/herblaw.png" alt="herblaw">Herblaw</a></li>
+						<li><a href="agility.html"><img id="agility" src="images/agility.png" alt="agility">Agility</a></li>
+						<li><a href="thieving.html"><img id="thieving" src="images/thieving.png" alt="thieving">Thieving</a></li>
+					</ul>
+				</div>
+			</div>
+			<div id="main" class="main">
+				<h1>Woodcutting Calculators</h1>
+				<h2>To use this calculator, put in your current level or XP, and the level you'd like to get to.</h2>
+				<div id="flex_main" class="flex_main">
+					<form id="woodcutting_lvl_calc" style="flex-basis: 18em">
+						<fieldset>
+							<legend id="woodcutting_lvl_calc_form" style="text-align: center">WOODCUTTING LEVEL</legend>
+							<ul>
+								<li>
+									<label for="cur_woodcutting_lvl">Current Woodcutting</label>
+								</li>
+								<li>
+									<label>Level&nbsp;&nbsp;&nbsp; or &nbsp;&nbsp;&nbsp;&nbsp;XP&nbsp;&nbsp;&nbsp;&nbsp;</label>
+								</li>
+								<li>
+									<input type="number" id="cur_woodcutting_lvl" name="cur_woodcutting_lvl" value="1" min="1" max="99">
+									<input type="number" id="cur_woodcutting_xp" name="cur_woodcutting_xp" value="0" min="0" max="536870910">
+								</li>
+								<li>
+									<label for="des_woodcutting_lvl">Desired Woodcutting Goal <br> Level or Experience</label>
+								</li>
+								<li>
+									<input type="number" id="des_woodcutting_lvl" name="des_woodcutting_lvl" value="1" min="1" max="99">
+									<input type="number" id="des_woodcutting_xp" name="des_woodcutting_xp" value="0" min="0" max="536870911">
+								</li>
+								<li>
+									<button type="button" id="calc_woodcutting_lvl">Calculate</button>
+									<input type="reset" value="Reset" id="woodcutting_lvl_reset">
+								</li>
+								<li>
+									<p id="woodcutting_xp_needed">Your need 0 more xp for your desired Woodcutting Level.</p>
+								</li>
+							</ul>
+						</fieldset>
+					</form>
+					<table id="woodcutting_table" style="flex-basis: 18em">
+						<tr>
+							<th colspan="3">LOGS TO LEVEL</th>
+						</tr>
+						<tr>
+							<td>XP Per</td>
+							<td>Type & Level</td>
+							<td>Stock Needed</td>
+						</tr>
+						<tr>
+							<td>25</td>
+							<td>
+								<img src="images/pointy_tree.png" alt="Tree">
+								<br>Tree (1)
+							</td>
+							<td id="tree_need">0</td>
+						</tr>
+						<tr>
+							<td>37.5</td>
+							<td>
+								<img src="images/oak_tree.png" alt="Oak Tree">
+								<br>Oak Tree (15)
+							</td>
+							<td id="oak_need">0</td>
+						</tr>
+						<tr>
+							<td>62.5</td>
+							<td>
+								<img src="images/willow_tree.png" alt="Willow Tree">
+								<br>Willow Tree (30)
+							</td>
+							<td id="willow_need">0</td>
+						</tr>
+						<tr>
+							<td>100</td>
+							<td>
+								<img src="images/maple_tree.png" alt="Maple Tree">
+								<br>Maple Tree (45)
+							</td>
+							<td id="maple_need">0</td>
+						</tr>
+						<tr>
+							<td>175</td>
+							<td>
+								<img src="images/yew_tree.png" alt="Yew Tree">
+								<br>Yew Tree (60)
+							</td>
+							<td id="yew_need">0</td>
+						</tr>
+						<tr>
+							<td>250</td>
+							<td>
+								<img src="images/magic_tree.png" alt="Magic Tree">
+								<br>Magic Tree (75)
+							</td>
+							<td id="magic_need">0</td>
+						</tr>
+					</table>
+				</div>
+				<p>Data for these calculators comes from <a href="https://classic.runescape.wiki/w/woodcutting" target="_blank" rel="noopener noreferrer">here</a>
+				</p>
+			</div>
+			<div class="footer">
+				<p>SpinachRoll is made by kRiStOf for his family and friends, and is not affiliated with JaGeX, OpenRSC, Trogdor the Burninator, or NASA's Mars rovers.</p>
+			</div>
+		</div>
+		<script src="js/woodcutting_calc.js"></script>
+	</body>
+</html>

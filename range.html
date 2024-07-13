@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Spinach Roll</title>
+		<link rel="icon" type="image/png" href="favicon.png"/>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<style>
+			/* this is where all the style goes */
+			body {
+				margin: 0;
+				background: #ababab;
+				font-family: Helvetica, sans-serif;
+			}
+
+			/* this is where we make the grid, and determine it's size */
+			.grid-container {
+				display: grid;
+				grid-template-columns: 140px 1fr;
+				grid-template-rows: 123px 40px 1fr 3em;
+				grid-template-areas:
+					'header header'
+					'navbar navbar'
+					'menu main'
+					'footer footer';
+				position: relative;
+				gap: 0px;
+				height: 100vh;
+			}
+
+			.grid-container>div {
+				text-align: center;
+			}
+
+			/* we found a cool font, and include it here */
+			@font-face {
+				font-family: RSFont;
+				src: url(rscbold.ttf);
+			}
+
+			/* this is where all the header style goes */
+			.header {
+				background: #B87030;
+				grid-area: header;
+			}
+
+			#spinach_roll {
+				position: absolute;
+				grid-area: header;
+				width: 100%;
+				height: 123px;
+				z-index: 1;
+				top: 0;
+				bottom: 0;
+				left: 0;
+				right: 0;
+				margin: auto;
+			}
+
+			#king {
+				position: absolute;
+				grid-area: header;
+				height: 73px;
+				width: 73px;
+				right: 0;
+				bottom: 0;
+				z-index: 2;
+			}
+
+			/* this is where all the top navigation bar style goes */
+			.navbar {
+				grid-area: navbar;
+				position: sticky;
+				top: 0;
+				z-index: 3;
+			}
+
+			#navbar {
+				background-color: #131313;
+			}
+
+			#navbar a {
+				font-family: RSFont;
+				float: left;
+				padding: 5px 0px 0px 0px;
+				text-decoration: none;
+				font-size: 1.4em;
+				color: #005F00;
+				width: 23%;
+			}
+
+			#navbar a:hover {
+				color: #B87030;
+			}
+
+			#navbar img {
+				float: none;
+				margin-bottom: -0.2em;
+			}
+			/*position : absolute, margin, padding, height and width to hardcode floating. look into display grid. udemy: python and django full stack web developer bootcamp, by jose portilla*/
+			/* this is where all the left navigation bar style goes */
+			.leftnav {
+				grid-area: menu;
+			}
+
+			#leftnav {
+				float: left;
+				height: 100%;
+				background-color: #131313;
+				text-align: center;
+				width: 100%;
+				z-index: 2;
+			}
+
+			#leftnav a {
+				font-family: RSFont;
+				padding: 0px;
+				float: left;
+				text-decoration: none;
+				font-size: 1.3em;
+				color: #005F00;
+				width: 100%;
+				margin: 17px 3px 3px -5px;
+			}
+
+			#leftnav a:hover {
+				color: #B87030;
+			}
+
+			#leftnav img {
+				float: none;
+				margin-bottom: -0.3em;
+			}
+
+			.sticky_leftnav {
+				position: sticky;
+				top: 40px;
+			}
+
+			ul {
+				list-style-type: none;
+				margin: 0;
+				padding: 0;
+			}
+
+			/* this is where all the content style goes */
+			.main {
+				grid-area: main;
+				position: relative;
+			}
+
+			#main {
+				font-family: RSFont;
+				text-align: center;
+				text-decoration: none;
+				padding: 0px 0px 0px 30px;
+			}
+
+			.flex_main {
+				display: flex;
+				flex-flow: row wrap;
+				justify-content: space-around;
+			}
+
+			form#range_max_hit_calc_form {
+				margin: 0;
+				float: left;
+				text-align: center;
+				font-size: 1em;
+				padding-bottom: 50px;
+			}
+
+			form#range_max_hit_calc_form label {
+				display: inline-block;
+				width: 65px;
+				text-align: right;
+				padding-top: 3px;
+			}
+
+			form#range_max_hit_calc_form input {
+				box-sizing: border-box;
+			}
+
+			#range_max_hit_btn,
+			#range_max_hit_reset,
+			#calc_range_lvl,
+			#range_lvl_reset {
+				font-family: "RSFont";
+				font-size: 1em;
+			}
+
+			#range_max_hit_btn {
+				width: 165px;
+				/* add this line */
+				text-align: center;
+				font-family: "RSFont";
+				font-size: 1em;
+			}
+
+			#range_max_hit {
+				text-align: left;
+			}
+
+			/* this is where all the footer style goes */
+			.footer {
+				grid-area: footer;
+				font-family: RSFont;
+				width: 100%;
+				font-size: 1em;
+				color: #818181;
+				background-color: #131313;
+				text-align: center;
+				overflow: hidden;
+				z-index: 3;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="grid-container">
+			<div class="header">
+				<a href="home.html">
+					<img id="spinach_roll" src="images/title_spinach_roll_3.png" alt="logo">
+				</a>
+				<a href="https://spinachroll.com">
+					<img id="king" src="images/king_t5.png" alt="Your King">
+				</a>
+			</div>
+			<div id="navbar" class="navbar">
+				<a href="javascript:void(0)"><img id="melee" src="images/combat.png" alt="melee">COMBAT</a>
+				<a href="smithing.html"><img id="skills" src="images/overall.png" alt="skills">SKILLS</a>
+				<a href="HSTracker.html"><img id="melee" src="images/champsguild.png" alt="melee">CHAMPS</a>
+				<a href="javascript:void(0)"><img id="melee" src="images/fighting.png" alt="melee"><s>EXTRAS</s></a>
+			</div>
+			<div id="leftnav" class="leftnav">
+				<div class="sticky_leftnav">
+					<ul>
+						<li><a href="melee.html"><img id="melee" src="images/melee.png" alt="melee">Melee</a></li>
+						<li><a href="javascript:void(0)"><img id="ranged" src="images/ranged.png" alt="ranged">Ranged</a></li>
+						<li><a href="prayer.html"><img id="prayer" src="images/prayer.png" alt="prayer">Prayer</a></li>
+						<li><a href="magic.html"><img id="magic" src="images/magic.png" alt="magic">Magic</a></li>
+					</ul>
+				</div>
+			</div>
+			<div id="main" class="main">
+				<h1>Range Calculators</h1>
+				<div id="flex_main" class="flex_main">
+					<form id="range_max" style="flex-basis: 18em">
+						<fieldset>
+							<legend id="range_max_hit_calc_form" style="text-align: center;">Range Max Hit</legend>
+							<ul>
+								<li>
+									<label for="range_lvl">Range Level</label>
+								</li>
+								<li>
+									<input type="number" id="range_lvl" name="range_lvl" value="1" min="1" max="99">
+								</li>
+								<li>
+									<label for="range_weapon">Weapon Power</label>
+									<select name="range_weapon" id="range_weapon">
+										<option value="20">Crossbow bolts (20)</option>
+										<option value="30">Oyster pearl bolts (30)</option>
+										<option value="15">Bronze arrows (15)</option>
+										<option value="20">Iron arrows (20)</option>
+										<option value="25">Steel arrows (25)</option>
+										<option value="30">Mithril arrows (30)</option>
+										<option value="35">Adamantite arrows (35)</option>
+										<option value="40">Rune arrows (40)</option>
+										<option value="15">Bronze darts (15)</option>
+										<option value="17">Iron darts (17)</option>
+										<option value="22">Steel darts (22)</option>
+										<option value="25">Mithril darts(25)</option>
+										<option value="27">Adamantite darts (27)</option>
+										<option value="30">Rune darts (30)</option>
+										<option value="25">Bronze throwing knife (25)</option>
+										<option value="30">Iron throwing knife(30)</option>
+										<option value="35">Steel throwing knife (35)</option>
+										<option value="40">Mithril throwing knife (40)</option>
+										<option value="45">Adamantite throwing knife (45)</option>
+										<option value="55">Rune throwing knife (55)</option>
+										<option value="29">Bronze spear (29)</option>
+										<option value="37">Iron spear (37)</option>
+										<option value="46">Steel spear (46)</option>
+										<option value="53">Mithril spear (53)</option>
+										<option value="61">Adamantite spear (61)</option>
+										<option value="69">Rune spear (69)</option>
+									</select>
+								</li>
+								<li>
+									<label for="range_potion">Use Range Potion</label>
+								</li>
+								<li>
+									<input type="checkbox" id="range_potion" name="range_potion" value="on">
+								</li>
+								<li>
+									<button type="button" id="range_max_hit_btn">Calculate</button>
+									<input type="reset" value="Reset" id="range_max_hit_reset">
+								</li>
+								<li>
+									<p id="range_max_hit">Your Range Max Hit is 1.</p>
+								</li>
+							</ul>
+						</fieldset>
+					</form>
+					<form id="range_lvl_calc" style="flex-basis: 18em">
+						<fieldset>
+							<legend id="range_lvl_calc_form" style="text-align: center;">Range Level</legend>
+							<ul>
+								<li>
+									<label for="cur_range_lvl">Current Range Level</label>
+									<input type="number" id="cur_range_lvl" name="cur_range_lvl" value="1" min="1" max="99">
+								</li>
+								<li>
+									<label for="des_range_lvl">Desired Range Level</label>
+									<input type="number" id="des_range_lvl" name="des_range_lvl" value="1" min="1" max="99">
+								</li>
+								<li>
+									<button type="button" id="calc_range_lvl">Calculate</button>
+									<input type="reset" value="Reset" id="range_lvl_reset">
+								</li>
+								<li>
+									<p id="range_xp_needed">Your need 0 more xp for your desired range level.</p>
+								</li>
+							</ul>
+						</fieldset>
+					</form>
+					<p>Data for these calculators comes from <a href="https://gitlab.com/open-runescape-classic/core/-/blob/develop/server/src/com/openrsc/server/event/rsc/impl/combat/CombatFormula.java" target="_blank" rel="noopener noreferrer">here</a>
+					</p>
+				</div>
+			</div>
+			<div class="footer">
+				<p>SpinachRoll is made by kRiStOf for his family and friends, and is not affiliated with JaGeX, OpenRSC, Trogdor the Burninator, or NASA's Mars rovers.</p>
+			</div>
+		</div>
+		<script src="js/range_calc.js"></script>
+	</body>
+</html>

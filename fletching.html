@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Spinach Roll</title>
+		<link rel="icon" type="image/png" href="favicon.png"/>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<style>
+/* this is where all the style goes */
+		body{
+			margin: 0;
+			background: #ababab;
+			font-family: Helvetica, sans-serif;
+		}
+/* this is where we make the grid, and determine it's size */
+		.grid-container {
+			display: grid;
+			grid-template-columns: 140px 1fr;
+			grid-template-rows: 123px 40px 1fr 3em;
+			grid-template-areas:
+				'header header'
+				'navbar navbar'
+				'menu main'
+				'footer footer';
+			position: relative;
+			gap: 0px;
+			height: 100vh;
+		}
+
+		.grid-container > div {
+			text-align: center;
+		}
+			
+/* we found a cool font, and include it here */
+		@font-face {
+			font-family: RSFont;
+			src:url(rscbold.ttf);
+		}
+
+/* this is where all the header style goes */
+		.header { 
+			background: #B87030;
+			grid-area: header;
+			z-index: 3;
+		}
+		#spinach_roll{
+			position: absolute;
+			grid-area: header;
+			width: 100%;
+			height: 123px;
+			z-index: 1;
+			top: 0;
+			bottom: 0;
+			left: 0;
+			right: 0;
+			margin: auto;
+		}
+		#king {
+			position: absolute;
+			grid-area: header; 
+			height: 73px;
+			width: 73px;
+			right: 0;
+			bottom: 0;
+			z-index: 2;
+		}
+
+			
+/* this is where all the top navigation bar style goes */
+.navbar {
+				grid-area: navbar;
+				position: sticky;
+				top: 0;
+				z-index: 3;
+			}
+
+			#navbar {
+				background-color: #131313;
+			}
+
+			#navbar a {
+				font-family: RSFont;
+				float: left;
+				padding: 5px 0px 0px 0px;
+				text-decoration: none;
+				font-size: 1.4em;
+				color: #005F00;
+				width: 23%;
+			}
+
+			#navbar a:hover {
+				color: #B87030;
+			}
+
+			#navbar img {
+				float: none;
+				margin-bottom: -0.2em;
+			}
+			
+/*position : absolute, margin, padding, height and width to hardcode floating. look into display grid. udemy: python and django full stack web developer bootcamp, by jose portilla*/
+			
+/* this is where all the left navigation bar style goes */	
+.leftnav {
+				grid-area: menu;
+			}
+
+			#leftnav {
+				float: left;
+				height: 100%;
+				background-color: #131313;
+				text-align: center;
+				width: 100%;
+				z-index: 2;
+			}
+
+			#leftnav a {
+				font-family: RSFont;
+				padding: 0px;
+				float: left;
+				text-decoration: none;
+				font-size: 1.3em;
+				color: #005F00;
+				width: 100%;
+				margin: 17px 3px 3px -5px;
+			}
+
+			#leftnav a:hover {
+				color: #B87030;
+			}
+
+			#leftnav img {
+				float: none;
+				margin-bottom: -0.3em;
+			}
+
+			.sticky_leftnav {
+				position: sticky;
+				top: 40px;
+			}
+		
+		ul {
+			list-style-type: none;
+			margin: 0;
+			padding: 0;
+		}
+			
+/* this is where all the content style goes */
+			
+		.main { 
+			grid-area: main; 
+			position: relative;
+			z-index: 2;
+		}
+		
+		#main {
+			font-family: RSFont;
+			text-align: center;
+			text-decoration: none;
+			padding: 0px 0px 0px 10px;
+		}
+		.flex_main {
+			display: flex;
+			flex-flow: row wrap;
+			justify-content: space-around;
+		}
+		form#fletching_lvl_calc {
+			margin: 0;
+			float: left;
+			text-align: center;
+			font-size: 1em;
+			padding-bottom: 50px;
+		}
+		form#fletching_lvl_calc label {
+			display: inline-block;
+			width: 200px;
+			text-align: center;
+			padding-top: 3px;
+		}
+		form#fletching_lvl_calc input{
+			box-sizing: border-box;
+			padding-top: 3px;
+			padding-bottom: 3px;
+			text-align: center;
+		}
+
+		button, #fletching_lvl_reset{
+			font-family:"RSFont";
+			font-size: 1em;
+		}
+		
+		table, th, td {
+			border: 1px solid black;
+			border-collapse: collapse;
+			text-align: center;
+		}
+
+		th{
+			font-size: 1.3em;
+			height: 3em;
+		}
+		
+		#stock_table td {
+			vertical-align: top;
+			padding-top: 5px;
+			}
+			
+		input {
+			text-align: center;
+		}
+		input[type='number']{
+			width: 70px;
+		}
+
+		button, [type=reset]{
+			font-family:"RSFont";
+			font-size: 1em;
+  			height: 1.5em;
+			margin: 3px 0px;
+		}
+/* this is where all the footer style goes */
+		.footer { 
+			grid-area: footer; 
+			font-family: RSFont;
+			width: 100%;
+			font-size: 1em;
+			color: #818181;
+			background-color: #131313;
+			text-align: center;
+			overflow: hidden;
+			z-index: 3;
+		}
+			
+		</style>
+
+	</head>
+	<body>
+		<div class="grid-container">
+			<div class="header">
+				<a href="home.html">
+					<img id="spinach_roll" src="images/title_spinach_roll_3.png" alt="logo">
+				</a>
+				<a href="https://spinachroll.com">
+					<img id="king" src="images/king_t5.png" alt="Your King">
+				</a>
+			</div>
+			<div id="navbar" class="navbar">
+				<a href="melee.html"><img id="melee" src="images/combat.png" alt="melee">COMBAT</a>
+				<a href="javascript:void(0)"><img id="skills" src="images/overall.png" alt="skills">SKILLS</a>
+				<a href="HSTracker.html"><img id="melee" src="images/champsguild.png" alt="melee">CHAMPS</a>
+				<a href="javascript:void(0)"><img id="melee" src="images/fighting.png" alt="melee"><s>EXTRAS</s></a>
+			</div>
+			<div id="leftnav" class="leftnav">
+				<div class="sticky_leftnav">
+					<ul>
+						<li><a href="cooking.html"><img id="cooking" src="images/cooking.png" alt="cooking">Cooking</a></li>
+						<li><a href="woodcutting.html"><img id="woodcutting" src="images/woodcutting.png" alt="woodcutting">Woodcutting</a></li>
+						<li><a href="javascript:void(0)"><img id="fletching" src="images/fletching.png" alt="fletching">Fletching</a></li>
+						<li><a href="fishing.html"><img id="fishing" src="images/fishing.png" alt="fishing">Fishing</a></li>
+						<li><a href="firemaking.html"><img id="firemaking" src="images/firemaking.png" alt="firemaking">Firemaking</a></li>
+						<li><a href="crafting.html"><img id="crafting" src="images/crafting.png" alt="crafting">Crafting</a></li>
+						<li><a href="smithing.html"><img id="smithing" src="images/smithing.png" alt="smithing">Smithing</a></li>
+						<li><a href="mining.html"><img id="mining" src="images/mining.png" alt="mining">Mining</a></li>
+						<li><a href="herblaw.html"><img id="Herblaw" src="images/herblaw.png" alt="herblaw">Herblaw</a></li>
+						<li><a href="agility.html"><img id="agility" src="images/agility.png" alt="agility">Agility</a></li>
+						<li><a href="thieving.html"><img id="thieving" src="images/thieving.png" alt="thieving">Thieving</a></li>
+					</ul>
+				</div>
+			</div>  
+			<div id="main" class="main">
+				<h1>Fletching Calculators</h1>
+				<h2>To use this calculator, put in your current level or XP, and the level you'd like to get to. You can also 
+					add the stock that you currently own by using the "Show/Hide Stock" button, and it will subtract those from the total amount you still need. If you change the "Fletching Stock" number, hit "Calculate" again to get the updated Stock Needed.</h2>
+				<div id="flex_main" class="flex_main">
+                    <form id="fletching_lvl_calc" style="flex-basis: 18em">
+						<fieldset>
+							<legend id="fletching_lvl_calc_form" style="text-align: center">FLETCHING LEVEL</legend>
+							<ul>
+								<li>
+									<label for="cur_fletching_lvl">&nbsp;&nbsp;&nbsp;Current Fletching&nbsp;&nbsp;</label>
+								</li>
+								<li>
+									<label>Level&nbsp;&nbsp;&nbsp;&nbsp;or&nbsp;&nbsp;&nbsp;&nbsp;XP&nbsp;&nbsp;&nbsp;&nbsp;</label>
+								</li>
+								<li><input type="number" id="cur_fletching_lvl" name="cur_fletching_lvl" value="1" min="1" max="99">
+									<input type="number" id="cur_fletching_xp" name="cur_fletching_xp" value="0" min="0" max="536870910">
+								</li>
+								<li><label for="des_fletching_lvl">Desired Fletching Goal <br> Level or Experience</label>
+								</li>
+								<li>
+                                    <input type="number" id="des_fletching_lvl" name="des_fletching_lvl" value="1" min="1" max="99">
+									<input type="number" id="des_fletching_xp" name="des_fletching_xp" value="0" min="0" max="536870911">
+								</li>
+								<li>
+									<button type="button" id="calc_fletching_lvl">Calculate</button>
+									<input type="reset" value="Reset" id="fletching_lvl_reset">
+								</li>
+								<li>
+									<button type="button" id="toggle_table">Show/Hide Stock</button>
+								</li>
+								<li>
+									<p id="fletching_xp_needed">Your need 0 more xp for your desired Fletching Level.</p>
+								</li>
+							</ul>
+						</fieldset>
+					</form>
+					<table id="stock_table" style="display:none">
+						<thead>
+							<tr>
+							<th colspan="4">Fletching Stock</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td><input type="number" id="log_have" name="log_have" min="0" value="0">Logs</td>
+								<td><input type="number" id="arrow_shafts_have" name="arrow_shafts_have" min="0" value="0">Shafts<br><img  src="images/arrow_shafts.png" alt="Arrow Shafts"></td>
+								<td><input type="number" id="feathers_have" name="feathers_have" min="0" value="0">Feathers<img  src="images/feather.png" alt="Feathers"></td>
+								<td><input type="number" id="headless_arrow_have" name="headless_arrow_have" min="0" value="0">Headless Arrows<br><img  src="images/headless_arrows.png" alt="Headless Arrows"></td>
+							</tr>
+							<tr>
+								<td><input type="number" id="oak_log_have" name="oak_log_have" min="0" value="0">Oak Logs</td>
+								<td><input type="number" id="bronze_arrow_head_have" name="bronze_arrow_head_have" min="0" value="0">Bronze Heads<br><img  src="images/bronze_arrow_heads.png" alt="Bronze Arrow Heads"></td>
+								<td><input type="number" id="iron_arrow_head_have" name="iron_arrow_head_have" min="0" value="0"><br>Iron Heads<br><img  src="images/iron_arrow_heads.png" alt="Iron Arrow Heads"></td>
+								<td><input type="number" id="steel_arrow_head_have" name="steel_arrow_head_have" min="0" value="0"><br>Steel Heads<br><img  src="images/steel_arrow_heads.png" alt="Steel Arrow Heads"></td>
+							</tr>
+							<tr>
+								<td><input type="number" id="willow_log_have" name="willow_log_have" min="0" value="0">Willow Logs</td>
+								<td><input type="number" id="mith_arrow_head_have" name="mith_arrow_head_have" min="0" value="0"><br>Mith Heads<br><img  src="images/mithril_arrow_heads.png" alt="Mith Arrow Heads"></td>
+								<td><input type="number" id="addy_arrow_head_have" name="addy_arrow_head_have" min="0" value="0"><br>Addy Heads<br><img  src="images/adamantite_arrow_heads.png" alt="Addy Arrow Heads"></td>
+								<td><input type="number" id="rune_arrow_head_have" name="rune_arrow_head_have" min="0" value="0"><br>Rune Heads<br><img  src="images/rune_arrow_heads.png" alt="Rune Arrow Heads"></td>
+							</tr>
+							<tr>
+								<td><input type="number" id="maple_log_have" name="maple_log_have" min="0" value="0">Maple Logs</td>
+								<td><input type="number" id="bolts_have" name="bolts_have" min="0" value="0"><br>Bolts<br><img  src="images/crossbow_bolts.png" alt="Bolts"></td>
+								<td><input type="number" id="oyster_pearl_have" name="oyster_pearl_have" min="0" value="0">Oyster Pearls<br><img  src="images/oyster_pearls.png" alt="Oyster Pearls"></td>			
+								<td><input type="number" id="oyster_pearl_bolt_tips_have" name="oyster_pearl_bolt_tips_have" min="0" value="0">Pearl Bolt Tips<br><img  src="images/oyster_pearl_bolt_tips.png" alt="Oyster Bolt Tips"></td>
+							</tr>
+							<tr>
+								<td><input type="number" id="yew_log_have" name="yew_log_have" min="0" value="0">Yew Logs</td>
+								<td><input type="number" id="bronze_dart_head_have" name="bronze_dart_head_have" min="0" value="0"><br>Bronze Dart Tips<br><img  src="images/bronze_dart_tips.png" alt="Bronze Dart Tips"></td>
+								<td><input type="number" id="iron_dart_head_have" name="iron_dart_head_have" min="0" value="0"><br>Iron Dart Tips<br><img  src="images/iron_dart_tips.png" alt="Iron Dart Tips"></td>
+								<td><input type="number" id="steel_dart_head_have" name="steel_dart_head_have" min="0" value="0"><br>Steel Dart Tips<br><img  src="images/steel_dart_tips.png" alt="Steel Dart Tips"></td>
+							</tr>
+							<tr>
+								<td><input type="number" id="magic_log_have" name="magic_log_have" min="0" value="0">Magic Logs</td>
+								<td><input type="number" id="mith_dart_head_have" name="mith_dart_head_have" min="0" value="0"><br>Mith Dart Tips<br><img  src="images/mithril_dart_tips.png" alt="Mith Dart Tips"></td>
+								<td><input type="number" id="addy_dart_head_have" name="addy_dart_head_have" min="0" value="0"><br>Addy Dart Tips<br><img  src="images/adamantite_dart_tips.png" alt="Addy Dart Tips"></td>
+								<td><input type="number" id="rune_dart_head_have" name="rune_dart_head_have" min="0" value="0"><br>Rune Dart Tips<br><img  src="images/rune_dart_tips.png" alt="Rune Dart Tips"></td>
+							</tr>
+						</tbody>
+					</table>
+					<table id="bow_table" style="flex-basis: 18em">
+						<thead>
+							<tr>
+								<th colspan="4">BOW FLETCHING</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>XP Per</td>
+								<td>Type &<br>Level</td>
+								<td>Unstrung</td>
+								<td>Strung</td>
+							</tr>
+							<tr>
+								<td>5</td>
+								<td><img  src="images/shortbow.png" alt="Shortbow"><br>Shortbow (5)</td>
+								<td id="shortbow_us_need">0</td>
+								<td id="shortbow_s_need">0</td>
+							</tr>
+							<tr>
+								<td>10</td>
+								<td><img  src="images/longbow.png" alt="Logbow"><br>Longbow (10)</td>
+								<td id="longbow_us_need">0</td>
+								<td id="longbow_s_need">0</td>
+							</tr>
+							<tr>
+								<td>16.5</td>
+								<td><img  src="images/oak_shortbow.png" alt="Oak Shortbow"><br>Oak Shortbow (20)</td>
+								<td id="oak_shortbow_us_need">0</td>
+								<td id="oak_shortbow_s_need">0</td>
+							</tr>
+							<tr>
+								<td>25</td>
+								<td><img  src="images/oak_longbow.png" alt="Oak Logbow"><br>Oak Longbow (25)</td>
+								<td id="oak_longbow_us_need">0</td>
+								<td id="oak_longbow_s_need">0</td>
+							</tr>
+							<tr>
+								<td>33.25</td>
+								<td><img  src="images/willow_shortbow.png" alt="Willow Shortbow"><br>Willow Shortbow (35)</td>
+								<td id="willow_shortbow_us_need">0</td>
+								<td id="willow_shortbow_s_need">0</td>
+							</tr>
+							<tr>
+								<td>41.5</td>
+								<td><img  src="images/willow_longbow.png" alt="Willow Logbow"><br>Willow Longbow (40)</td>
+								<td id="willow_longbow_us_need">0</td>
+								<td id="willow_longbow_s_need">0</td>
+							</tr>
+							<tr>
+								<td>50</td>
+								<td><img  src="images/maple_shortbow.png" alt="Maple Shortbow"><br>Maple Shortbow (50)</td>
+								<td id="maple_shortbow_us_need">0</td>
+								<td id="maple_shortbow_s_need">0</td>
+							</tr>
+							<tr>
+								<td>58.25</td>
+								<td><img  src="images/maple_longbow.png" alt="Maple Logbow"><br>Maple Longbow (55)</td>
+								<td id="maple_longbow_us_need">0</td>
+								<td id="maple_longbow_s_need">0</td>
+							</tr>
+							<tr>
+								<td>66.5</td>
+								<td><img  src="images/yew_shortbow.png" alt="Yew Shortbow"><br>Yew Shortbow (65)</td>
+								<td id="yew_shortbow_us_need">0</td>
+								<td id="yew_shortbow_s_need">0</td>
+							</tr>
+							<tr>
+								<td>75</td>
+								<td><img  src="images/yew_longbow.png" alt="Yew Logbow"><br>Yew Longbow (70)</td>
+								<td id="yew_longbow_us_need">0</td>
+								<td id="yew_longbow_s_need">0</td>
+							</tr>
+							<tr>
+								<td>83.25</td>
+								<td><img  src="images/magic_shortbow.png" alt="Magic Shortbow"><br>Magic Shortbow (80)</td>
+								<td id="magic_shortbow_us_need">0</td>
+								<td id="magic_shortbow_s_need">0</td>
+							</tr>
+							<tr>
+								<td>91.5</td>
+								<td><img  src="images/magic_longbow.png" alt="Magic Logbow"><br>Magic Longbow (85)</td>
+								<td id="magic_longbow_us_need">0</td>
+								<td id="magic_longbow_s_need">0</td>
+							</tr>
+						</tbody>
+					</table>
+					<table id="arrow_table" style="flex-basis: 18em">
+						<thead>
+							<tr>
+								<th colspan="3">ARROW FLETCHING</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>XP Per</td>
+								<td>Type &<br>Level</td>
+								<td>Stock Needed</td>
+							</tr>
+							<tr>
+								<td>.5</td>
+								<td><img  src="images/arrow_shafts.png" alt="Arrow Shafts"><br>Arrow<br> Shafts (1)</td>
+								<td id="arrow_shafts_need">0 Shafts</td>
+							</tr>
+							<tr>
+								<td>1</td>
+								<td><img  src="images/headless_arrows.png" alt="Headless Arrows"><br>Headless Arrows (1)</td>
+								<td id="headless_arrows_need">0 Shafts<br>0 Feathers</td>
+							</tr>
+							<tr>
+								<td>1.25</td>
+								<td><img  src="images/bronze_arrows.png" alt="Bronze Arrow"><br>Bronze<br> Arrow (1)</td>
+								<td id="bronze_arrow_need">0 Arrows<br>0 Shafts<br>0 Feathers</td>
+							</tr>
+							<tr>
+								<td>2.5</td>
+								<td><img  src="images/iron_arrows.png" alt="Iron Arrows"><br>Iron<br> Arrows (15)</td>
+								<td id="iron_arrow_need">0 Arrows<br>0 Shafts<br>0 Feathers</td>
+							</tr>
+							<tr>
+								<td>5</td>
+								<td><img  src="images/steel_arrows.png" alt="Steel Arrows"><br>Steel<br> Arrows (30)</td>
+								<td id="steel_arrow_need">0 Arrows<br>0 Shafts<br>0 Feathers</td>
+							</tr>
+							<tr>
+								<td>7.5</td>
+								<td><img  src="images/mithril_arrows.png" alt="Mithril Arrows"><br>Mithril<br> Arrows (45)</td>
+								<td id="mith_arrow_need">0 Arrows<br>0 Shafts<br>0 Feathers</td>
+							</tr>
+							<tr>
+								<td>10</td>
+								<td><img  src="images/adamantite_arrows.png" alt="Adamantite Arrows"><br>Addy<br> Arrows (60)</td>
+								<td id="addy_arrow_need">0 Arrows<br>0 Shafts<br>0 Feathers</td>
+							</tr>
+							<tr>
+								<td>12.5</td>
+								<td><img  src="images/rune_arrows.png" alt="Rune Arrows"><br>Rune<br> Arrows (75)</td>
+								<td id="rune_arrow_need">0 Arrows<br>0 Shafts<br>0 Feathers</td>
+							</tr>
+						</tbody>
+					</table>
+					<table id="bolt_table" style="flex-basis: 18em">
+						<thead>	
+							<tr>
+								<th colspan="3">BOLTS / DARTS FLETCHING</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>XP Per</td>
+								<td>Type &<br>Level</td>
+								<td>Stock Needed</td>
+							</tr>
+							<tr>
+								<td>12.5</td>
+								<td><img  src="images/oyster_pearl_bolt_tips.png" alt="Oyster Pearl Bolt Tips"><br>Oyster Pearl Bolt Tips (34)</td>
+								<td id="oyster_pearl_bolt_tips_need">0 Tips</td>
+							</tr>
+							<tr>
+								<td>6.25</td>
+								<td><img  src="images/oyster_pearl_bolts.png" alt="Oyster Pearl Bolt"><br>Oyster Pearl Bolt (34)</td>
+								<td id="oyster_pearl_bolts_need">0 Tips<br>0 Bolts</td>
+							</tr>
+							<tr>
+								<td>1</td>
+								<td><img  src="images/bronze_throwing_dart.png" alt="Bronze Dart"><br>Bronze Dart (1)</td>
+								<td id="bronze_dart_need">0 Darts<br>0 Feathers</td>
+							</tr>
+							<tr>
+								<td>1</td>
+								<td><img  src="images/iron_throwing_dart.png" alt="Iron Darts"><br>Iron Darts (22)</td>
+								<td id="iron_dart_need">0 Darts<br>0 Feathers</td>
+							</tr>
+							<tr>
+								<td>1</td>
+								<td><img  src="images/steel_throwing_dart.png" alt="Steel Darts"><br>Steel Darts (37)</td>
+								<td id="steel_dart_need">0 Darts<br>0 Feathers</td>
+							</tr>
+							<tr>
+								<td>1</td>
+								<td><img  src="images/mithril_throwing_dart.png" alt="Mithril Darts"><br>Mithril Darts (52)</td>
+								<td id="mith_dart_need">0 Darts<br>0 Feathers</td>
+							</tr>
+							<tr>
+								<td>1</td>
+								<td><img  src="images/adamantite_throwing_dart.png" alt="Adamantite Darts"><br>Addy Darts (67)</td>
+								<td id="addy_dart_need">0 Darts<br>0 Feathers</td>
+							</tr>
+							<tr>
+								<td>1</td>
+								<td><img  src="images/rune_throwing_dart.png" alt="Rune Darts"><br>Rune Darts (82)</td>
+								<td id="rune_dart_need">0 Darts<br>0 Feathers</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<p>Data for these calculators comes from <a href="https://classic.runescape.wiki/w/fletching" target="_blank" rel="noopener noreferrer">here</a></p>
+			</div>
+				
+			<div class="footer"><p>SpinachRoll is made by kRiStOf for his family and friends, and is not affiliated with JaGeX, OpenRSC, Trogdor the Burninator, or NASA's Mars rovers.</p>
+			</div>
+		</div>
+
+<script src="js/fletching_calc.js"></script>
+	</body>
+</html>

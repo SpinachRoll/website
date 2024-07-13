@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Spinach Roll</title>
+		<link rel="icon" type="image/png" href="favicon.png"/>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<style>
+			/* this is where all the style goes */
+			body {
+				margin: 0;
+				background: #ababab;
+				font-family: Helvetica, sans-serif;
+				animation: fadeInAnimation ease 5s;
+				animation-iteration-count: 1;
+				animation-fill-mode: forwards
+			}
+
+			@keyframes fadeInAnimation {
+				0% {
+					background: black;
+					opacity: 0;
+				}
+
+				100% {
+					opacity: 1;
+				}
+			}
+
+			/* this is where we make the grid, and determine it's size */
+			.grid-container {
+				display: grid;
+				grid-template-columns: 140px 1fr;
+				grid-template-rows: 123px 40px 1fr 3em;
+				grid-template-areas:
+					'header header'
+					'navbar navbar'
+					'menu main'
+					'footer footer';
+				position: relative;
+				gap: 0px;
+				height: 100vh;
+			}
+
+			.grid-container>div {
+				text-align: center;
+			}
+
+			/* we found a cool font, and include it here */
+			@font-face {
+				font-family: RSFont;
+				src: url(rscbold.ttf);
+			}
+
+			/* this is where all the header style goes */
+			.header {
+				background: #B87030;
+				grid-area: header;
+			}
+
+			#spinach_roll {
+				position: absolute;
+				grid-area: header;
+				width: 100%;
+				height: 123px;
+				z-index: 1;
+				top: 0;
+				bottom: 0;
+				left: 0;
+				right: 0;
+				margin: auto;
+			}
+
+			#king {
+				position: absolute;
+				grid-area: header;
+				height: 73px;
+				width: 73px;
+				right: 0;
+				bottom: 0;
+				z-index: 2;
+			}
+
+			/* this is where all the top navigation bar style goes */
+			.navbar {
+				grid-area: navbar;
+				position: sticky;
+				top: 0;
+				z-index: 3;
+			}
+
+			#navbar {
+				background-color: #131313;
+			}
+
+			#navbar a {
+				font-family: RSFont;
+				float: left;
+				padding: 5px 0px 0px 0px;
+				text-decoration: none;
+				font-size: 1.4em;
+				color: #005F00;
+				width: 23%;
+			}
+
+			#navbar a:hover {
+				color: #B87030;
+			}
+
+			#navbar img {
+				float: none;
+				margin-bottom: -0.2em;
+			}
+
+			/*position : absolute, margin, padding, height and width to hardcode floating. look into display grid. udemy: python and django full stack web developer bootcamp, by jose portilla*/
+			/* this is where all the content style goes */
+			ul {
+
+				margin: 0px 0px 0px 30px;
+				padding: 0;
+			}
+
+			.main {
+				grid-area: main;
+				position: relative;
+			}
+
+			#main {
+				font-family: RSFont;
+				font-size: 1.223em;
+				text-align: left;
+				text-decoration: none;
+				padding: 0px 0px 0px 30px;
+			}
+
+			.flex_main {
+				display: flex;
+				flex-flow: row wrap;
+				justify-content: space-around;
+			}
+
+			/* this is where all the footer style goes */
+			.footer {
+				grid-area: footer;
+				font-family: RSFont;
+				width: 100%;
+				font-size: 1em;
+				color: #818181;
+				background-color: #131313;
+				text-align: center;
+				overflow: hidden;
+				z-index: 3;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="grid-container">
+			<div class="header">
+				<a href="https://spinachroll.com/home">
+					<img id="spinach_roll" src="images/title_spinach_roll_3.png" alt="logo">
+				</a>
+				<a href="https://spinachroll.com">
+					<img id="king" src="images/king_t5.png" alt="Your King">
+				</a>
+			</div>
+			<div id="navbar" class="navbar">
+				<a href="melee.html"><img id="melee" src="images/combat.png" alt="melee">COMBAT</a>
+				<a href="smithing.html"><img id="skills" src="images/overall.png" alt="skills">SKILLS</a>
+				<a href="HSTracker.html"><img id="melee" src="images/champsguild.png" alt="melee">CHAMPS</a>
+				<a href="javascript:void(0)"><img id="melee" src="images/fighting.png" alt="melee"><s>EXTRAS</s></a>
+			</div>
+			<div id="main" class="main">
+				<h1>kRiStOf's kalculators</h1>
+				<p>Welcome to my website! It is still a work in progress, and will evolve as I go. <br> Some things to note are: </p>
+				<ul>
+					<li>- Webpages with a strikethrough aren't written yet.</li>
+					<li>- Data for calculators come from the RSC Wiki, OpenRSC's Gitlab, or other old fansites.</li>
+					<li>- I am not affiliated with anyone or anything, this is just to help people out.</li>
+				</ul>
+				<br><br>
+				<p>13-July-2024</p>
+				<ul>
+					<li>Added the Gaunlets of Goldsmithing to the smithing page. Check it out<a href="smithing.html">Here!</a></li>
+				</ul>
+				<p>11-May-2024</p>
+				<ul>
+					<li>Made the magic calculator page. check it out <a href="magic.html">Here!</a></li>
+				</ul>
+				<p>2-Mar-2024</p>
+				<ul>
+					<li>Made the very first RSC firemaking calculator page. check it out <a href="firemaking.html">Here!</a></li>
+					<li>Reset all current xp and desired xp to 0.</li>
+				</ul>
+				<p>27-Feb-2024</p>
+				<ul>
+					<li>Made the agility calculator page. check it out <a href="agility.html">Here!</a></li>
+					<li>Corrected some images and text problems. Thanks Lord Jolt!</li>
+				</ul>
+				<p>31-Jan-2024</p>
+				<ul>
+					<li>Made the crafting calculator page. check it out <a href="crafting.html">Here!</a></li>
+				</ul>
+				<p>29-Jan-2024</p>
+				<ul>
+					<li>Updated Range Max Hit Calculator for spears based on OpenRSC Merge request <a href="https://gitlab.com/open-runescape-classic/core/-/merge_requests/3831">here</a></li>
+					<li>Updated cooking calculator to give chance to cook on important items.</li>
+					<li>Added Addy Dagger to Max Hit Calculator for BlueDream.</li>
+				</ul>
+				<p>27-Jan-2024</p>
+				<ul>
+					<li>Made the cooking calculator page. check it out <a href="cooking.html">Here!</a></li>
+				</ul>
+				<p>26-Jan-2024</p>
+				<ul>
+					<li>Made the thieving calculator page. check it out <a href="herblaw.html">Here!</a></li>
+				</ul>
+				<p>25-Jan-2024</p>
+				<ul>
+					<li>Updated all experience calculators to take an optional desired xp instead of just desired level. The maximum XP to calculate for is the maximum positive XP you can gain in a skill, <b>536870911</b></b></li>
+					<li>Thanks for the suggestion Zooer!</li>
+				</ul>
+				<p>21-Jan-2024</p>
+				<ul>
+					<li>Used apsolutnul's icons on all pages</li>
+					<li>Changed HS Tracker to CHAMPSGUILD. Great website Lodt Jolt!</li>
+				</ul>
+				<p>15-Jan-2024</p>
+				<ul>
+					<li>Made the thieving calculator page. check it out <a href="thieving.html">Here!</a></li>
+					<li>Tried to use the correct formula for the "Chance to Thieve" on the Thieving page, but it might be incorrect. Input requested from you!</li>
+					<li>made a favicon for the webpages, and put it on all pages.</li>
+				</ul>
+				<p>13-Jan-2024</p>
+				<ul>
+					<li>Made the fishing calculator page. check it out <a href="fishing.html">Here!</a></li>
+				</ul>
+				<p>10-Jan-2024</p>
+				<ul>
+					<li>Updated Melee Max Hit Calculator to correct for -1 on maxRoll. Thanks Zooer for alerting me, and AE for logic verification.</li>
+					<li>Made HS Tracker webpage for Lord Jolts <a href="https://championsguild.fi">new Tracker site linked here</a></li>
+				</ul>
+				<p>4-Jan-2024</p>
+				<ul>
+					<li>Updated Melee Max Hit Calculator to include drop down menus for weapon, ammy, and gauntlets.</li>
+					<li>Made Prayer level calculator.</li>
+					<li>Jarikh helped find calculator problems and fix them.</li>
+				</ul>
+			
+			</div>
+			<div class="footer">
+				<p>SpinachRoll is made by kRiStOf for his family and friends, and is not affiliated with JaGeX, OpenRSC, Trogdor the Burninator, or NASA's Mars rovers.</p>
+			</div>
+		</div>
+	</body>
+</html>

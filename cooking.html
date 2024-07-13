@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Spinach Roll</title>
+		<link rel="icon" type="image/png" href="favicon.png"/>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<style>
+			/* this is where all the style goes */
+			body {
+				margin: 0;
+				background: #ababab;
+				font-family: Helvetica, sans-serif;
+			}
+
+			/* this is where we make the grid, and determine it's size */
+			.grid-container {
+				display: grid;
+				grid-template-columns: 140px 1fr;
+				grid-template-rows: 123px 40px 1fr 3em;
+				grid-template-areas:
+					'header header'
+					'navbar navbar'
+					'menu main'
+					'footer footer';
+				position: relative;
+				gap: 0px;
+				height: 100vh;
+			}
+
+			.grid-container>div {
+				text-align: center;
+			}
+
+			/* we found a cool font, and include it here */
+			@font-face {
+				font-family: RSFont;
+				src: url(rscbold.ttf);
+			}
+
+			/* this is where all the header style goes */
+			.header {
+				background: #B87030;
+				grid-area: header;
+				z-index: 3;
+			}
+
+			#spinach_roll {
+				position: absolute;
+				grid-area: header;
+				width: 100%;
+				height: 123px;
+				z-index: 1;
+				top: 0;
+				bottom: 0;
+				left: 0;
+				right: 0;
+				margin: auto;
+			}
+
+			#king {
+				position: absolute;
+				grid-area: header;
+				height: 73px;
+				width: 73px;
+				right: 0;
+				bottom: 0;
+				z-index: 2;
+			}
+
+			/* this is where all the top navigation bar style goes */
+			.navbar {
+				grid-area: navbar;
+				position: sticky;
+				top: 0;
+				z-index: 3;
+			}
+
+			#navbar {
+				background-color: #131313;
+			}
+
+			#navbar a {
+				font-family: RSFont;
+				float: left;
+				padding: 5px 0px 0px 0px;
+				text-decoration: none;
+				font-size: 1.3em;
+				color: #005F00;
+				width: 24%;
+			}
+
+			#navbar a:hover {
+				color: #B87030;
+			}
+
+			#navbar img {
+				float: none;
+				margin-bottom: -0.2em;
+			}
+
+			/*position : absolute, margin, padding, height and width to hardcode floating. look into display grid. udemy: python and django full stack web developer bootcamp, by jose portilla*/
+			/* this is where all the left navigation bar style goes */
+			.leftnav {
+				grid-area: menu;
+			}
+
+			#leftnav {
+				float: left;
+				height: 100%;
+				background-color: #131313;
+				text-align: center;
+				width: 100%;
+				z-index: 2;
+			}
+
+			#leftnav a {
+				font-family: RSFont;
+				padding: 0px;
+				float: left;
+				text-decoration: none;
+				font-size: 1.3em;
+				color: #005F00;
+				width: 100%;
+				margin: 17px 3px 3px -5px;
+			}
+
+			#leftnav a:hover {
+				color: #B87030;
+			}
+
+			#leftnav img {
+				float: none;
+				margin-bottom: -0.3em;
+			}
+
+			.sticky_leftnav {
+				position: sticky;
+				top: 40px;
+			}
+
+			ul {
+				list-style-type: none;
+				margin: 0;
+				padding: 0;
+			}
+
+			/* this is where all the content style goes */
+			.main {
+				grid-area: main;
+				position: relative;
+				z-index: 2;
+			}
+
+			#main {
+				font-family: RSFont;
+				text-align: center;
+				text-decoration: none;
+				padding: 0px 0px 0px 10px;
+			}
+
+			.flex_main {
+				display: flex;
+				flex-flow: row wrap;
+				justify-content: space-around;
+			}
+
+			form#cooking_lvl_calc {
+				margin: 0;
+				float: left;
+				text-align: center;
+				font-size: 1em;
+				padding-bottom: 50px;
+			}
+
+			form#cooking_lvl_calc label {
+				display: inline-block;
+				width: 200px;
+				text-align: center;
+				padding-top: 3px;
+			}
+
+            form#cooking_lvl_calc input[type="checkbox"] {
+                display: inline-block;
+                position:absolute;
+                margin: 4px 30px;
+            }
+
+
+			form#cooking_lvl_calc input {
+				box-sizing: border-box;
+				padding-top: 3px;
+				padding-bottom: 3px;
+				text-align: center;
+			}
+
+			#calc_cooking_lvl,
+			#cooking_lvl_reset, 
+            #fish_button,
+            #misc_button,
+            #gnome_button
+             {
+				font-family: "RSFont";
+				font-size: 1em;
+				height: 1.5em;
+				margin: 3px 0px;
+			}
+
+            table {
+				flex-basis: 18em;
+			}
+
+			table,
+			th,
+			td {
+				border: 1px solid black;
+				border-collapse: collapse;
+				border-radius: 10px;
+				text-align: center;
+			}
+
+			th {
+				font-size: 1.3em;
+			}
+
+			tr {
+				height: 3em;
+			}
+
+			#cooking_table_1 img {
+				width: 40px;
+				height: 25px;
+			}
+
+            #cooking_table_2 img {
+				width: 25px;
+				height: 25px;
+			}
+
+            #cooking_table_3 img {
+				width: 25px;
+				height: 25px;
+			}
+            #cooking_table_4 img {
+				width: 25px;
+				height: 35px;
+			}
+
+            #cooking_table_5 img {
+				width: 25px;
+				height: 35px;
+			}
+
+			input[type='number'] {
+				width: 70px;
+			}
+
+			/* this is where all the footer style goes */
+			.footer {
+				grid-area: footer;
+				font-family: RSFont;
+				width: 100%;
+				font-size: 1em;
+				color: #818181;
+				background-color: #131313;
+				text-align: center;
+				overflow: hidden;
+				z-index: 3;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="grid-container">
+			<div class="header">
+				<a href="home.html">
+					<img id="spinach_roll" src="images/title_spinach_roll_3.png" alt="logo">
+				</a>
+				<a href="https://spinachroll.com">
+					<img id="king" src="images/king_t5.png" alt="Your King">
+				</a>
+			</div>
+			<div id="navbar" class="navbar">
+				<a href="melee.html"><img id="melee" src="images/combat.png" alt="melee">COMBAT</a>
+				<a href="javascript:void(0)"><img id="skills" src="images/overall.png" alt="skills">SKILLS</a>
+				<a href="HSTracker.html"><img id="melee" src="images/champsguild.png" alt="melee">CHAMPS</a>
+				<a href="javascript:void(0)"><img id="melee" src="images/fighting.png" alt="melee"><s>EXTRAS</s></a>
+			</div>
+			<div id="leftnav" class="leftnav">
+				<div class="sticky_leftnav">
+					<ul>
+						<li><a href="javascript:void(0)"><img id="cooking" src="images/cooking.png" alt="cooking">Cooking</a></li>
+						<li><a href="woodcutting.html"><img id="woodcutting" src="images/woodcutting.png" alt="woodcutting">Woodcutting</a></li>
+						<li><a href="fletching.html"><img id="fletching" src="images/fletching.png" alt="fletching">Fletching</a></li>
+						<li><a href="fishing.html"><img id="fishing" src="images/fishing.png" alt="fishing">Fishing</a></li>
+						<li><a href="firemaking.html"><img id="firemaking" src="images/firemaking.png" alt="firemaking">Firemaking</a></li>
+						<li><a href="crafting.html"><img id="crafting" src="images/crafting.png" alt="crafting">Crafting</a></li>
+						<li><a href="smithing.html"><img id="smithing" src="images/smithing.png" alt="smithing">Smithing</a></li>
+						<li><a href="mining.html"><img id="mining" src="images/mining.png" alt="mining">Mining</a></li>
+						<li><a href="herblaw.html"><img id="Herblaw" src="images/herblaw.png" alt="herblaw">Herblaw</a></li>
+						<li><a href="agility.html"><img id="agility" src="images/agility.png" alt="agility">Agility</a></li>
+						<li><a href="thieving.html"><img id="thieving" src="images/thieving.png" alt="thieving">Thieving</a></li>
+					</ul>
+				</div>
+			</div>
+			<div id="main" class="main">
+				<h1>Cooking Calculators</h1>
+				<h2>To use this calculator, put in your current level or XP, and the level you'd like to get to.</h2>
+				<div id="flex_main" class="flex_main">
+					<form id="cooking_lvl_calc" style="display:table">
+						<fieldset>
+							<legend id="cooking_lvl_calc_form" style="text-align: center">COOKING LEVEL</legend>
+							<ul>
+								<li>
+									<label for="cur_cooking_lvl">Current cooking</label>
+								</li>
+								<li>
+									<label>Level&nbsp;&nbsp;&nbsp; or &nbsp;&nbsp;&nbsp;&nbsp;XP&nbsp;&nbsp;&nbsp;&nbsp;</label>
+								</li>
+								<li>
+									<input type="number" id="cur_cooking_lvl" name="cur_cooking_lvl" value="1" min="1" max="99">
+									<input type="number" id="cur_cooking_xp" name="cur_cooking_xp" value="0" min="0" max="536870910">
+								</li>
+                                <li>
+									<input type="checkbox" name="cook_gauntlets" id="cook_gauntlets" value="Cooking Guantlets">
+                                    <label for="cook_gauntlets">Cooking Gauntlets</label> 
+								</li>
+								<li>
+									<label for="des_cooking_lvl">Desired cooking Goal <br> Level or Experience</label>
+								</li>
+									<input type="number" id="des_cooking_lvl" name="des_cooking_lvl" value="1" min="1" max="99">
+									<input type="number" id="des_cooking_xp" name="des_cooking_xp" value="0" min="0" max="536870911">
+
+								</li>
+								<li>
+									<button type="button" id="calc_cooking_lvl">Calculate</button>
+									<input type="reset" value="Reset" id="cooking_lvl_reset">
+								</li>
+                                <li>
+                                    Show/Hide Buttons
+                                </li>
+                                <li>
+									<button type="button" id="fish_button">Fish</button>
+                                    <button type="button" id="misc_button"><s>Misc</s></button>
+                                    <button type="button" id="gnome_button"><s>Gnome</s></button>
+								</li>
+								<li>
+									<p id="cooking_xp_needed">Your need 0 more xp for your desired cooking Level.</p>
+								</li>
+							</ul>
+						</fieldset>
+					</form>
+					<table id="cooking_table_1" style="display: table">
+						<tr>
+							<th colspan="4">FISH TO LEVEL</th>
+						</tr>
+						<tr>
+							<td>XP Per</td>
+							<td>Type &<br> Level</td>
+							<td>Stock Needed</td>
+						</tr>
+						<tr>
+							<td>30</td>
+							<td>
+								<img src="images/raw_shrimp.png" alt="Shrimp">
+								<br>Shrimp (1)
+							</td>
+							<td id="shrimp_need">0</td>
+						</tr>
+                        <tr>
+							<td>30</td>
+							<td>
+								<img src="images/raw_anchovies.png" alt="Anchovy">
+								<br>Anchovy (1)
+							</td>
+							<td id="anchovy_need">0</td>
+						</tr>
+						<tr>
+							<td>40</td>
+							<td>
+								<img src="images/raw_sardine.png" alt="Sardine">
+								<br>Sardine (1)
+							</td>
+							<td id="sardine_need">0</td>
+						</tr>
+						<tr>
+							<td>50</td>
+							<td>
+								<img src="images/raw_herring.png" alt="Herring">
+								<br>Herring (5)
+							</td>
+							<td id="herring_need">0</td>
+                        </tr>
+                        <tr>
+							<td>60</td>
+							<td>
+								<img src="images/raw_mackerel.png" alt="Mackerel">
+								<br>Mackerel (10)
+							</td>
+							<td id="mackerel_need">0</td>
+						</tr>
+                        <tr>
+							<td>70</td>
+							<td>
+								<img src="images/raw_trout.png" alt="Trout">
+								<br>Trout (15)
+							</td>
+							<td id="trout_need">0</td>
+						</tr>
+                        <tr>
+							<td>75</td>
+							<td>
+								<img src="images/raw_cod.png" alt="Cod">
+								<br>Cod (18)
+							<td id="cod_need">0</td>
+						</tr>
+                        <tr>
+                            <td>80</td>
+                            <td>
+                                <img src="images/raw_pike.png" alt="Pike">
+                                <br>Pike (20)
+                            </td>
+                            <td id="pike_need">0</td>
+                        </tr>
+                        <tr>
+							<td>90</td>
+							<td>
+								<img src="images/raw_salmon.png" alt="Salmon">
+								<br>Salmon (25)
+							</td>
+							<td id="salmon_need">0</td>
+						</tr>
+                        <tr>
+							<td>100</td>
+							<td>
+								<img src="images/raw_tuna.png" alt="Tuna">
+								<br>Tuna (30)
+							</td>
+							<td id="tuna_need">0</td>
+						</tr>
+                        <tr>
+							<td>120</td>
+							<td>
+								<img src="images/raw_lobster.png" alt="Lobster">
+								<br>Lobster (40)
+							</td>
+							<td id="lobster_need">0</td>
+						</tr>
+                        <tr>
+							<td>130</td>
+							<td>
+								<img src="images/raw_bass.png" alt="Bass">
+								<br>Bass (43)
+							</td>
+							<td id="bass_need">0</td>
+						</tr>
+                        <tr>
+							<td>140</td>
+							<td>
+								<img src="images/raw_swordfish.png" alt="Swordfish">
+								<br>Swordfish (45)
+							</td>
+							<td id="swordfish_need">0</td>
+						</tr>
+                        <tr>
+							<td>140</td>
+							<td>
+								<img src="images/raw_lava_eel.png" alt="Lava Eel">
+								<br>Lava Eel (53)
+							</td>
+							<td id="lava_eel_need">0</td>
+						</tr>
+                        <tr>
+							<td>210</td>
+							<td>
+								<img src="images/raw_shark.png" alt="Shark">
+								<br>Shark (80)
+							</td>
+							<td id="shark_need">0</td>
+						</tr>
+                        <tr>
+							<td>211.5</td>
+							<td>
+								<img src="images/raw_sea_turtle.png" alt="Sea Turtle">
+								<br>Sea Turtle (82)
+							</td>
+							<td id="sea_turtle_need">0</td>
+						</tr>
+                        <tr>
+							<td>216</td>
+							<td>
+								<img src="images/raw_manta_ray.png" alt="Manta Ray">
+								<br>Manta Ray (91)
+							</td>
+							<td id="manta_ray_need">0</td>
+						</tr>
+					</table>
+                    <table id="cooking_table_2" style="display: none">
+						<tr>
+							<th colspan="3">MISC. TO LEVEL</th>
+						</tr>
+						<tr>
+							<td>XP Per</td>
+							<td>Type &<br> Level</td>
+							<td>Stock Needed</td>
+						</tr>
+                        <tr>
+							<td>30</td>
+							<td>
+								<img src="images/raw_chicken.png" alt="Meat">
+								<br>Meat (1)
+							</td>
+							<td id="meat_need">0</td>
+						</tr>
+                        <tr>
+							<td>40</td>
+							<td>
+								<img src="images/bread.png" alt="Bread">
+								<br>Bread (1)
+							</td>
+							<td id="bread_need">0</td>
+						</tr>
+                        <tr>
+							<td>60</td>
+							<td>
+								<img src="images/pie.png" alt="Redberry pie">
+								<br>Redberry <br>pie (10)
+							</td>
+							<td id="red_pie_need">0</td>
+						</tr>
+                        <tr>
+							<td>80</td>
+							<td>
+								<img src="images/pie.png" alt="Meat pie">
+								<br>Meat pie (20)
+							</td>
+							<td id="meat_pie_need">0</td>
+						</tr>
+                        <tr>
+							<td>90</td>
+							<td>
+								<img src="images/stew.png" alt="Stew">
+								<br>Stew (25)
+							</td>
+							<td id="stew_need">0</td>
+						</tr>
+                        <tr>
+							<td>100</td>
+							<td>
+								<img src="images/pie.png" alt="Apple pie">
+								<br>Apple pie (30)
+							</td>
+							<td id="apple_pie_need">0</td>
+						</tr>
+                        <tr>
+							<td>110</td>
+							<td>
+								<img src="images/plain_pizza.png" alt="Plain Pizza">
+								<br>Pizza (35)
+							</td>
+							<td id="pizza_need">0</td>
+						</tr>
+                        <tr>
+                            <td colspan="3">Adding toppings to pizza gives 0 XP</tr>
+                        </tr>
+                        <tr>
+							<td>110</td>
+							<td>
+								<img src="images/wine.png" alt="Wine">
+								<br>Wine (35)
+							</td>
+							<td id="wine_need">0</td>
+						</tr>
+                        <tr>
+							<td>120</td>
+							<td>
+								<img src="images/cake.png" alt="Cake">
+								<br>Cake (40)
+							</td>
+							<td id="cake_need">0</td>
+						</tr>
+                        <tr>
+                            <td colspan="3">Adding chocolate to Cake gives 0 XP</tr>
+                        </tr>
+                        <tr>
+							<td>125</td>
+							<td>
+								<img src="images/raw_oomlie_meat_parcel.png" alt="Restore prayer Potion">
+								<br>Oomlie meat<br> Parcel (50)
+							</td>
+							<td id="oomlie_need">0</td>
+						</tr>
+                        <tr>
+							<td>40</td>
+							<td>
+								<img src="images/ugthanki_kebab.png" alt="Ugthanki Kebab">
+								<br>Ugthanki<br> Kebab (58)
+							</td>
+							<td id="ug_kebab_need">0</td>
+						</tr>
+                        <tr>
+							<td>120</td>
+							<td>
+								<img src="images/tasty_ugthanki_kebab.png" alt="Tasty Ugthanki Kebab">
+								<br>Tasty Ugthanki<br> Kebab (58)
+							</td>
+							<td id="tasty_ug_need">0</td>
+						</tr>
+                        <tr>
+							<td>125</td>
+							<td>
+								<img src="images/Curry.png" alt="Curry">
+								<br>Curry (60)
+							</td>
+							<td id="curry_need">0</td>
+						</tr>
+                    </table>
+                    <table id="cooking_table_3" style="display: none">
+						<tr>
+							<th colspan="3">GNOME FOOD TO LEVEL</th>
+						</tr>
+						<tr>
+							<td>XP Per</td>
+							<td>Type &<br> Level</td>
+							<td>Stock Needed</td>
+						</tr>
+                        <tr>
+							<td>25</td>
+							<td>
+								<img src="images/Gnomecrunchie_dough.png" alt="Gnomebatta dough">
+								<br>Gnomecrunchie<br> dough (15)
+							</td>
+							<td id="d_crunch_need">0</td>
+						</tr>
+                        <tr>
+							<td>30</td>
+							<td>
+								<img src="images/crunchies.png" alt="Choc crunchies">
+								<br>Choc crunchies<br> (15)
+							</td>
+							<td id="c_crunch_need">0</td>
+						</tr>
+                        <tr>
+							<td>30</td>
+							<td>
+								<img src="images/crunchies.png" alt="Spice crunchies">
+								<br>Spice crunchies<br> (15)
+							</td>
+							<td id="s_crunch_need">0</td>
+						</tr>
+                        <tr>
+							<td>30</td>
+							<td>
+								<img src="images/crunchies.png" alt="Toad crunchies">
+								<br>Toad crunchies<br> (15)
+							</td>
+							<td id="t_crunch_need">0</td>
+						</tr>
+                        <tr>
+							<td>30</td>
+							<td>
+								<img src="images/crunchies.png" alt="Worm crunchies">
+								<br>Worm crunchies<br> (15)
+							</td>
+							<td id="w_crunch_need">0</td>
+						</tr>
+                        <tr>
+							<td>25</td>
+							<td>
+								<img src="images/gnomebatta_dough.png" alt="Gnomebatta dough">
+								<br>Gnomebatta<br> dough (25)
+							</td>
+							<td id="d_batta_need">0</td>
+						</tr>
+                        <tr>
+							<td>30</td>
+							<td>
+								<img src="images/batta.png" alt="Cheese and tomato batta">
+								<br>Cheese and <br>tomato batta (25)
+							</td>
+							<td id="ct_batta_need">0</td>
+						</tr>
+                        <tr>
+							<td>30</td>
+							<td>
+								<img src="images/batta.png" alt=" Fruit batta">
+								<br> Fruit batta (25)
+							</td>
+							<td id="f_batta_need">0</td>
+						</tr>
+                        <tr>
+							<td>30</td>
+							<td>
+								<img src="images/batta.png" alt="Toad batta">
+								<br>Toad batta (25)
+							</td>
+							<td id="t_batta_need">0</td>
+						</tr>
+                        <tr>
+							<td>30</td>
+							<td>
+								<img src="images/batta.png" alt="Veg batta">
+								<br>Veg batta (25)
+							</td>
+							<td id="v_batta_need">0</td>
+						</tr>
+                        <tr>
+							<td>30</td>
+							<td>
+								<img src="images/batta.png" alt="Worm batta">
+								<br>Worm batta (25)
+							</td>
+							<td id="w_batta_need">0</td>
+						</tr>
+                        <tr>
+							<td>25</td>
+							<td>
+								<img src="images/gnomebowl_dough.png" alt="Gnomebowl dough">
+								<br>Gnomebowl<br> dough (30)
+							</td>
+							<td id="d_bowl_need">0</td>
+						</tr>
+                        <tr>
+							<td>30</td>
+							<td>
+								<img src="images/chocolate_bomb.png" alt="Chocolate bomb">
+								<br>Chocolate<br> bomb (30)
+							</td>
+							<td id="c_bomb_need">0</td>
+						</tr>
+                        <tr>
+							<td>30</td>
+							<td>
+								<img src="images/crunchies.png" alt="Tangled toads legs">
+								<br>Tangled toads<br> legs (30)
+							</td>
+							<td id="t_legs_need">0</td>
+						</tr>
+                        <tr>
+							<td>30</td>
+							<td>
+								<img src="images/vegball.png" alt="Vegball">
+								<br>Vegball (30)
+							</td>
+							<td id="vegball_need">0</td>
+						</tr>
+                        <tr>
+							<td>30</td>
+							<td>
+								<img src="images/worm_hole.png" alt="Worm hole">
+								<br>Worm hole (30)
+							</td>
+							<td id="wormhole_need">0</td>
+						</tr>
+                    </table>
+				</div>
+				<p>Data for these calculators comes from <a href="https://classic.runescape.wiki/w/cooking" target="_blank" rel="noopener noreferrer">here</a> and <a href="https://gitlab.com/open-runescape-classic/core/-/blob/develop/server/src/com/openrsc/server/util/rsc/Formulae.java" target="_blank" rel="noopener noreferrer">here</a>
+				</p>
+			</div>
+			<div class="footer">
+				<p>SpinachRoll is made by kRiStOf for his family and friends, and is not affiliated with JaGeX, OpenRSC, Trogdor the Burninator, or NASA's Mars rovers.</p>
+			</div>
+		</div>
+		<script src="js/cooking_calc.js"></script>
+	</body>
+</html>

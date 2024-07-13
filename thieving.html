@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Spinach Roll</title>
+        <link rel="icon" type="image/png" href="favicon.png"/>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<style>
+			/* this is where all the style goes */
+			body {
+				margin: 0;
+				background: #ababab;
+				font-family: Helvetica, sans-serif;
+			}
+
+			/* this is where we make the grid, and determine it's size */
+			.grid-container {
+				display: grid;
+				grid-template-columns: 140px 1fr;
+				grid-template-rows: 123px 40px 1fr 3em;
+				grid-template-areas:
+					'header header'
+					'navbar navbar'
+					'menu main'
+					'footer footer';
+				position: relative;
+				gap: 0px;
+				height: 100vh;
+			}
+
+			.grid-container>div {
+				text-align: center;
+			}
+
+			/* we found a cool font, and include it here */
+			@font-face {
+				font-family: RSFont;
+				src: url(rscbold.ttf);
+			}
+
+			/* this is where all the header style goes */
+			.header {
+				background: #B87030;
+				grid-area: header;
+				z-index: 3;
+			}
+
+			#spinach_roll {
+				position: absolute;
+				grid-area: header;
+				width: 100%;
+				height: 123px;
+				z-index: 1;
+				top: 0;
+				bottom: 0;
+				left: 0;
+				right: 0;
+				margin: auto;
+			}
+
+			#king {
+				position: absolute;
+				grid-area: header;
+				height: 73px;
+				width: 73px;
+				right: 0;
+				bottom: 0;
+				z-index: 2;
+			}
+
+			/* this is where all the top navigation bar style goes */
+			.navbar {
+				grid-area: navbar;
+				position: sticky;
+				top: 0;
+				z-index: 3;
+			}
+
+			#navbar {
+				background-color: #131313;
+			}
+
+			#navbar a {
+				font-family: RSFont;
+				float: left;
+				padding: 5px 0px 0px 0px;
+				text-decoration: none;
+				font-size: 1.4em;
+				color: #005F00;
+				width: 23%;
+			}
+
+			#navbar a:hover {
+				color: #B87030;
+			}
+
+			#navbar img {
+				float: none;
+				margin-bottom: -0.2em;
+			}
+
+			/*position : absolute, margin, padding, height and width to hardcode floating. look into display grid. udemy: python and django full stack web developer bootcamp, by jose portilla*/
+			/* this is where all the left navigation bar style goes */
+			.leftnav {
+				grid-area: menu;
+			}
+
+			#leftnav {
+				float: left;
+				height: 100%;
+				background-color: #131313;
+				text-align: center;
+				width: 100%;
+				z-index: 2;
+			}
+
+			#leftnav a {
+				font-family: RSFont;
+				padding: 0px;
+				float: left;
+				text-decoration: none;
+				font-size: 1.3em;
+				color: #005F00;
+				width: 100%;
+				margin: 17px 3px 3px -5px;
+			}
+
+			#leftnav a:hover {
+				color: #B87030;
+			}
+
+			#leftnav img {
+				float: none;
+				margin-bottom: -0.3em;
+			}
+
+			.sticky_leftnav {
+				position: sticky;
+				top: 40px;
+			}
+
+			ul {
+				list-style-type: none;
+				margin: 0;
+				padding: 0;
+			}
+
+			/* this is where all the content style goes */
+			.main {
+				grid-area: main;
+				position: relative;
+			}
+
+			#main {
+				font-family: RSFont;
+				text-align: center;
+				text-decoration: none;
+				padding: 0px 0px 0px 10px;
+			}
+
+			.flex_main {
+				display: flex;
+				flex-flow: row wrap;
+				justify-content: space-around;
+			}
+
+            #explain {
+				text-align: left;
+			}
+
+			form#thieving_lvl_calc {
+				margin: 0;
+				float: left;
+				text-align: center;
+				font-size: 1em;
+				padding-bottom: 50px;
+			}
+
+			form#thieving_lvl_calc label {
+				display: inline-block;
+				width: 200px;
+				text-align: center;
+				padding-top: 3px;
+			}
+
+			form#thieving_lvl_calc input {
+				box-sizing: border-box;
+				padding-top: 3px;
+				padding-bottom: 3px;
+				text-align: center;
+			}
+
+            button,
+			[type=reset] {
+				font-family: "RSFont";
+                font-size: 1em;
+				height: 1.5em;
+				margin: 3px 0px;
+			}
+
+            table {
+				flex-basis: 18em;
+			}
+            
+			table,
+			th,
+			td {
+				border: 1px solid black;
+				border-collapse: collapse;
+				border-radius: 10px;
+				text-align: center;
+			}
+
+			th {
+				font-size: 1.3em;
+			}
+
+			tr {
+				height: 3em;
+			}
+
+            #thieving_table_1 img {
+				width: 20px;
+				height: 45px;
+			}
+
+            #thieving_table_2 img {
+				width: 30px;
+				height: 30px;
+			}
+
+            #thieving_table_3 img {
+				width: 30px;
+				height: 30px;
+			}
+
+			input[type='number'] {
+				width: 70px;
+			}
+
+			/* this is where all the footer style goes */
+			.footer {
+				grid-area: footer;
+				font-family: RSFont;
+				width: 100%;
+				font-size: 1em;
+				color: #818181;
+				background-color: #131313;
+				text-align: center;
+				overflow: hidden;
+				z-index: 3;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="grid-container">
+			<div class="header">
+				<a href="home.html">
+					<img id="spinach_roll" src="images/title_spinach_roll_3.png" alt="logo">
+				</a>
+				<a href="https://spinachroll.com">
+					<img id="king" src="images/king_t5.png" alt="Your King">
+				</a>
+			</div>
+			<div id="navbar" class="navbar">
+				<a href="melee.html"><img id="melee" src="images/combat.png" alt="melee">COMBAT</a>
+				<a href="javascript:void(0)"><img id="skills" src="images/overall.png" alt="skills">SKILLS</a>
+				<a href="HSTracker.html"><img id="melee" src="images/champsguild.png" alt="melee">CHAMPS</a>
+				<a href="javascript:void(0)"><img id="melee" src="images/fighting.png" alt="melee"><s>EXTRAS</s></a>
+			</div>
+			<div id="leftnav" class="leftnav">
+				<div class="sticky_leftnav">
+					<ul>
+						<li><a href="cooking.html"><img id="cooking" src="images/cooking.png" alt="cooking">Cooking</a></li>
+						<li><a href="woodcutting.html"><img id="woodcutting" src="images/woodcutting.png" alt="woodcutting">Woodcutting</a></li>
+						<li><a href="fletching.html"><img id="fletching" src="images/fletching.png" alt="fletching">Fletching</a></li>
+						<li><a href="fishing.html"><img id="fishing" src="images/fishing.png" alt="fishing">Fishing</a></li>
+						<li><a href="firemaking.html"><img id="firemaking" src="images/firemaking.png" alt="firemaking">Firemaking</a></li>
+						<li><a href="crafting.html"><img id="crafting" src="images/crafting.png" alt="crafting">Crafting</a></li>
+						<li><a href="smithing.html"><img id="smithing" src="images/smithing.png" alt="smithing">Smithing</a></li>
+						<li><a href="mining.html"><img id="mining" src="images/mining.png" alt="mining">Mining</a></li>
+						<li><a href="herblaw.html"><img id="Herblaw" src="images/herblaw.png" alt="herblaw">Herblaw</a></li>
+						<li><a href="agility.html"><img id="agility" src="images/agility.png" alt="agility">Agility</a></li>
+						<li><a href="javascript:void(0)"><img id="thieving" src="images/thieving.png" alt="thieving">Thieving</a></li>
+					</ul>
+				</div>
+			</div>
+			<div id="main" class="main">
+				<h1>Thieving Calculators</h1>
+				<h2>To use this calculator, put in your current level or XP, and the level you'd like to get to.</h2>
+				<div id="flex_main" class="flex_main">
+					<form id="thieving_lvl_calc" style="flex-basis: 18em">
+						<fieldset>
+							<legend id="thieving_lvl_calc_form" style="text-align: center">THIEVING LEVEL</legend>
+							<ul>
+								<li>
+									<label for="cur_thieving_lvl">Current Thieving</label>
+								</li>
+								<li>
+									<label>Level&nbsp;&nbsp;&nbsp; or &nbsp;&nbsp;&nbsp;&nbsp;XP&nbsp;&nbsp;&nbsp;&nbsp;</label>
+								</li>
+								<li>
+									<input type="number" id="cur_thieving_lvl" name="cur_thieving_lvl" value="1" min="1" max="99">
+									<input type="number" id="cur_thieving_xp" name="cur_thieving_xp" value="0" min="0" max="536870910">
+								</li>
+								<li>
+									<label for="des_thieving_lvl">Desired Thieving Goal <br> Level or Experience</label>
+								</li>
+								<li>
+									<input type="number" id="des_thieving_lvl" name="des_thieving_lvl" value="1" min="1" max="99">
+									<input type="number" id="des_thieving_xp" name="des_thieving_xp" value="0" min="0" max="536870911">
+								</li>
+								<li>
+									<button type="button" id="calc_thieving_lvl">Calculate</button>
+									<input type="reset" value="Reset" id="thieving_lvl_reset">
+								</li>
+								<li>
+                                    Show/Hide Tables
+                                </li>
+                                <li>
+									<button type="button" id="stall_button"><s>Stalls</s></button>
+									<button type="button" id="chest_button"><s>Chests</s></button>
+								</li>
+								<li>
+									<p id="thieving_xp_needed">Your need 0 more xp for your desired thieving Level.</p>
+								</li>
+							</ul>
+						</fieldset>
+					</form>
+					<table id="thieving_table_1" style="flex-basis: 18em">
+						<tr>
+							<th colspan="3">PICKPOCKETS TO LEVEL</th>
+						</tr>
+						<tr>
+							<td>XP Per</td>
+							<td>Type &<br> Level</td>
+							<td>Pickpockets Needed</td>
+						</tr>
+						<tr>
+							<td>8</td>
+							<td>
+								<img src="images/man.png" alt="Man">
+								<br>Man (1)
+							</td>
+							<td id="man_need">0</td>
+						</tr>
+						<tr>
+							<td>14.5</td>
+							<td>
+								<img src="images/farmer.png" alt="Farmer">
+								<br>Farmer (10)
+							</td>
+							<td id="farmer_need">0</td>
+						</tr>
+						<tr>
+							<td>26</td>
+							<td>
+								<img src="images/warrior_woman.png" alt="Warrior">
+								<br>Warrior (25)
+							</td>
+							<td id="warrior_need">0</td>
+                        </tr>
+                        <tr>
+							<td>36.5</td>
+							<td>
+								<img src="images/rogue.png" alt="Rogue">
+								<br>Rogue (32)
+							</td>
+							<td id="rogue_need">0</td>
+						</tr>
+                        <tr>
+							<td>46.75</td>
+							<td>
+								<img src="images/guard.png" alt="Guard">
+								<br>Guard (40)
+							</td>
+							<td id="guard_need">0</td>
+						</tr>
+                        <tr>
+							<td>84.25</td>
+							<td>
+								<img src="images/knight.png" alt="Knight">
+								<br>Knight (55)
+							</td>
+							<td id="knight_need">0</td>
+						</tr>
+                        <tr>
+							<td>137.5</td>
+							<td>
+								<img src="images/yanille_watchman.png" alt="Watchman">
+								<br>Watchman (65)
+							</td>
+							<td id="watchman_need">0</td>
+						</tr>
+                        <tr>
+							<td>151.75</td>
+							<td>
+								<img src="images/paladin.png" alt="Paladin">
+								<br>Paladin (70)
+							</td>
+							<td id="paladin_need">0</td>
+						</tr>
+                        <tr>
+							<td>198.25</td>
+							<td>
+								<img src="images/gnome_local.png" alt="Gnome">
+								<br>Gnome (75)
+							</td>
+							<td id="gnome_need">0</td>
+						</tr>
+                        <tr>
+							<td>273.25</td>
+							<td>
+								<img src="images/hero.png" alt="Hero">
+								<br>Hero (80)
+							<td id="hero_need">0</td>
+						</tr>
+					</table>
+                    <table id="thieving_table_2" style="display:none">
+						<tr>
+							<th colspan="3">STALLS TO LEVEL</th>
+						</tr>
+						<tr>
+							<td>XP Per</td>
+							<td>Type &<br> Level</td>
+							<td>Thieves Needed</td>
+						</tr>
+                        <tr>
+							<td>16</td>
+							<td>
+								<img src="images/stall.png" alt="Tea Stall">
+								<br>Tea Stall (5)
+							</td>
+							<td id="tea_need">0</td>
+						</tr>
+                        <tr>
+							<td>16</td>
+							<td>
+								<img src="images/stall.png" alt="Bakers Stall">
+								<br>Bakers Stall (5)
+							</td>
+							<td id="baker_need">0</td>
+						</tr>
+                        <tr>
+							<td>16</td>
+							<td>
+								<img src="images/rock_cake_stall.png" alt="Rock Cake Stall">
+								<br>Rock Cake<br> Stall (15)
+							</td>
+							<td id="rock_cake_need">0</td>
+						</tr>
+                        <tr>
+							<td>24</td>
+							<td>
+								<img src="images/stall.png" alt="Silk Stall">
+								<br>Silk Stall (20)
+							</td>
+							<td id="silk_need">0</td>
+						</tr>
+                        <tr>
+							<td>36</td>
+							<td>
+								<img src="images/stall.png" alt="Fur Stall">
+								<br>Fur Stall (35)
+							</td>
+							<td id="fur_need">0</td>
+						</tr>
+                        <tr>
+							<td>54</td>
+							<td>
+								<img src="images/stall.png" alt="Silver Stall">
+								<br>Silver Stall (50)
+							</td>
+							<td id="silver_need">0</td>
+						</tr>
+                        <tr>
+							<td>81</td>
+							<td>
+								<img src="images/stall.png" alt="Spice Stall">
+								<br>Spice Stall (65)
+							</td>
+							<td id="spice_need">0</td>
+						</tr>
+                        <tr>
+							<td>16</td>
+							<td>
+								<img src="images/stall.png" alt="Gem Stall">
+								<br>Gem Stall (75)
+							</td>
+							<td id="gem_need">0</td>
+						</tr>
+                    </table>
+                    <table id="thieving_table_3" style="display:none">
+                        <tr>
+                            <th colspan="3">CHESTS TO LEVEL</th>
+                        </tr>
+                        <tr>
+                            <td>XP Per</td>
+                            <td>Type &<br> Level</td>
+                            <td>Thieves Needed</td>
+                        </tr>
+                        <tr>
+                            <td>7.5</td>
+                            <td>
+                                <img src="images/chest.png" alt="10 Coin Chest">
+                                <br>10 Coin<br> Chest (13)
+                            </td>
+                            <td id="ten_coin_chest_need">0</td>
+                        </tr>
+                        <tr>
+                            <td>25</td>
+                            <td>
+                                <img src="images/chest.png" alt="Nature Rune Stall">
+                                <br>Nature Rune<br> Chest (28)
+                            </td>
+                            <td id="nature_chest_need">0</td>
+                        </tr>
+                        <tr>
+                            <td>125</td>
+                            <td>
+                                <img src="images/chest.png" alt="50 Coin Chest">
+                                <br>50 Coin<br> Chest (43)
+                            </td>
+                            <td id="fifty_coin_chest_need">0</td>
+                        </tr>
+                        <tr>
+                            <td>150</td>
+                            <td>
+                                <img src="images/chest.png" alt="Hemenster Chest">
+                                <br>Hemenster<br> Chest (47)
+                            </td>
+                            <td id="hemenster_chest_need">0</td>
+                        </tr>
+                        <tr>
+                            <td>250</td>
+                            <td>
+                                <img src="images/chest.png" alt="Blood Rune Chest">
+                                <br>Blood Rune<br> Chest (59)
+                            </td>
+                            <td id="blood_chest_need">0</td>
+                        </tr>
+                        <tr>
+                            <td>500</td>
+                            <td>
+                                <img src="images/chest.png" alt="Paladin Chest">
+                                <br>Paladin<br> Chest (72)
+                            </td>
+                            <td id="paladin_chest_need">0</td>
+                        </tr>
+                    </table>
+                </div>
+				<p>Data for these calculators comes from <a href="https://classic.runescape.wiki/w/thieving" target="_blank" rel="noopener noreferrer">here</a> 
+                    and <a href="https://gitlab.com/open-runescape-classic/core/-/blob/develop/server/plugins/com/openrsc/server/plugins/authentic/skills/thieving/Thieving.java" target="_blank" rel="noopener noreferrer">here</a>
+                    <ul id="explain">
+                        <li>The calculation I am using to determine the chance to successfully pickpocket comes from 
+                        <a href="https://gitlab.com/open-runescape-classic/core/-/blob/develop/server/src/com/openrsc/server/util/rsc/Formulae.java" target="_blank" rel="noopener noreferrer">here</a>,</li>
+                        <li>Specifically the calcGatheringSuccessfulLegacy formula. I am almost posative I have it correct in the following format, but would love input from others:</li>
+                        <li>roll = DataConversions.random(1, 128)</li>
+                        <li>threashold = Math.min(127, Math.max(1, skillLevel + equipmentBonus + 40 - (int) (levelReq * 1.5)))</li>
+                        <li>threashold / roll(maximum, so 128)</li>
+                        <li>which looks like this in my code:</li>
+                        <li>man_success = ((Math.min(127, cur_thieving_lvl_value + 40 + 40 - Math.floor(1 * 1.5))/128) * 100).toFixed(2);</li>
+                        <li>where cur_thieving_lvl_value comes from your inputed thieving level, equipmentBonus is set to 40 in thieving.java, and levelReq is set to the level of the NPC</li>
+                    </ul>
+                </p>
+            </div>
+			<div class="footer">
+				<p>SpinachRoll is made by kRiStOf for his family and friends, and is not affiliated with JaGeX, OpenRSC, Trogdor the Burninator, or NASA's Mars rovers.</p>
+			</div>
+		</div>
+		<script src="js/thieving_calc.js"></script>
+	</body>
+</html>

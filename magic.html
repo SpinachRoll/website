@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Spinach Roll</title>
+		<link rel="icon" type="image/png" href="favicon.png"/>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<style>
+			/* this is where all the style goes */
+			body {
+				margin: 0;
+				background: #ababab;
+				font-family: Helvetica, sans-serif;
+			}
+
+			/* this is where we make the grid, and determine it's size */
+			.grid-container {
+				display: grid;
+				grid-template-columns: 140px 1fr;
+				grid-template-rows: 123px 40px 1fr 3em;
+				grid-template-areas:
+					'header header'
+					'navbar navbar'
+					'menu main'
+					'footer footer';
+				position: relative;
+				gap: 0px;
+				height: 100vh;
+			}
+
+			.grid-container>div {
+				text-align: center;
+			}
+
+			/* we found a 2 cool fonts, and include it here */
+			@font-face {
+				font-family: RSFont;
+				src: url(rscbold.ttf);
+			}
+
+			@font-face {
+				font-family: RSTitleFont;
+				src: url(RuneScape-Chat-Bold-07.ttf);
+			}
+
+			/* this is where all the header style goes */
+			.header {
+				background: #B87030;
+				grid-area: header;
+				z-index: 3;
+			}
+
+			#spinach_roll {
+				position: absolute;
+				grid-area: header;
+				width: 100%;
+				height: 123px;
+				z-index: 1;
+				top: 0;
+				bottom: 0;
+				left: 0;
+				right: 0;
+				margin: auto;
+			}
+
+			#king {
+				position: absolute;
+				grid-area: header;
+				height: 73px;
+				width: 73px;
+				right: 0;
+				bottom: 0;
+				z-index: 2;
+			}
+
+			/* this is where all the top navigation bar style goes */
+			.navbar {
+				grid-area: navbar;
+				position: sticky;
+				top: 0;
+				z-index: 3;
+			}
+
+			#navbar {
+				background-color: #131313;
+			}
+
+			#navbar a {
+				font-family: RSFont;
+				float: left;
+				padding: 5px 0px 0px 0px;
+				text-decoration: none;
+				font-size: 1.4em;
+				color: #005F00;
+				width: 23%;
+			}
+
+			#navbar a:hover {
+				color: #B87030;
+			}
+
+			#navbar img {
+				float: none;
+				margin-bottom: -0.2em;
+			}
+
+			/*position : absolute, margin, padding, height and width to hardcode floating. look into display grid. udemy: python and django full stack web developer bootcamp, by jose portilla*/
+			/* this is where all the left navigation bar style goes */
+			.leftnav {
+				grid-area: menu;
+			}
+
+			#leftnav {
+				float: left;
+				height: 100%;
+				background-color: #131313;
+				text-align: center;
+				width: 100%;
+				z-index: 2;
+			}
+
+			#leftnav a {
+				font-family: RSFont;
+				padding: 0px;
+				float: left;
+				text-decoration: none;
+				font-size: 1.3em;
+				color: #005F00;
+				width: 100%;
+				margin: 17px 3px 3px -5px;
+			}
+
+			#leftnav a:hover {
+				color: #B87030;
+			}
+
+			#leftnav img {
+				float: none;
+				margin-bottom: -0.3em;
+			}
+
+			.sticky_leftnav {
+				position: sticky;
+				top: 40px;
+			}
+
+			ul {
+				list-style-type: none;
+				margin: 0;
+				padding: 0;
+			}
+
+			/* this is where all the content style goes */
+			.main {
+				grid-area: main;
+				position: relative;
+				z-index: 2;
+			}
+
+			#main {
+				font-family: RSFont;
+				text-align: center;
+				text-decoration: none;
+				padding: 0px 0px 0px 10px;
+			}
+
+			.flex_main {
+				display: flex;
+				flex-flow: row wrap;
+				justify-content: space-around;
+			}
+
+			form#magic_lvl_calc {
+				margin: 0;
+				float: left;
+				text-align: center;
+				font-size: 1em;
+				padding-bottom: 50px;
+			}
+
+			form#magic_lvl_calc label {
+				display: inline-block;
+				width: 200px;
+				text-align: center;
+				padding-top: 3px;
+			}
+
+			form#magic_lvl_calc input {
+				box-sizing: border-box;
+				padding-top: 3px;
+				padding-bottom: 3px;
+				text-align: center;
+			}
+
+			#calc_magic_lvl,
+			#magic_lvl_reset {
+				font-family: "RSFont";
+				font-size: 1em;
+			}
+
+			table,
+			th,
+			td {
+				border: 1px solid black;
+				border-collapse: collapse;
+				border-radius: 10px;
+				text-align: center;
+			}
+
+			th {
+				font-size: 1.3em;
+			}
+
+			tr {
+				height: 1em;
+			}
+
+			#magic_table input {
+				text-align: center;
+			}
+
+			#magic_table img {
+				width: 30px;
+				height: 30px;
+			}
+
+			input[type='number'] {
+				width: 70px;
+			}
+
+			/* this is where all the footer style goes */
+			.footer {
+				grid-area: footer;
+				font-family: RSFont;
+				width: 100%;
+				font-size: 1em;
+				color: #818181;
+				background-color: #131313;
+				text-align: center;
+				overflow: hidden;
+				z-index: 3;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="grid-container">
+			<div class="header">
+				<a href="home.html">
+					<img id="spinach_roll" src="images/title_spinach_roll_3.png" alt="logo">
+				</a>
+				<a href="https://spinachroll.com">
+					<img id="king" src="images/king_t5.png" alt="Your King">
+				</a>
+			</div>
+			<div id="navbar" class="navbar">
+				<a href="javascript:void(0)"><img id="melee" src="images/combat.png" alt="melee">COMBAT</a>
+				<a href="smithing.html"><img id="skills" src="images/overall.png" alt="skills">SKILLS</a>
+				<a href="HSTracker.html"><img id="melee" src="images/champsguild.png" alt="melee">CHAMPS</a>
+				<a href="javascript:void(0)"><img id="melee" src="images/fighting.png" alt="melee"><s>EXTRAS</s></a>
+			</div>
+            <div id="leftnav" class="leftnav">
+				<div class="sticky_leftnav">
+					<ul>
+						<li><a href="melee.html"><img id="melee" src="images/melee.png" alt="melee">Melee</a></li>
+						<li><a href="range.html"><img id="ranged" src="images/ranged.png" alt="ranged">Ranged</a></li>
+						<li><a href="prayer.html"><img id="prayer" src="images/prayer.png" alt="prayer">Prayer</a></li>
+						<li><a href="javascript:void(0)"><img id="magic" src="images/magic.png" alt="magic">Magic</a></li>
+					</ul>
+				</div>
+			</div>
+			<div id="main" class="main">
+				<h1>Magic Calculators</h1>
+				<h2>To use this calculator, put in your current level or XP, and the level you'd like to get to.</h2>
+				<div id="flex_main" class="flex_main">
+					<form id="magic_lvl_calc" style="flex-basis: 18em">
+						<fieldset>
+							<legend id="magic_lvl_calc_form" style="text-align: center">MAGIC LEVEL</legend>
+							<ul>
+								<li>
+									<label for="cur_magic_lvl">Current magic</label>
+								</li>
+								<li>
+									<label>Level&nbsp;&nbsp;&nbsp; or &nbsp;&nbsp;&nbsp;&nbsp;XP&nbsp;&nbsp;</label>
+								</li>
+								<li>
+									<input type="number" id="cur_magic_lvl" name="cur_magic_lvl" value="1" min="1" max="99">
+									<input type="number" id="cur_magic_xp" name="cur_magic_xp" value="0" min="0" max="536870910">
+								</li>
+								<li>
+									<label for="des_magic_lvl">Desired Magic Goal <br> Level or Experience</label>
+								</li>
+								<li>
+									<input type="number" id="des_magic_lvl" name="des_magic_lvl" value="1" min="1" max="99">
+									<input type="number" id="des_magic_xp" name="des_magic_xp" value="0" min="0" max="536870911">
+
+								</li>
+								<li>
+									<button type="button" id="calc_magic_lvl">Calculate</button>
+									<input type="reset" value="Reset" id="magic_lvl_reset">
+								</li>
+								<li>
+									<p id="magic_xp_needed">Your need 0 more xp for your desired Magic Level.</p>
+								</li>
+							</ul>
+						</fieldset>
+					</form>
+					<table id="magic_table" style="flex-basis: 18em">
+						<tr>
+							<th colspan="4">CASTS TO LEVEL</th>
+						</tr>
+						<tr>
+							<td>XP Per</td>
+							<td>Level</td>
+							<td>Type</td>
+							<td>Casts Needed</td>
+						</tr>
+						<tr>
+							<td>22</td>
+							<td>1</td>
+							<td>Wind strike</td>
+							<td id="wind_s_need">0</td>
+						</tr>
+						<tr>
+							<td>26</td>
+							<td>3</td>
+							<td>Confuse</td>
+							<td id="confuse_need">0</td>
+						</tr>
+						<tr>
+							<td>30</td>
+							<td>5</td>
+							<td>Water strike</td>
+							<td id="water_s_need">0</td>
+						</tr>
+						<tr>
+							<td>34</td>
+							<td>7</td>
+							<td>Enchant lvl-1 amulet</td>
+							<td id="enchant_1_need">0</td>
+						</tr>
+						<tr>
+							<td>38</td>
+							<td>9</td>
+							<td>Earth strike</td>
+							<td id="earth_s_need">0</td>
+						</tr>
+						<tr>
+							<td>42</td>
+							<td>11</td>
+							<td>Weaken</td>
+							<td id="weaken_need">0</td>
+						</tr>
+						<tr>
+							<td>46</td>
+							<td>13</td>
+							<td>Fire strike</td>
+							<td id="fire_s_need">0</td>
+						</tr>
+						<tr>
+							<td>50</td>
+							<td>15</td>
+							<td>Bones to bananas</td>
+							<td id="banana_need">0</td>
+						</tr>
+						<tr>
+							<td>54</td>
+							<td>17</td>
+							<td>Wind bolt</td>
+							<td id="wind_b_need">0</td>
+						</tr>
+						<tr>
+							<td>58</td>
+							<td>19</td>
+							<td>Curse</td>
+							<td id="curse_need">0</td>
+						</tr>
+						<tr>
+							<td>62</td>
+							<td>21</td>
+							<td>Low level alchemy</td>
+							<td id="low_a_need">0</td>
+						</tr>
+						<tr>
+							<td>66</td>
+							<td>23</td>
+							<td>Water bolt</td>
+							<td id="water_b_need">0</td>
+						</tr>
+						<tr>
+							<td>70</td>
+							<td>25</td>
+							<td>Varrock teleport</td>
+							<td id="v_tele_need">0</td>
+						</tr>
+						<tr>
+							<td>74</td>
+							<td>27</td>
+							<td>Enchant lvl-2 amulet</td>
+							<td id="enchant_2_need">0</td>
+						</tr>
+						<tr>
+							<td>78</td>
+							<td>29</td>
+							<td>Earth Bolt</td>
+							<td id="earth_b_need">0</td>
+						</tr>
+						<tr>
+							<td>82</td>
+							<td>31</td>
+							<td>Lumbridge teleport</td>
+							<td id="l_tele_need">0</td>
+						</tr>
+						<tr>
+							<td>86</td>
+							<td>33</td>
+							<td>Telekinetic grab</td>
+							<td id="t_grab_need">0</td>
+						</tr>
+						<tr>
+							<td>90</td>
+							<td>35</td>
+							<td>Fire bolt</td>
+							<td id="fire_b_need">0</td>
+						</tr>
+						<tr>
+							<td>94</td>
+							<td>37</td>
+							<td>Falador teleport</td>
+							<td id="f_tele_need">0</td>
+						</tr>
+						<tr>
+							<td>98</td>
+							<td>39</td>
+							<td>Crumble undead</td>
+							<td id="crumble_need">0</td>
+						</tr>
+						<tr>
+							<td>102</td>
+							<td>41</td>
+							<td>Wind blast</td>
+							<td id="wind_bl_need">0</td>
+						</tr>
+						<tr>
+							<td>106</td>
+							<td>43</td>
+							<td>Superheat item</td>
+							<td id="superheat_need">0</td>
+						</tr>
+						<tr>
+							<td>110</td>
+							<td>45</td>
+							<td>Camelot teleport</td>
+							<td id="c_tele_need">0</td>
+						</tr>
+						<tr>
+							<td>114</td>
+							<td>47</td>
+							<td>Water blast</td>
+							<td id="water_bl_need">0</td>
+						</tr>
+						<tr>
+							<td>118</td>
+							<td>49</td>
+							<td>Enchant lvl-3 amulet</td>
+							<td id="enchant_3_need">0</td>
+						</tr>
+						<tr>
+							<td>120</td>
+							<td>50</td>
+							<td>Iban blast</td>
+							<td id="iban_need">0</td>
+						</tr>
+						<tr>
+							<td>122</td>
+							<td>51</td>
+							<td>Ardougne teleport</td>
+							<td id="a_tele_need">0</td>
+						</tr>
+						<tr>
+							<td>126</td>
+							<td>53</td>
+							<td>Earth blast</td>
+							<td id="earth_bl_need">0</td>
+						</tr>
+						<tr>
+							<td>130</td>
+							<td>55</td>
+							<td>High level alchemy</td>
+							<td id="high_a_need">0</td>
+						</tr>
+						<tr>
+							<td>132</td>
+							<td>56</td>
+							<td>Charge water orb</td>
+							<td id="water_orb_need">0</td>
+						</tr>
+						<tr>
+							<td>134</td>
+							<td>57</td>
+							<td>Enchant lvl-4 amulet</td>
+							<td id="enchant_4_need">0</td>
+						</tr>
+						<tr>
+							<td>136</td>
+							<td>58</td>
+							<td>Watchtower teleport</td>
+							<td id="w_tele_need">0</td>
+						</tr>
+						<tr>
+							<td>138</td>
+							<td>59</td>
+							<td>Fire blast</td>
+							<td id="fire_bl_need">0</td>
+						</tr>
+						<tr>
+							<td>140</td>
+							<td>60</td>
+							<td>Charge earth Orb</td>
+							<td id="earth_orb_need">0</td>
+						</tr>
+						<tr>
+							<td>140</td>
+							<td>60</td>
+							<td>Claws of Guthix</td>
+							<td id="claws_need">0</td>
+						</tr>
+						<tr>
+							<td>140</td>
+							<td>60</td>
+							<td>Saradomin Strike</td>
+							<td id="sara_need">0</td>
+						</tr>
+						<tr>
+							<td>140</td>
+							<td>60</td>
+							<td>Flames of Zamorak</td>
+							<td id="zammy_need">0</td>
+						</tr>
+						<tr>
+							<td>144</td>
+							<td>62</td>
+							<td>Wind wave</td>
+							<td id="wind_w_need">0</td>
+						</tr>
+						<tr>
+							<td>146</td>
+							<td>63</td>
+							<td>Charge Fire Orb</td>
+							<td id="fire_orb_need">0</td>
+						</tr>
+						<tr>
+							<td>150</td>
+							<td>65</td>
+							<td>Water wave</td>
+							<td id="water_w_need">0</td>
+						</tr>
+						<tr>
+							<td>152</td>
+							<td>66</td>
+							<td>Charge air orb</td>
+							<td id="air_orb_need">0</td>
+						</tr>
+						<tr>
+							<td>152</td>
+							<td>66</td>
+							<td>Vulnerability</td>
+							<td id="vulnerability_need">0</td>
+						</tr>
+						<tr>
+							<td>156</td>
+							<td>68</td>
+							<td>Enchant lvl-5 amulet</td>
+							<td id="enchant_5_need">0</td>
+						</tr>
+						<tr>
+							<td>160</td>
+							<td>70</td>
+							<td>Earth wave</td>
+							<td id="earth_w_need">0</td>
+						</tr>
+						<tr>
+							<td>166</td>
+							<td>73</td>
+							<td>Enfeeble</td>
+							<td id="enfeeble_need">0</td>
+						</tr>
+						<tr>
+							<td>170</td>
+							<td>75</td>
+							<td>Fire wave</td>
+							<td id="fire_w_need">0</td>
+						</tr>
+						<tr>
+							<td>180</td>
+							<td>80</td>
+							<td>Stun</td>
+							<td id="stun_need">0</td>
+						</tr>
+						<tr>
+							<td>180</td>
+							<td>80</td>
+							<td>Charge</td>
+							<td id="charge_need">0</td>
+						</tr>
+					</table>
+				</div>
+				<p>Data for these calculators comes from <a href="https://classic.runescape.wiki/w/magic" target="_blank" rel="noopener noreferrer">here</a>
+				</p>
+			</div>
+			<div class="footer">
+				<p>SpinachRoll is made by kRiStOf for his family and friends, and is not affiliated with JaGeX, OpenRSC, Trogdor the Burninator, or NASA's Mars rovers.</p>
+			</div>
+		</div>
+		<script src="js/magic_calc.js"></script>
+	</body>
+</html>

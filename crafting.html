@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Spinach Roll</title>
+		<link rel="icon" type="image/png" href="favicon.png"/>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<style>
+			/* this is where all the style goes */
+			body {
+				margin: 0;
+				background: #ababab;
+				font-family: Helvetica, sans-serif;
+			}
+
+			/* this is where we make the grid, and determine it's size */
+			.grid-container {
+				display: grid;
+				grid-template-columns: 140px 1fr;
+				grid-template-rows: 123px 40px 1fr 3em;
+				grid-template-areas:
+					'header header'
+					'navbar navbar'
+					'menu main'
+					'footer footer';
+				position: relative;
+				gap: 0px;
+				height: 100vh;
+			}
+
+			.grid-container>div {
+				text-align: center;
+			}
+
+			/* we found a cool font, and include it here */
+			@font-face {
+				font-family: RSFont;
+				src: url(rscbold.ttf);
+			}
+
+			/* this is where all the header style goes */
+			.header {
+				background: #B87030;
+				grid-area: header;
+				z-index: 3;
+			}
+
+			#spinach_roll {
+				position: absolute;
+				grid-area: header;
+				width: 100%;
+				height: 123px;
+				z-index: 1;
+				top: 0;
+				bottom: 0;
+				left: 0;
+				right: 0;
+				margin: auto;
+			}
+
+			#king {
+				position: absolute;
+				grid-area: header;
+				height: 73px;
+				width: 73px;
+				right: 0;
+				bottom: 0;
+				z-index: 2;
+			}
+
+			/* this is where all the top navigation bar style goes */
+			.navbar {
+				grid-area: navbar;
+				position: sticky;
+				top: 0;
+				z-index: 3;
+			}
+
+			#navbar {
+				background-color: #131313;
+			}
+
+			#navbar a {
+				font-family: RSFont;
+				float: left;
+				padding: 5px 0px 0px 0px;
+				text-decoration: none;
+				font-size: 1.3em;
+				color: #005F00;
+				width: 24%;
+			}
+
+			#navbar a:hover {
+				color: #B87030;
+			}
+
+			#navbar img {
+				float: none;
+				margin-bottom: -0.2em;
+			}
+
+			/*position : absolute, margin, padding, height and width to hardcode floating. look into display grid. udemy: python and django full stack web developer bootcamp, by jose portilla*/
+			/* this is where all the left navigation bar style goes */
+			.leftnav {
+				grid-area: menu;
+			}
+
+			#leftnav {
+				float: left;
+				height: 100%;
+				background-color: #131313;
+				text-align: center;
+				width: 100%;
+				z-index: 2;
+			}
+
+			#leftnav a {
+				font-family: RSFont;
+				padding: 0px;
+				float: left;
+				text-decoration: none;
+				font-size: 1.3em;
+				color: #005F00;
+				width: 100%;
+				margin: 17px 3px 3px -5px;
+			}
+
+			#leftnav a:hover {
+				color: #B87030;
+			}
+
+			#leftnav img {
+				float: none;
+				margin-bottom: -0.3em;
+			}
+
+			.sticky_leftnav {
+				position: sticky;
+				top: 40px;
+			}
+
+			ul {
+				list-style-type: none;
+				margin: 0;
+				padding: 0;
+			}
+
+			/* this is where all the content style goes */
+			.main {
+				grid-area: main;
+				position: relative;
+				z-index: 2;
+			}
+
+			#main {
+				font-family: RSFont;
+				text-align: center;
+				text-decoration: none;
+				padding: 0px 0px 0px 10px;
+			}
+
+			.flex_main {
+				display: flex;
+				flex-flow: row wrap;
+				justify-content: space-around;
+			}
+
+			form#crafting_lvl_calc {
+				margin: 0;
+				float: left;
+				text-align: center;
+				font-size: 1em;
+				padding-bottom: 50px;
+			}
+
+			form#crafting_lvl_calc label {
+				display: inline-block;
+				width: 200px;
+				text-align: center;
+				padding-top: 3px;
+			}
+
+			form#crafting_lvl_calc input {
+				box-sizing: border-box;
+				padding-top: 3px;
+				padding-bottom: 3px;
+				text-align: center;
+			}
+
+			#calc_crafting_lvl,
+			#crafting_lvl_reset, 
+            #one_button,
+            #two_button,
+            #three_button,
+            #four_button,
+            #five_button,
+            #six_button
+             {
+				font-family: "RSFont";
+				font-size: 1em;
+				height: 1.5em;
+				margin: 3px 0px;
+			}
+
+            table {
+				flex-basis: 18em;
+			}
+
+			table,
+			th,
+			td {
+				border: 1px solid black;
+				border-collapse: collapse;
+				border-radius: 10px;
+				text-align: center;
+			}
+
+			th {
+				font-size: 1.3em;
+			}
+
+			tr {
+				height: 3em;
+			}
+
+
+
+
+
+			input[type='number'] {
+				width: 70px;
+			}
+
+			/* this is where all the footer style goes */
+			.footer {
+				grid-area: footer;
+				font-family: RSFont;
+				width: 100%;
+				font-size: 1em;
+				color: #818181;
+				background-color: #131313;
+				text-align: center;
+				overflow: hidden;
+				z-index: 3;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="grid-container">
+			<div class="header">
+				<a href="home.html">
+					<img id="spinach_roll" src="images/title_spinach_roll_3.png" alt="logo">
+				</a>
+				<a href="https://spinachroll.com">
+					<img id="king" src="images/king_t5.png" alt="Your King">
+				</a>
+			</div>
+			<div id="navbar" class="navbar">
+				<a href="melee.html"><img id="melee" src="images/combat.png" alt="melee">COMBAT</a>
+				<a href="javascript:void(0)"><img id="skills" src="images/overall.png" alt="skills">SKILLS</a>
+				<a href="HSTracker.html"><img id="melee" src="images/champsguild.png" alt="melee">CHAMPS</a>
+				<a href="javascript:void(0)"><img id="melee" src="images/fighting.png" alt="melee"><s>EXTRAS</s></a>
+			</div>
+			<div id="leftnav" class="leftnav">
+				<div class="sticky_leftnav">
+					<ul>
+						<li><a href="cooking.html"><img id="cooking" src="images/cooking.png" alt="cooking">Cooking</a></li>
+						<li><a href="woodcutting.html"><img id="woodcutting" src="images/woodcutting.png" alt="woodcutting">Woodcutting</a></li>
+						<li><a href="fletching.html"><img id="fletching" src="images/fletching.png" alt="fletching">Fletching</a></li>
+						<li><a href="fishing.html"><img id="fishing" src="images/fishing.png" alt="fishing">Fishing</a></li>
+						<li><a href="firemaking.html"><img id="firemaking" src="images/firemaking.png" alt="firemaking">Firemaking</a></li>
+						<li><a href="javascript:void(0)"><img id="crafting" src="images/crafting.png" alt="crafting">Crafting</a></li>
+						<li><a href="smithing.html"><img id="smithing" src="images/smithing.png" alt="smithing">Smithing</a></li>
+						<li><a href="mining.html"><img id="mining" src="images/mining.png" alt="mining">Mining</a></li>
+						<li><a href="herblaw.html"><img id="Herblaw" src="images/herblaw.png" alt="herblaw">Herblaw</a></li>
+						<li><a href="agility.html"><img id="agility" src="images/agility.png" alt="agility">Agility</a></li>
+						<li><a href="thieving.html"><img id="thieving" src="images/thieving.png" alt="thieving">Thieving</a></li>
+					</ul>
+				</div>
+			</div>
+			<div id="main" class="main">
+				<h1>Crafting Calculators</h1>
+				<h2>To use this calculator, put in your current level or XP, and the level you'd like to get to.</h2>
+				<div id="flex_main" class="flex_main">
+					<form id="crafting_lvl_calc" style="display:table">
+						<fieldset>
+							<legend id="crafting_lvl_calc_form" style="text-align: center">CRAFTING LEVEL</legend>
+							<ul>
+								<li>
+									<label for="cur_crafting_lvl">Current Crafting</label>
+								</li>
+								<li>
+									<label>Level&nbsp;&nbsp;&nbsp; or &nbsp;&nbsp;&nbsp;&nbsp;XP&nbsp;&nbsp;&nbsp;&nbsp;</label>
+								</li>
+								<li>
+									<input type="number" id="cur_crafting_lvl" name="cur_crafting_lvl" value="1" min="1" max="99">
+									<input type="number" id="cur_crafting_xp" name="cur_crafting_xp" value="0" min="0" max="536870910">
+								</li>
+								<li>
+									<label for="des_crafting_lvl">Desired Crafting Goal <br> Level or Experience</label>
+								</li>
+									<input type="number" id="des_crafting_lvl" name="des_crafting_lvl" value="1" min="1" max="99">
+									<input type="number" id="des_crafting_xp" name="des_crafting_xp" value="0" min="0" max="536870911">
+
+								</li>
+								<li>
+									<button type="button" id="calc_crafting_lvl">Calculate</button>
+									<input type="reset" value="Reset" id="crafting_lvl_reset">
+								</li>
+                                <li>
+                                    Show/Hide Tables
+                                </li>
+                                <li>
+									<button type="button" id="five_button">Gems/Ammys</button>
+                                    <button type="button" id="six_button">Glass/Staves&nbsp;</button>
+                                </li>                                
+                                <li>
+									<button type="button" id="one_button"><s>&nbsp;&nbsp;Lvl 1 - 8</s></button>
+                                    <button type="button" id="two_button"><s>Lvl 8 - 18</s></button>
+                                </li>
+                                <li>
+                                    <button type="button" id="three_button"><s>Lvl 20-46</s></button>
+                                    <button type="button" id="four_button"><s>Lvl 50-80</s></button>
+                                </li>
+								<li>
+									<p id="crafting_xp_needed">Your need 0 more xp for your desired crafting Level.</p>
+								</li>
+							</ul>
+						</fieldset>
+					</form>
+					<table id="crafting_table_1" style="display: none">
+						<tr>
+							<th colspan="3">ACTIONS TO LEVEL</th>
+						</tr>
+						<tr>
+							<td>XP Per</td>
+							<td>Type &<br> Level</td>
+							<td>Stock Needed</td>
+						</tr>
+						<tr>
+							<td>2.5</td>
+							<td>
+								<img src="images/ball_of_wool.png" alt="Ball of Wool">
+								<br>Ball of <br>Wool (1)
+							</td>
+							<td id="wool_need">0</td>
+						</tr>
+                        <tr>
+							<td>12.5</td>
+							<td>
+								<img src="images/Pot.png" alt="pot">
+								<br>Pot (1)
+							</td>
+							<td id="pot_need">0</td>
+						</tr>
+                        <tr>
+							<td>13.75</td>
+							<td>
+								<img src="images/leather_gloves.png" alt="Leather Gloves">
+								<br>Leather<br> Gloves (1)
+							</td>
+							<td id="gloves_need">0</td>
+						</tr>
+						<tr>
+							<td>17.5</td>
+							<td>
+								<img src="images/beer_glass.png" alt="Beer Glass">
+								<br>Beer <br>Glass (1)
+							</td>
+							<td id="b_glass_need">0</td>
+                        </tr>
+                        <tr>
+							<td>20</td>
+							<td>
+								<img src="images/molten_glass.png" alt="Molten Glass">
+								<br>Molten <br>Glass (1)
+							</td>
+							<td id="m_glass_need">0</td>
+						</tr>
+                        <tr>
+							<td>25</td>
+							<td>
+								<img src="images/Pie_dish.png" alt="Pie Dish">
+								<br>Pie <br>dish (4)
+							</td>
+							<td id="pie_dish_need">0</td>
+						</tr>
+                        <tr>
+							<td>15</td>
+							<td>
+								<img src="images/gold_ring.png" alt="Gold ring">
+								<br>Gold <br>ring (5)
+							<td id="g_ring_need">0</td>
+						</tr>
+                        <tr>
+							<td>20</td>
+							<td>
+								<img src="images/gold_necklace.png" alt="Gold necklace">
+								<br>Gold <br>necklace (6)
+							</td>
+							<td id="g_neck_need">0</td>
+						</tr>
+                        <tr>
+                            <td>16.25</td>
+                            <td>
+                                <img src="images/boots.png" alt="Boots">
+                                <br>Boots (7)
+                            </td>
+                            <td id="boots_need">0</td>
+                        </tr>
+                        <tr>
+							<td>25</td>
+							<td>
+								<img src="images/bowl.png" alt="Bowl">
+								<br>Bowl (7)
+							</td>
+							<td id="bowl_need">0</td>
+						</tr>
+                        <tr>
+							<td>30</td>
+							<td>
+								<img src="images/gold_amulet.png" alt="Gold amulet">
+								<br>Gold <br>amulet (8)
+							</td>
+							<td id="g_ammy_need">0</td>
+						</tr>
+                    </table>
+                    <table id="crafting_table_2" style="display: none">
+						<tr>
+							<th colspan="3">ACTIONS TO LEVEL</th>
+						</tr>
+						<tr>
+							<td>XP Per</td>
+							<td>Type &<br> Level</td>
+							<td>Stock Needed</td>
+						</tr>
+                        <tr>
+							<td>40</td>
+							<td>
+								<img src="images/sapphire_ring.png" alt="Sapphire ring">
+								<br>Sapphire <br>ring (8)
+							</td>
+							<td id="s_ring_need">0</td>
+						</tr>
+                        <tr>
+							<td>15/3.75</td>
+							<td>
+								<img src="images/uncut_opal.png" alt="Uncut opal" class="gem"><img  src="images/opal.png" alt="Opal">
+								<br>Opal (10)
+							</td>
+							<td id="opal_need">0</td>
+						</tr>
+                        <tr>
+							<td>15</td>
+							<td>
+								<img src="images/bow_string.png" alt="Bow string">
+								<br>Bow <br>string (10)
+							</td>
+							<td id="b_string_need">0</td>
+						</tr>
+                        <tr>
+							<td>55</td>
+							<td>
+								<img src="images/sapphire_necklace.png" alt="Sapphire necklace">
+								<br>Sapphire <br>necklace (10)
+							</td>
+							<td id="s_necklace_need">0</td>
+						</tr>
+                        <tr>
+							<td>20/5</td>
+							<td>
+								<img src="images/uncut_jade.png" alt="Uncut jade"><img src="images/jade.png" alt="Jade">
+								<br>Jade (13) 
+							</td>
+							<td id="jade_need">0</td>
+						</tr>
+                        <tr>
+							<td>65</td>
+							<td>
+								<img src="images/sapphire_amulet.png" alt="Sapphire amulet">
+								<br>Sapphire <br>amulet (13)
+							</td>
+							<td id="s_ammy_need">0</td>
+						</tr>
+                        <tr>
+							<td>25</td>
+							<td>
+								<img src="images/leather_armour.png" alt="Leather Armour">
+								<br>Leather <br>Armour (14)
+							</td>
+							<td id="l_armour_need">0</td>
+						</tr>
+                        <tr>
+							<td>25/6.25</td>
+							<td>
+								<img src="images/uncut_red_topaz.png" alt="Uncut red topaz"><img src="images/red_topaz.png" alt="Red topaz">
+								<br>Red <br>topaz (16)
+							</td>
+							<td id="r_topaz_need">0</td>
+						</tr>
+                        <tr>
+							<td>50</td>
+							<td>
+								<img src="images/holy_symbol_of_saradomin.png" alt="Holy symbol">
+								<br>Holy <br>symbol (16)
+							</td>
+							<td id="holy_need">0</td>
+						</tr>
+                        <tr>
+							<td>50</td>
+							<td>
+								<img src="images/unholy_symbol_of_zamorak.png" alt="Unholy symbol">
+								<br>Unholy <br>symbol (16)
+							</td>
+							<td id="unholy_need">0</td>
+						</tr>
+                        <tr>
+							<td>55</td>
+							<td>
+								<img src="images/emerald_ring.png" alt="Emerald ring">
+								<br>Emerald <br>ring (18)
+							</td>
+							<td id="e_ring_need">0</td>
+						</tr>
+					</table>
+                    <table id="crafting_table_3" style="display: none">
+						<tr>
+							<th colspan="3">ACTIONS TO LEVEL</th>
+						</tr>
+						<tr>
+							<td>XP Per</td>
+							<td>Type &<br> Level</td>
+							<td>Stock Needed</td>
+						</tr>
+                        <tr>
+							<td>50</td>
+							<td>
+								<img src="images/uncut_sapphire.png" alt="Uncut sapphire"><img src="images/sapphire.png" alt="Sapphire">
+								<br>Sapphire (20)
+							</td>
+							<td id="sapphire_need">0</td>
+						</tr>
+                        <tr>
+							<td>60</td>
+							<td>
+								<img src="images/emerald_necklace.png" alt="Emerald necklace">
+								<br>Emerald <br>necklace (24)
+							</td>
+							<td id="e_necklace_need">0</td>
+						</tr>
+                        <tr>
+							<td>67.5</td>
+							<td>
+								<img src="images/uncut_emerald.png" alt="Uncut emerald"><img src="images/emerald.png" alt="Emerald">
+								<br>Emerald (27)
+							</td>
+							<td id="emerald_need">0</td>
+						</tr>
+                        <tr>
+							<td>70</td>
+							<td>
+								<img src="images/emerald_amulet.png" alt="Emerald amulet">
+								<br>Emerald <br>amulet (30)
+							</td>
+							<td id="e_ammy_need">0</td>
+						</tr>
+                        <tr>
+							<td>70</td>
+							<td>
+								<img src="images/ruby_ring.png" alt="Ruby ring">
+								<br>Ruby <br>ring (30)
+							</td>
+							<td id="r_ring_need">0</td>
+						</tr>
+                        <tr>
+							<td>35</td>
+							<td>
+								<img src="images/vial.png" alt="Vial">
+								<br>Vial (33)
+							</td>
+							<td id="vial_need">0</td>
+						</tr>
+                        <tr>
+							<td>85</td>
+							<td>
+								<img src="images/uncut_ruby.png" alt="Uncut ruby"><img src="images/ruby.png" alt="Ruby">
+								<br>Ruby (34)
+							</td>
+							<td id="ruby_need">0</td>
+						</tr>
+                        <tr>
+							<td>75</td>
+							<td>
+								<img src="images/ruby_necklace.png" alt="Ruby necklace">
+								<br>Ruby <br>necklace (40)
+							</td>
+							<td id="r_necklace_need">0</td>
+						</tr>
+                        <tr>
+							<td>85</td>
+							<td>
+								<img src="images/diamond_ring.png" alt="Diamond ring">
+								<br>Diamond <br>ring (42)
+							</td>
+							<td id="d_ring_need">0</td>
+						</tr>
+                        <tr>
+							<td>107.5</td>
+							<td>
+								<img src="images/uncut_diamond.png" alt="Uncut diamond"><img src="images/diamond.png" alt="Diamond">
+								<br>Diamond (43)
+							</td>
+							<td id="diamond_need">0</td>
+						</tr>
+                        <tr>
+							<td>52.5</td>
+							<td>
+								<img src="images/unpowered_orb.png" alt="Unpowered orb">
+								<br>Unpowered <br>orb (46)
+							</td>
+							<td id="orb_need">0</td>
+						</tr>
+                    </table>
+                    <table id="crafting_table_4" style="display: none">
+						<tr>
+							<th colspan="3">ACTIONS TO LEVEL</th>
+						</tr>
+						<tr>
+							<td>XP Per</td>
+							<td>Type &<br> Level</td>
+							<td>Stock Needed</td>
+						</tr>
+                        <tr>
+							<td>85</td>
+							<td>
+								<img src="images/ruby_amulet.png" alt="Ruby amulet">
+								<br>Ruby <br>amulet (50)
+							</td>
+							<td id="r_ammy_need">0</td>
+						</tr>
+                        <tr>
+							<td>100</td>
+							<td>
+								<img src="images/dragonstone_ring.png" alt="Dragonstone ring">
+								<br>Dragonstone <br>ring (54)
+							</td>
+							<td id="drag_ring_need">0</td>
+						</tr>
+                        <tr>
+							<td>100</td>
+							<td>
+								<img src="images/battlestaff_of_water.png" alt="Battlestaff of water">
+								<br>Battlestaff <br>of Water (54)
+							</td>
+							<td id="w_bstave_need">0</td>
+						</tr>
+                        <tr>
+							<td>137.5</td>
+							<td>
+								<img src="images/uncut_dragonstone.png" alt="uncut dragonstone"><img src="images/dragonstone.png" alt="Dragonstone">
+								<br> Dragonstone (55)
+							</td>
+							<td id="dragonstone_need">0</td>
+						</tr>
+                        <tr>
+							<td>90</td>
+							<td>
+								<img src="images/diamond_necklace.png" alt="Diamond necklace">
+								<br>Diamond <br>necklace (56)
+							</td>
+							<td id="d_necklace_need">0</td>
+						</tr>
+                        <tr>
+							<td>112.5</td>
+							<td>
+								<img src="images/battlestaff_of_earth.png" alt="Battlestaff of earth">
+								<br>Battlestaff <br>of earth (58)
+							</td>
+							<td id="e_bstave_need">0</td>
+						</tr>
+                        <tr>
+							<td>125</td>
+							<td>
+								<img src="images/battlestaff_of_fire.png" alt="Battlestaff of fire">
+								<br>Battlestaff <br>of fire (62)
+							</td>
+							<td id="f_bstave_need">0</td>
+						</tr>
+                        <tr>
+							<td>137.5</td>
+							<td>
+								<img src="images/battlestaff_of_air.png" alt="Battlestaff of air">
+								<br>Battlestaff <br>of air (66)
+							</td>
+							<td id="a_bstave_need">0</td>
+						</tr>
+                        <tr>
+							<td>100</td>
+							<td>
+								<img src="images/diamond_amulet.png" alt="Diamond amulet">
+								<br>Diamond <br>amulet (70)
+							</td>
+							<td id="d_ammy_need">0</td>
+						</tr>
+                        <tr>
+							<td>105</td>
+							<td>
+								<img src="images/dragonstone_necklace.png" alt="Dragonstone Necklace">
+								<br>Dragonstone <br>Necklace (72)
+							</td>
+							<td id="drag_necklace_need">0</td>
+						</tr>
+                        <tr>
+							<td>150</td>
+							<td>
+								<img src="images/dragonstone_amulet.png" alt="Dragonstone amulet">
+								<br>Dragonstone<br> amulet (80)
+							</td>
+							<td id="drag_ammy_need">0</td>
+						</tr>
+                    </table>
+                    <table id="crafting_table_5" style="display: table">
+						<tr>
+							<th colspan="3">ACTIONS TO LEVEL</th>
+						</tr>
+						<tr>
+							<td>XP Per</td>
+							<td>Type &<br> Level</td>
+							<td>Stock Needed</td>
+						</tr>
+                        <tr>
+							<td>50</td>
+							<td>
+								<img src="images/uncut_sapphire.png" alt="Uncut sapphire"><img src="images/sapphire.png" alt="Sapphire">
+								<br>Sapphire (20)
+							</td>
+							<td id="sapphire_2_need">0</td>
+						</tr>
+                        <tr>
+							<td>67.5</td>
+							<td>
+								<img src="images/uncut_emerald.png" alt="Uncut emerald"><img src="images/emerald.png" alt="Emerald">
+								<br>Emerald (27)
+							</td>
+							<td id="emerald_2_need">0</td>
+						</tr>
+                        <tr>
+							<td>85</td>
+							<td>
+								<img src="images/uncut_ruby.png" alt="Uncut ruby"><img src="images/ruby.png" alt="Ruby">
+								<br>Ruby (34)
+							</td>
+							<td id="ruby_2_need">0</td>
+						</tr>
+                        <tr>
+							<td>107.5</td>
+							<td>
+								<img src="images/uncut_diamond.png" alt="Uncut diamond"><img src="images/diamond.png" alt="Diamond">
+								<br>Diamond (43)
+							</td>
+							<td id="diamond_2_need">0</td>
+						</tr>
+                        <tr>
+							<td>137.5</td>
+							<td>
+								<img src="images/uncut_dragonstone.png" alt="uncut dragonstone"><img src="images/dragonstone.png" alt="Dragonstone">
+								<br> Dragonstone (55)
+							</td>
+							<td id="dragonstone_2_need">0</td>
+						</tr>
+                        <tr>
+							<td>65</td>
+							<td>
+								<img src="images/sapphire_amulet.png" alt="Sapphire amulet">
+								<br>Sapphire <br>amulet (13)
+							</td>
+							<td id="s_ammy_2_need">0</td>
+						</tr>
+                        <tr>
+							<td>70</td>
+							<td>
+								<img src="images/emerald_amulet.png" alt="Emerald amulet">
+								<br>Emerald <br>amulet (30)
+							</td>
+							<td id="e_ammy_2_need">0</td>
+						</tr>
+                        <tr>
+							<td>85</td>
+							<td>
+								<img src="images/ruby_amulet.png" alt="Ruby amulet">
+								<br>Ruby <br>amulet (50)
+							</td>
+							<td id="r_ammy_2_need">0</td>
+						</tr>
+                        <tr>
+							<td>100</td>
+							<td>
+								<img src="images/diamond_amulet.png" alt="Diamond amulet">
+								<br>Diamond <br>amulet (70)
+							</td>
+							<td id="d_ammy_2_need">0</td>
+						</tr>
+                        <tr>
+							<td>150</td>
+							<td>
+								<img src="images/dragonstone_amulet.png" alt="Dragonstone amulet">
+								<br>Dragonstone <br>amulet (80)
+							</td>
+							<td id="drag_ammy_2_need">0</td>
+						</tr>
+                    </table>
+                    <table id="crafting_table_6" style="display: table">
+						<tr>
+							<th colspan="3">ACTIONS TO LEVEL</th>
+						</tr>
+						<tr>
+							<td>XP Per</td>
+							<td>Type &<br> Level</td>
+							<td>Stock Needed</td>
+						</tr>
+                        <tr>
+							<td>20</td>
+							<td>
+								<img src="images/molten_glass.png" alt="Molten Glass">
+								<br>Molten <br>Glass (1)
+							</td>
+							<td id="m_glass_2_need">0</td>
+						</tr>
+                        <tr>
+							<td>52.5</td>
+							<td>
+								<img src="images/unpowered_orb.png" alt="Unpowered orb">
+								<br>Unpowered <br>orb (46)
+							</td>
+							<td id="orb_2_need">0</td>
+						</tr>
+                        <tr>
+							<td>100</td>
+							<td>
+								<img src="images/battlestaff_of_water.png" alt="Battlestaff of water">
+								<br>Battlestaff <br>of Water (54)
+							</td>
+							<td id="w_bstave_2_need">0</td>
+						</tr>
+                        <tr>
+							<td>112.5</td>
+							<td>
+								<img src="images/battlestaff_of_earth.png" alt="Battlestaff of earth">
+								<br>Battlestaff <br>of earth (58)
+							</td>
+							<td id="e_bstave_2_need">0</td>
+						</tr>
+                        <tr>
+							<td>125</td>
+							<td>
+								<img src="images/battlestaff_of_fire.png" alt="Battlestaff of fire">
+								<br>Battlestaff <br>of fire (62)
+							</td>
+							<td id="f_bstave_2_need">0</td>
+						</tr>
+                        <tr>
+							<td>137.5</td>
+							<td>
+								<img src="images/battlestaff_of_air.png" alt="Battlestaff of air">
+								<br>Battlestaff <br>of air (66)
+							</td>
+							<td id="a_bstave_2_need">0</td>
+						</tr>
+                    </table>
+				</div>
+				<p>Data for these calculators comes from <a href="https://classic.runescape.wiki/w/crafting" target="_blank" rel="noopener noreferrer">here</a> and <a href="https://gitlab.com/open-runescape-classic/core/-/blob/develop/server/src/com/openrsc/server/util/rsc/Formulae.java" target="_blank" rel="noopener noreferrer">here</a>
+				</p>
+			</div>
+			<div class="footer">
+				<p>SpinachRoll is made by kRiStOf for his family and friends, and is not affiliated with JaGeX, OpenRSC, Trogdor the Burninator, or NASA's Mars rovers.</p>
+			</div>
+		</div>
+		<script src="js/crafting_calc.js"></script>
+	</body>
+</html>

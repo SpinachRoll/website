@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Spinach Roll</title>
+	<link rel="icon" type="image/png" href="favicon.png"/>
+	<style>
+
+		#videoContainer {
+			position: relative;
+			width: 100%;
+			max-height: 95vh;
+		}
+		video {
+			width: 100%;
+			max-height: 95vh;
+			}
+		body {
+			background-color: black;
+		}
+		#myButton {
+			position: absolute;
+			bottom: 10px;
+			right: 10px;
+			transform: translate(-50%, -50%);
+			width: 200px;
+			height: 50px;
+			border: none;
+			border-radius: 50%;
+			background: rgba(0, 0, 0, 0.5);
+			color: white;
+			font-size: 23px;
+			cursor: pointer;
+		}
+		#myVideo[data-playing] + #myButton {
+			display: none;
+		}
+	</style>
+</head>
+<body>
+	<div id="videoContainer">
+		<video id="myVideo" autoplay muted>
+			<source src="images/walkup.mp4" type="video/mp4">
+			Your browser does not support HTML5 video or autoplay. Please click here to play the video.
+		</video>
+		<button id="myButton">
+			Skip
+		</button>
+	</div>
+	<script>
+		// Get the video element by its id
+		var video = document.getElementById("myVideo");
+		var button = document.getElementById("myButton");
+		// Add an event listener for the ended event on the video
+		video.addEventListener("ended", function() {
+			// Redirect the page to another URL
+			window.location.href = "https://spinachroll.com/home";
+			// Or reload the same page
+			// window.location.reload();
+		});
+	    button.addEventListener("click", function() {
+        	// Redirect the page to home.html
+        	window.location.href = "https://spinachroll.com/home";
+    	});
+	</script>
+</body>
