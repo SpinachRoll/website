@@ -1,4 +1,4 @@
-//totoasd wants magic
+//test test test 2 2 2
 
 
 var att = document.getElementById("att_lvl");
@@ -18,8 +18,14 @@ document.getElementById("calc_cmb_lvl_btn").addEventListener("click", function()
 	var melee_cmb = ((parseInt(att.value) * 0.25) + (parseInt(str.value) * 0.25) + (parseInt(def.value) * 0.25) + (parseInt(hits.value) * 0.25) + (parseInt(magic.value) * 0.125) + (parseInt(pray.value) * 0.125));
 	var range_cmb = (parseInt(range.value) * 0.375) + (parseInt(def.value) * 0.25) + (parseInt(hits.value) * 0.25) + (parseInt(pray.value) * 0.125) + (parseInt(magic.value) * 0.125);
 	var cmb;
-	if ((parseInt(att.value) == 1 ) & (parseInt(str.value) == 1) & (parseInt(def.value) == 1) & (parseInt(hits.value) == 10) & (parseInt(magic.value) == 99) & (parseInt(pray.value) == 1)) {
+	if ((parseInt(att.value) == 1) & (parseInt(str.value) == 1) & (parseInt(def.value) == 1) & (parseInt(hits.value) == 10) & (parseInt(magic.value) == 99) & (parseInt(pray.value) == 1)) {
 		cmb_lvl.innerHTML = "You are a Mage based account Lord Jolt.";
+	}
+	else if ((parseInt(att.value) == 1) & (parseInt(str.value) == 1) & (parseInt(def.value) == 1) & (parseInt(hits.value) == 10) & (parseInt(magic.value) == 1) & (parseInt(pray.value) == 99)) {
+		cmb_lvl.innerHTML = "LOL! Get real my friend.";
+	}
+	else if ((parseInt(att.value) == 99) & (parseInt(str.value) == 99) & (parseInt(def.value) == 1) & (parseInt(hits.value) == 99) & (parseInt(magic.value) == 1) & (parseInt(pray.value) == 40)) {
+		cmb_lvl.innerHTML = "Nice";
 	}
 	else if (melee_cmb > range_cmb) {
 		cmb = melee_cmb;

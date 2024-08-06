@@ -8,11 +8,30 @@ document.getElementById("calc_fishing_lvl").addEventListener("click", function()
     var des_fishing_xp = document.getElementById("des_fishing_xp");
     var des_fishing_xp_value = parseInt(des_fishing_xp.value);
     var total;
-    var chance;
     var c_f_l_xp;
     var d_f_l_xp;
     var c_f_l_f_xp;
     var c_f_l;
+    var chance;
+    const shrimp = [1, 48, 256];
+    const sardine = [5, 32, 192];
+    const herring = [10, 24, 128];
+    const anchovy = [15, 24, 128];
+    const mackerel = [16, 14, 48];
+    const b_g = [16, 8, 8];
+    const seaweed = [16, 8, 8];
+    const oyster = [16, 2, 5];
+    const casket = [16, 0, 1];
+    const trout = [20, 32, 192];
+    const cod = [23, 10, 41];
+    const pike = [25, 16, 96];
+    const salmon = [30, 16, 96];
+    const tuna = [35, 8, 64];
+    const lobster = [40, 6, 95];
+    const bass = [46, 6, 31];
+    const swordfish = [50, 4, 48];
+    const lava_eel = [53, 16, 96];
+    const shark = [76, 3, 40];
 
     //get the corrosponding level from the xp input into the calculator
     c_f_l_xp = parseInt(xpforlvl[cur_fishing_lvl_value]);
@@ -79,8 +98,257 @@ document.getElementById("calc_fishing_lvl").addEventListener("click", function()
         sea_turtle_need.innerHTML = Math.ceil(total/95);
         manta_ray_need.innerHTML = Math.ceil(total/115);
     }
+
+    var pot = 0;
+    var potted = document.getElementById('fish_pot');
+    var pot_c_f_l;
+
+    if (potted.checked) {
+        pot_c_f_l = c_f_l + 3;
+    }
+    else {
+        pot_c_f_l = c_f_l;
+    }
+
+
+    shark_success = (((Math.floor(shark[1]*(99-pot_c_f_l)/98)+Math.floor(shark[2]*(pot_c_f_l-1)/98)+1)/256)*100).toFixed(2);
+    lava_eel_success = (((Math.floor(lava_eel[1]*(99-pot_c_f_l)/98)+Math.floor(lava_eel[2]*(pot_c_f_l-1)/98)+1)/256)*100).toFixed(2);
+    swordfish_success = (((Math.floor(swordfish[1]*(99-pot_c_f_l)/98)+Math.floor(swordfish[2]*(pot_c_f_l-1)/98)+1)/256)*100).toFixed(2);
+    bass_success = (((Math.floor(bass[1]*(99-pot_c_f_l)/98)+Math.floor(bass[2]*(pot_c_f_l-1)/98)+1)/256)*100).toFixed(2);
+    lobster_success = (((Math.floor(lobster[1]*(99-pot_c_f_l)/98)+Math.floor(lobster[2]*(pot_c_f_l-1)/98)+1)/256)*100).toFixed(2);
+    tuna_success_interp = (((Math.floor(tuna[1]*(99-pot_c_f_l)/98)+Math.floor(tuna[2]*(pot_c_f_l-1)/98)+1)/256)*100).toFixed(2);
+    tuna_success_cascade = (((1-(swordfish_success/100))*(Math.floor(tuna[1]*(99-pot_c_f_l)/98)+Math.floor(tuna[2]*(pot_c_f_l-1)/98)+1)/256)*100).toFixed(2);
+    salmon_success = (((Math.floor(salmon[1]*(99-pot_c_f_l)/98)+Math.floor(salmon[2]*(pot_c_f_l-1)/98)+1)/256)*100).toFixed(2);
+    pike_success = (((Math.floor(pike[1]*(99-pot_c_f_l)/98)+Math.floor(pike[2]*(pot_c_f_l-1)/98)+1)/256)*100).toFixed(2);
+    cod_success = (((Math.floor(cod[1]*(99-pot_c_f_l)/98)+Math.floor(cod[2]*(pot_c_f_l-1)/98)+1)/256)*100).toFixed(2);
+    trout_success_interp = (((Math.floor(trout[1]*(99-pot_c_f_l)/98)+Math.floor(trout[2]*(pot_c_f_l-1)/98)+1)/256)*100).toFixed(2);
+    trout_success_cascade = (((1-(salmon_success/100))*(Math.floor(trout[1]*(99-pot_c_f_l)/98)+Math.floor(trout[2]*(pot_c_f_l-1)/98)+1)/256)*100).toFixed(2);
+    casket_success = (((Math.floor(casket[1]*(99-pot_c_f_l)/98)+Math.floor(casket[2]*(pot_c_f_l-1)/98)+1)/256)*100).toFixed(2);
+    oyster_success = (((Math.floor(oyster[1]*(99-pot_c_f_l)/98)+Math.floor(oyster[2]*(pot_c_f_l-1)/98)+1)/256)*100).toFixed(2);
+    seaweed_success = (((Math.floor(seaweed[1]*(99-pot_c_f_l)/98)+Math.floor(seaweed[2]*(pot_c_f_l-1)/98)+1)/256)*100).toFixed(2);
+    b_g_success = (((Math.floor(b_g[1]*(99-pot_c_f_l)/98)+Math.floor(b_g[2]*(pot_c_f_l-1)/98)+1)/256)*100).toFixed(2);
+    mackerel_success = (((Math.floor(mackerel[1]*(99-pot_c_f_l)/98)+Math.floor(mackerel[2]*(pot_c_f_l-1)/98)+1)/256)*100).toFixed(2);
+    anchovy_success = (((Math.floor(anchovy[1]*(99-pot_c_f_l)/98)+Math.floor(anchovy[2]*(pot_c_f_l-1)/98)+1)/256)*100).toFixed(2);
+    herring_success = (((Math.floor(herring[1]*(99-pot_c_f_l)/98)+Math.floor(herring[2]*(pot_c_f_l-1)/98)+1)/256)*100).toFixed(2);
+    sardine_success_interp = (((Math.floor(sardine[1]*(99-pot_c_f_l)/98)+Math.floor(sardine[2]*(pot_c_f_l-1)/98)+1)/256)*100).toFixed(2);
+    sardine_success_cascade = (((1-(herring_success/100))*(Math.floor(sardine[1]*(99-pot_c_f_l)/98)+Math.floor(sardine[2]*(pot_c_f_l-1)/98)+1)/256)*100).toFixed(2);
+    shrimp_success_interp = (((Math.floor(shrimp[1]*(99-pot_c_f_l)/98)+Math.floor(shrimp[2]*(pot_c_f_l-1)/98)+1)/256)*100).toFixed(2);
+    shrimp_success_cascade = (((1-(anchovy_success/100))*(Math.floor(shrimp[1]*(99-pot_c_f_l)/98)+Math.floor(shrimp[2]*(pot_c_f_l-1)/98)+1)/256)*100).toFixed(2);
+    
+    if (pot_c_f_l >= 76) {
+        chance = "Chance to catch if you have the required level<br><br>"
+        + "Shark " + shark_success + "%<br>"
+        + "Lava Eel " + lava_eel_success + "%<br>"
+        + "Swordfish " + swordfish_success + "%<br>"
+        + "Bass " + bass_success + "%<br>"
+        + "Lobster " + lobster_success + "%<br>"
+        + "Tuna " + tuna_success_cascade + "%<br>"
+        + "Salmon " + salmon_success + "%<br>"
+        + "Pike " + pike_success + "%<br>"
+        + "Cod " + cod_success + "%<br>"
+        + "Trout " + trout_success_cascade + "%<br>"
+        + "Casket " + casket_success + "%<br>"
+        + "Oyster " + oyster_success + "%<br>"
+        + "Seaweed " + seaweed_success + "%<br>"
+        + "Boots/Gloves " + b_g_success + "%<br>"
+        + "Mackerel " + mackerel_success + "%<br>"
+        + "Anchovy " + anchovy_success + "%<br>"
+        + "Herring " + herring_success + "%<br>"
+        + "Sardine " + sardine_success_cascade + "%<br>"
+        + "Shrimp " + shrimp_success_cascade + "%<br>";
+    }
+    else if (pot_c_f_l >= 53 && pot_c_f_l < 76) {
+        chance = "Chance to catch if you have the required level<br><br>"
+        + "Lava Eel " + lava_eel_success + "%<br>"
+        + "Swordfish " + swordfish_success + "%<br>"
+        + "Bass " + bass_success + "%<br>"
+        + "Lobster " + lobster_success + "%<br>"
+        + "Tuna " + tuna_success_cascade + "%<br>"
+        + "Salmon " + salmon_success + "%<br>"
+        + "Pike " + pike_success + "%<br>"
+        + "Cod " + cod_success + "%<br>"
+        + "Trout " + trout_success_cascade + "%<br>"
+        + "Casket " + casket_success + "%<br>"
+        + "Oyster " + oyster_success + "%<br>"
+        + "Seaweed " + seaweed_success + "%<br>"
+        + "Boots/Gloves " + b_g_success + "%<br>"
+        + "Mackerel " + mackerel_success + "%<br>"
+        + "Anchovy " + anchovy_success + "%<br>"
+        + "Herring " + herring_success + "%<br>"
+        + "Sardine " + sardine_success_cascade + "%<br>"
+        + "Shrimp " + shrimp_success_cascade + "%<br>";
+    }
+    else if (pot_c_f_l >= 50 && pot_c_f_l < 53) {
+        chance = "Chance to catch if you have the required level<br><br>"
+        + "Swordfish " + swordfish_success + "%<br>"
+        + "Bass " + bass_success + "%<br>"
+        + "Lobster " + lobster_success + "%<br>"
+        + "Tuna " + tuna_success_cascade + "%<br>"
+        + "Salmon " + salmon_success + "%<br>"
+        + "Pike " + pike_success + "%<br>"
+        + "Cod " + cod_success + "%<br>"
+        + "Trout " + trout_success_cascade + "%<br>"
+        + "Casket " + casket_success + "%<br>"
+        + "Oyster " + oyster_success + "%<br>"
+        + "Seaweed " + seaweed_success + "%<br>"
+        + "Boots/Gloves " + b_g_success + "%<br>"
+        + "Mackerel " + mackerel_success + "%<br>"
+        + "Anchovy " + anchovy_success + "%<br>"
+        + "Herring " + herring_success + "%<br>"
+        + "Sardine " + sardine_success_cascade + "%<br>"
+        + "Shrimp " + shrimp_success_cascade + "%<br>";
+    }
+    else if (pot_c_f_l >= 46 && pot_c_f_l < 50) {
+        chance = "Chance to catch if you have the required level<br><br>"
+        + "Bass " + bass_success + "%<br>"
+        + "Lobster " + lobster_success + "%<br>"
+        + "Tuna " + tuna_success_interp + "%<br>"
+        + "Salmon " + salmon_success + "%<br>"
+        + "Pike " + pike_success + "%<br>"
+        + "Cod " + cod_success + "%<br>"
+        + "Trout " + trout_success_cascade + "%<br>"
+        + "Casket " + casket_success + "%<br>"
+        + "Oyster " + oyster_success + "%<br>"
+        + "Seaweed " + seaweed_success + "%<br>"
+        + "Boots/Gloves " + b_g_success + "%<br>"
+        + "Mackerel " + mackerel_success + "%<br>"
+        + "Anchovy " + anchovy_success + "%<br>"
+        + "Herring " + herring_success + "%<br>"
+        + "Sardine " + sardine_success_cascade + "%<br>"
+        + "Shrimp " + shrimp_success_cascade + "%<br>";
+    }
+    else if (pot_c_f_l >= 40 && pot_c_f_l < 46) {
+        chance = "Chance to catch if you have the required level<br><br>"
+        + "Lobster " + lobster_success + "%<br>"
+        + "Tuna " + tuna_success_interp + "%<br>"
+        + "Salmon " + salmon_success + "%<br>"
+        + "Pike " + pike_success + "%<br>"
+        + "Cod " + cod_success + "%<br>"
+        + "Trout " + trout_success_cascade + "%<br>"
+        + "Casket " + casket_success + "%<br>"
+        + "Oyster " + oyster_success + "%<br>"
+        + "Seaweed " + seaweed_success + "%<br>"
+        + "Boots/Gloves " + b_g_success + "%<br>"
+        + "Mackerel " + mackerel_success + "%<br>"
+        + "Anchovy " + anchovy_success + "%<br>"
+        + "Herring " + herring_success + "%<br>"
+        + "Sardine " + sardine_success_cascade + "%<br>"
+        + "Shrimp " + shrimp_success_cascade + "%<br>";
+    }
+    else if (pot_c_f_l >= 35 && pot_c_f_l < 40) {
+        chance = "Chance to catch if you have the required level<br><br>"
+        + "Tuna " + tuna_success_interp + "%<br>"
+        + "Salmon " + salmon_success + "%<br>"
+        + "Pike " + pike_success + "%<br>"
+        + "Cod " + cod_success + "%<br>"
+        + "Trout " + trout_success_cascade + "%<br>"
+        + "Casket " + casket_success + "%<br>"
+        + "Oyster " + oyster_success + "%<br>"
+        + "Seaweed " + seaweed_success + "%<br>"
+        + "Boots/Gloves " + b_g_success + "%<br>"
+        + "Mackerel " + mackerel_success + "%<br>"
+        + "Anchovy " + anchovy_success + "%<br>"
+        + "Herring " + herring_success + "%<br>"
+        + "Sardine " + sardine_success_cascade + "%<br>"
+        + "Shrimp " + shrimp_success_cascade + "%<br>";
+    }
+    else if (pot_c_f_l >= 30 && pot_c_f_l < 35) {
+        chance = "Chance to catch if you have the required level<br><br>"
+        + "Salmon " + salmon_success + "%<br>"
+        + "Pike " + pike_success + "%<br>"
+        + "Cod " + cod_success + "%<br>"
+        + "Trout " + trout_success_cascade + "%<br>"
+        + "Casket " + casket_success + "%<br>"
+        + "Oyster " + oyster_success + "%<br>"
+        + "Seaweed " + seaweed_success + "%<br>"
+        + "Boots/Gloves " + b_g_success + "%<br>"
+        + "Mackerel " + mackerel_success + "%<br>"
+        + "Anchovy " + anchovy_success + "%<br>"
+        + "Herring " + herring_success + "%<br>"
+        + "Sardine " + sardine_success_cascade + "%<br>"
+        + "Shrimp " + shrimp_success_cascade + "%<br>";
+    }
+    else if (pot_c_f_l >= 25 && pot_c_f_l < 30) {
+        chance = "Chance to catch if you have the required level<br><br>"
+        + "Pike " + pike_success + "%<br>"
+        + "Cod " + cod_success + "%<br>"
+        + "Trout " + trout_success_interp + "%<br>"
+        + "Casket " + casket_success + "%<br>"
+        + "Oyster " + oyster_success + "%<br>"
+        + "Seaweed " + seaweed_success + "%<br>"
+        + "Boots/Gloves " + b_g_success + "%<br>"
+        + "Mackerel " + mackerel_success + "%<br>"
+        + "Anchovy " + anchovy_success + "%<br>"
+        + "Herring " + herring_success + "%<br>"
+        + "Sardine " + sardine_success_cascade + "%<br>"
+        + "Shrimp " + shrimp_success_cascade + "%<br>";
+    }
+    else if (pot_c_f_l >= 23 && pot_c_f_l < 25) {
+        chance = "Chance to catch if you have the required level<br><br>"
+        + "Cod " + cod_success + "%<br>"
+        + "Trout " + trout_success_interp + "%<br>"
+        + "Casket " + casket_success + "%<br>"
+        + "Oyster " + oyster_success + "%<br>"
+        + "Seaweed " + seaweed_success + "%<br>"
+        + "Boots/Gloves " + b_g_success + "%<br>"
+        + "Mackerel " + mackerel_success + "%<br>"
+        + "Anchovy " + anchovy_success + "%<br>"
+        + "Herring " + herring_success + "%<br>"
+        + "Sardine " + sardine_success_cascade + "%<br>"
+        + "Shrimp " + shrimp_success_cascade + "%<br>";
+    }
+    else if (pot_c_f_l >= 20 && pot_c_f_l < 23) {
+        chance = "Chance to catch if you have the required level<br><br>"
+        + "Trout " + trout_success_interp + "%<br>"
+        + "Casket " + casket_success + "%<br>"
+        + "Oyster " + oyster_success + "%<br>"
+        + "Seaweed " + seaweed_success + "%<br>"
+        + "Boots/Gloves " + b_g_success + "%<br>"
+        + "Mackerel " + mackerel_success + "%<br>"
+        + "Anchovy " + anchovy_success + "%<br>"
+        + "Herring " + herring_success + "%<br>"
+        + "Sardine " + sardine_success_cascade + "%<br>"
+        + "Shrimp " + shrimp_success_cascade + "%<br>";
+    }
+    else if (pot_c_f_l >= 16 && pot_c_f_l < 20) {
+        chance = "Chance to catch if you have the required level<br><br>"
+        + "Casket " + casket_success + "%<br>"
+        + "Oyster " + oyster_success + "%<br>"
+        + "Seaweed " + seaweed_success + "%<br>"
+        + "Boots/Gloves " + b_g_success + "%<br>"
+        + "Mackerel " + mackerel_success + "%<br>"
+        + "Anchovy " + anchovy_success + "%<br>"
+        + "Herring " + herring_success + "%<br>"
+        + "Sardine " + sardine_success_cascade + "%<br>"
+        + "Shrimp " + shrimp_success_cascade + "%<br>";
+    }
+    else if (pot_c_f_l >= 15 && pot_c_f_l < 16) {
+        chance = "Chance to catch if you have the required level<br><br>"
+        + "Anchovy " + anchovy_success + "%<br>"
+        + "Herring " + herring_success + "%<br>"
+        + "Sardine " + sardine_success_cascade + "%<br>"
+        + "Shrimp " + shrimp_success_cascade + "%<br>";
+    }
+    else if (pot_c_f_l >= 10 && pot_c_f_l < 15) {
+        chance = "Chance to catch if you have the required level<br><br>"
+        + "Herring " + herring_success + "%<br>"
+        + "Sardine " + sardine_success_cascade + "%<br>"
+        + "Shrimp " + shrimp_success_interp + "%<br>";
+    }
+    else if (pot_c_f_l >= 5 && pot_c_f_l < 10) {
+        chance = "Chance to catch if you have the required level<br><br>"
+        + "Sardine " + sardine_success_interp + "%<br>"
+        + "Shrimp " + shrimp_success_interp + "%<br>";
+    }
+    else if (pot_c_f_l >= 1 && pot_c_f_l < 5) {
+        chance = "Chance to catch if you have the required level<br><br>"
+        + "Shrimp " + shrimp_success_interp + "%<br>";
+    }
+        
+
     total = Math.max(total,0);
-    fishing_xp_needed.innerHTML = "Your need " + total + " more xp for your desired Fishing Level.";
+    fishing_xp_needed.innerHTML = "Your need " + total + 
+    " more xp for your desired Fishing Level.<br><br>" + chance;
 
 })
 

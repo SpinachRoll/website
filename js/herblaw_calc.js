@@ -1,13 +1,9 @@
 document.getElementById("calc_herblaw_lvl").addEventListener("click", function() {
-    var cur_herblaw_lvl = document.getElementById("cur_herblaw_lvl");
-    var cur_herblaw_lvl_value = parseInt(cur_herblaw_lvl.value);
-    var des_herblaw_level = document.getElementById("des_herblaw_lvl");
-    var des_herblaw_lvl_value = parseInt(des_herblaw_level.value);
-    var cur_herblaw_xp = document.getElementById("cur_herblaw_xp");
-    var cur_herblaw_xp_value = parseInt(cur_herblaw_xp.value);
-    var des_herblaw_xp = document.getElementById("des_herblaw_xp");
-    var des_herblaw_xp_value = parseInt(des_herblaw_xp.value);
-    var total;
+    var cur_herblaw_lvl_value = parseInt(document.getElementById("cur_herblaw_lvl").value);
+    var des_herblaw_lvl_value = parseInt(document.getElementById("des_herblaw_lvl").value);
+    var cur_herblaw_xp_value = parseInt(document.getElementById("cur_herblaw_xp").value);
+    var des_herblaw_xp_value = parseInt(document.getElementById("des_herblaw_xp").value);
+    var total = 0;
     var chance;
     var c_h_l_xp;
     var d_h_l_xp;
@@ -54,6 +50,74 @@ document.getElementById("calc_herblaw_lvl").addEventListener("click", function()
             total = des_herblaw_xp_value - cur_herblaw_xp_value;
         }
     }
+
+    //variables to get the values put into the stock table for herbs
+    var cur_guam_have =  parseInt(document.getElementById("guam_have").value);
+    var cur_marr_have =  parseInt(document.getElementById("marr_have").value);
+    var cur_tarr_have =  parseInt(document.getElementById("tarr_have").value);
+    var cur_harr_have =  parseInt(document.getElementById("harr_have").value);
+    var cur_ranarr_have =  parseInt(document.getElementById("ranarr_have").value);
+    var cur_irit_have =  parseInt(document.getElementById("irit_have").value);
+    var cur_avantoe_have =  parseInt(document.getElementById("avantoe_have").value);
+    var cur_kwuarm_have =  parseInt(document.getElementById("kwuarm_have").value);
+    var cur_cad_have =  parseInt(document.getElementById("cad_have").value);
+    var cur_dwarf_have =  parseInt(document.getElementById("dwarf_have").value);
+    var cur_torstol_have =  parseInt(document.getElementById("torstol_have").value);
+
+    //variables to get the values put into the stock table for unfinished pots
+    var cur_att_pot_have =  parseInt(document.getElementById("att_pot_have").value);
+    var cur_cure_pot_have =  parseInt(document.getElementById("cure_pot_have").value);
+    var cur_exp_pot_have =  parseInt(document.getElementById("exp_pot_have").value);
+    var cur_str_pot_have =  parseInt(document.getElementById("str_pot_have").value);
+    var cur_ogre_pot_have =  parseInt(document.getElementById("ogre_pot_have").value);
+    var cur_stat_pot_have =  parseInt(document.getElementById("stat_pot_have").value);
+    var cur_blamish_pot_have =  parseInt(document.getElementById("blamish_pot_have").value);
+    var cur_def_pot_have =  parseInt(document.getElementById("def_pot_have").value);
+    var cur_pray_pot_have =  parseInt(document.getElementById("pray_pot_have").value);
+    var cur_sap_pot_have =  parseInt(document.getElementById("sap_pot_have").value);
+    var cur_anti_pot_have =  parseInt(document.getElementById("anti_pot_have").value);
+    var cur_fish_pot_have =  parseInt(document.getElementById("fish_pot_have").value);
+    var cur_ssp_pot_have =  parseInt(document.getElementById("ssp_pot_have").value);
+    var cur_wep_pot_have =  parseInt(document.getElementById("wep_pot_have").value);
+    var cur_sdp_pot_have =  parseInt(document.getElementById("sdp_pot_have").value);
+    var cur_range_pot_have =  parseInt(document.getElementById("range_pot_have").value);
+    var cur_zammy_pot_have =  parseInt(document.getElementById("zammy_pot_have").value);
+
+    //variables to get the total xp for the items we already have from the stock table
+    var have_total = 0;
+
+    //variable LIST to go through and check it any of the items in the stock table contain more than 0
+    var have_values = [cur_guam_have, cur_marr_have, cur_tarr_have, cur_harr_have, cur_ranarr_have, 
+        cur_irit_have, cur_avantoe_have, cur_kwuarm_have, cur_cad_have, cur_dwarf_have, cur_torstol_have, 
+        cur_att_pot_have, cur_cure_pot_have, cur_exp_pot_have, cur_str_pot_have, cur_ogre_pot_have, 
+        cur_stat_pot_have, cur_blamish_pot_have, cur_def_pot_have, cur_pray_pot_have, cur_sap_pot_have, 
+        cur_anti_pot_have, cur_fish_pot_have, cur_ssp_pot_have, cur_wep_pot_have, cur_sdp_pot_have, 
+        cur_range_pot_have, cur_zammy_pot_have];
+
+    //variable used in the formula to calculate total xp we current have banked
+    var flag = false;
+
+    //formula to check the LIST and set the flag to true if there are any values greater than 0 in the stock table
+    for ( i = 0; i < have_values.length; i++ ) {
+        if (have_values[i] > 0) {
+            flag = true;
+            break;
+        }
+    }
+
+    //formula to calculate the total XP from the stock table. total = 0 before this
+    if (flag) {
+        //calculate the total xp already owned in the stock table
+        have_total = (cur_guam_have * 2.5) + (cur_marr_have * 3.75) + (cur_tarr_have * 5) +(cur_harr_have * 6.25) +
+        (cur_ranarr_have * 7.5) + (cur_irit_have * 8.75) + (cur_avantoe_have * 10) + (cur_kwuarm_have * 11.25) +
+        (cur_cad_have * 12.5) + (cur_dwarf_have * 13.75) + (cur_torstol_have * 15) + (cur_att_pot_have * 25) +
+        (cur_cure_pot_have * 37.5) + (cur_exp_pot_have * 18.75) + (cur_str_pot_have * 50) + (cur_ogre_pot_have * 50) +
+        (cur_stat_pot_have * 62.5) + (cur_blamish_pot_have * 80) + (cur_def_pot_have * 75) + (cur_pray_pot_have * 87.5) +
+        (cur_sap_pot_have * 100) + (cur_anti_pot_have * 106.25) + (cur_fish_pot_have * 112.5) + (cur_ssp_pot_have * 125) +
+        (cur_wep_pot_have * 137.5) + (cur_sdp_pot_have * 150) + (cur_range_pot_have * 162.5) + (cur_zammy_pot_have * 175);
+
+        total = Math.max(total - have_total,0);
+    };
     
     if (total > 0) {
         guam_need.innerHTML = Math.ceil(total/2.5);
@@ -105,7 +169,7 @@ document.getElementById("calc_herblaw_lvl").addEventListener("click", function()
         zammy_c_pot_need.innerHTML = Math.ceil(total/190);
     }
     total = Math.max(total,0);
-    herblaw_xp_needed.innerHTML = "Your need " + total + " more xp for your desired Herblaw Level.";
+    herblaw_xp_needed.innerHTML = "Your need " + total + " more xp for your desired Herblaw Level." + "<br><br>" + "You currently have " + have_total + " xp banked.";
 
 })
 
@@ -115,6 +179,7 @@ var herblaw_table_2 = document.getElementById("herblaw_table_2");
 var herblaw_table_3 = document.getElementById("herblaw_table_3");
 var herblaw_table_4 = document.getElementById("herblaw_table_4");
 var herblaw_table_5 = document.getElementById("herblaw_table_5");
+var herblaw_table_6 = document.getElementById("herblaw_table_6");
 
 
 combine_button.addEventListener("click", function() {
@@ -136,6 +201,24 @@ combine_button.addEventListener("click", function() {
     }
 });
 
+var stock_table = document.getElementById("stock_table");
+var stock_button = document.getElementById("toggle_table");
+
+stock_button.addEventListener("click", function() {
+    if (stock_table.style.display == "none") {
+        stock_table.style.display = "table";
+    } else {
+        stock_table.style.display = "none";
+    }
+});
+
+document.getElementById("stock_reset").addEventListener("click", function() {
+    var inputElements = document.querySelectorAll ("#stock_table input[type='number']");
+    for (var i = 0; i < inputElements.length; i++) {
+        inputElements [i].value = 0;
+    }
+});
+  
 var xpforlvl = new Array(100)
 xpforlvl[1] = 0
 xpforlvl[2] = 83

@@ -189,7 +189,16 @@
 
 			#calc_herblaw_lvl,
 			#herblaw_lvl_reset, 
-            #combine_button {
+            #combine_button,
+			#toggle_table {
+				font-family: "RSFont";
+				font-size: 1em;
+				height: 1.5em;
+				margin: 3px 0px;
+			}
+
+			button,
+			[type=reset] {
 				font-family: "RSFont";
 				font-size: 1em;
 				height: 1.5em;
@@ -321,15 +330,79 @@
 									<button type="button" id="calc_herblaw_lvl">Calculate</button>
 									<input type="reset" value="Reset" id="herblaw_lvl_reset">
 								</li>
+								<li>
+									<button type="button" id="toggle_table">Show/Hide Stock</button>
+								</li>
                                 <li>
 									<button type="button" id="combine_button">Calc ID and Pot Together</button>
 								</li>
 								<li>
-									<p id="herblaw_xp_needed">Your need 0 more xp for your desired Herblaw Level.</p>
+									<p id="herblaw_xp_needed">Your need 0 more xp for your desired Herblaw Level.<br><br> You currently have 0 xp banked.</p>
 								</li>
 							</ul>
 						</fieldset>
 					</form>
+					<table id="stock_table" style="display:none">
+						<thead>
+							<tr>
+								<th colspan="6" style="text-align: left; padding-left: 20px"> HERBS &nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;POTS STOCK</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td><input type="number" id="guam_have" name="guam_have" min="0" value="0">Guam</td>
+								<td><input type="number" id="att_pot_have" name="att_pot_have" min="0" value="0">Attack</td>
+								<td><input type="number" id="sap_pot_have" name="sap_pot_have" min="0" value="0">Super Att</td>
+							</tr>
+							<tr>
+								<td><input type="number" id="marr_have" name="marr_have" min="0" value="0">Marrentill</td>
+								<td><input type="number" id="cure_pot_have" name="cure_pot_have" min="0" value="0">Cure poison</td>
+								<td><input type="number" id="anti_pot_have" name="anti_pot_have" min="0" value="0">Anti Poison</td>
+							</tr>
+							<tr>
+								<td><input type="number" id="tarr_have" name="tarr_have" min="0" value="0">Tarromin</td>
+								<td><input type="number" id="exp_pot_have" name="exp_pot_have" min="0" value="0">Exp Comp</td>
+								<td><input type="number" id="fish_pot_have" name="fish_pot_have" min="0" value="0">Fishing</td>
+							</tr>
+							<tr>
+								<td><input type="number" id="harr_have" name="harr_have" min="0" value="0">Harrlander</td>
+								<td><input type="number" id="str_pot_have" name="str_pot_have" min="0" value="0">Strength</td>
+								<td><input type="number" id="ssp_pot_have" name="ssp_pot_have" min="0" value="0">Super Str</td>
+							</tr>
+							<tr>
+								<td><input type="number" id="ranarr_have" name="ranarr_have" min="0" value="0">Rannar</td>
+								<td><input type="number" id="ogre_pot_have" name="ogre_pot_have" min="0" value="0">Ogre</td>
+								<td><input type="number" id="wep_pot_have" name="wep_pot_have" min="0" value="0">Wep Poison</td>
+							</tr>
+							<tr>
+								<td><input type="number" id="irit_have" name="irit_have" min="0" value="0">Irit</td>
+								<td><input type="number" id="stat_pot_have" name="stat_pot_have" min="0" value="0">Stat Restore</td>
+								<td><input type="number" id="sdp_pot_have" name="sdp_pot_have" min="0" value="0">Super Def</td>
+							</tr>
+							<tr>
+								<td><input type="number" id="avantoe_have" name="avantoe_have" min="0" value="0">Avantoe</td>
+								<td><input type="number" id="blamish_pot_have" name="blamish_pot_have" min="0" value="0">Blamish Oil</td>
+								<td><input type="number" id="range_pot_have" name="range_pot_have" min="0" value="0">Ranging</td>
+							</tr>
+							<tr>
+								<td><input type="number" id="kwuarm_have" name="kwuarm_have" min="0" value="0">Kwuarm</td>
+								<td><input type="number" id="def_pot_have" name="def_pot_have" min="0" value="0">Defense</td>
+								<td><input type="number" id="zammy_pot_have" name="zammy_pot_have" min="0" value="0">Zammy</td>
+							</tr>
+							<tr>
+								<td><input type="number" id="cad_have" name="cad_have" min="0" value="0">Cadantine</td>
+								<td><input type="number" id="pray_pot_have" name="pray_pot_have" min="0" value="0">Restore</td>
+								<td><span id="dont_touch_me"></span></td>
+							</tr>
+							<tr>
+								<td><input type="number" id="dwarf_have" name="dwarf_have" min="0" value="0">Dwarf</td>
+								<td colspan="2" rowspan="2"><input type="reset" value="Reset Stock" id="stock_reset"></td>
+							</tr>
+							<tr>
+								<td><input type="number" id="torstol_have" name="torstol_have" min="0" value="0">Torstol</td>
+							</tr>
+						</tbody>
+					</table>
 					<table id="herblaw_table_1" style="flex-basis: 18em">
 						<tr>
 							<th colspan="4">HERB ID TO LEVEL</th>
@@ -341,90 +414,57 @@
 						</tr>
 						<tr>
 							<td>2.5</td>
-							<td>
-								<img src="images/herb.png" alt="Guam leaf">
-								<br>Guam leaf (3)
-							</td>
+							<td><img src="images/herb.png" alt="Guam leaf"><br>Guam leaf (3)</td>
 							<td id="guam_need">0</td>
 						</tr>
                         <tr>
 							<td>3.75</td>
-							<td>
-								<img src="images/herb.png" alt="Marrentill">
-								<br>Marrentill (5)
-							</td>
+							<td><img src="images/herb.png" alt="Marrentill"><br>Marrentill (5)</td>
 							<td id="marr_need">0</td>
 						</tr>
                         <tr>
 							<td>5</td>
-							<td>
-								<img src="images/herb.png" alt="Tarromin">
-								<br>Tarromin (11)
-							</td>
+							<td><img src="images/herb.png" alt="Tarromin"><br>Tarromin (11)	</td>
 							<td id="tarr_need">0</td>
 						</tr>
                         <tr>
 							<td>6.25</td>
-							<td>
-								<img src="images/herb.png" alt="Harralander">
-								<br>Harralander (20)
-							</td>
+							<td><img src="images/herb.png" alt="Harralander"><br>Harralander (20)</td>
 							<td id="harr_need">0</td>
 						</tr>
                         <tr>
 							<td>7.5</td>
-							<td>
-								<img src="images/herb.png" alt="Ranarr Weed">
-								<br>Ranarr Weed (25)
-							</td>
+							<td><img src="images/herb.png" alt="Ranarr Weed"><br>Ranarr Weed (25)</td>
 							<td id="ranarr_need">0</td>
 						</tr>
                         <tr>
 							<td>8.75</td>
-							<td>
-								<img src="images/herb.png" alt="Irit Leaf">
-								<br>Irit Leaf (40)
-							</td>
+							<td><img src="images/herb.png" alt="Irit Leaf"><br>Irit Leaf (40)</td>
 							<td id="irit_need">0</td>
 						</tr>
                         <tr>
 							<td>10</td>
-							<td>
-								<img src="images/herb.png" alt="Avantoe">
-								<br>Avantoe (48)
-							</td>
+							<td><img src="images/herb.png" alt="Avantoe"><br>Avantoe (48)</td>
 							<td id="avantoe_need">0</td>
 						</tr>
                         <tr>
 							<td>11.25</td>
-							<td>
-								<img src="images/herb.png" alt="Kwuarm">
-								<br>Kwuarm (54)
-							</td>
+							<td><img src="images/herb.png" alt="Kwuarm"><br>Kwuarm (54)</td>
 							<td id="kwuarm_need">0</td>
 						</tr>
                         <tr>
 							<td>12.5</td>
-							<td>
-								<img src="images/herb.png" alt="Cadantine">
-								<br>Cadantine (65)
-							</td>
+							<td><img src="images/herb.png" alt="Cadantine"><br>Cadantine (65)</td>
 							<td id="cad_need">0</td>
 						</tr>
                         <tr>
 							<td>13.75</td>
-							<td>
-								<img src="images/herb.png" alt="Dwarf Weed">
-								<br>Dwarf Weed (70)
-							</td>
+							<td><img src="images/herb.png" alt="Dwarf Weed"><br>Dwarf Weed (70)</td>
 							<td id="dwarf_need">0</td>
 						</tr>
                         <tr>
 							<td>15</td>
-							<td>
-								<img src="images/herb.png" alt="Torstol">
-								<br>Torstol (75)
-							</td>
+							<td><img src="images/herb.png" alt="Torstol"><br>Torstol (75)</td>
 							<td id="torstol_need">0</td>
 						</tr>
                         
@@ -440,74 +480,47 @@
 						</tr>
                         <tr>
 							<td>25</td>
-							<td>
-								<img src="images/attack_potion.png" alt="Attack Potion">
-								<br>Attack (3)
-							</td>
+							<td><img src="images/attack_potion.png" alt="Attack Potion"><br>Attack (3)</td>
 							<td id="att_pot_need">0</td>
 						</tr>
                         <tr>
 							<td>37.5</td>
-							<td>
-								<img src="images/cure_poison_potion.png" alt="Cure poison Potion">
-								<br>Cure poison<br> Potion (5)
-							</td>
+							<td><img src="images/cure_poison_potion.png" alt="Cure poison Potion"><br>Cure poison<br> Potion (5)</td>
 							<td id="cure_pot_need">0</td>
 						</tr>
                         <tr>
 							<td>18.75</td>
-							<td>
-								<img src="images/explosive_compound.png" alt="Explosive Compound">
-								<br>Explosive <br> Compound (10)
-							</td>
+							<td><img src="images/explosive_compound.png" alt="Explosive Compound"><br>Explosive <br> Compound (10)</td>
 							<td id="exp_pot_need">0</td>
 						</tr>
                         <tr>
 							<td>50</td>
-							<td>
-								<img src="images/strength_potion.png" alt="Strength Potion">
-								<br>Strength (12)
-							</td>
+							<td><img src="images/strength_potion.png" alt="Strength Potion"><br>Strength (12)</td>
 							<td id="str_pot_need">0</td>
 						</tr>
                         <tr>
 							<td>50</td>
-							<td>
-								<img src="images/ogre_potion.png" alt="Ogre Potion">
-								<br>Ogre potion (14)
-							</td>
+							<td><img src="images/ogre_potion.png" alt="Ogre Potion"><br>Ogre potion (14)</td>
 							<td id="ogre_pot_need">0</td>
 						</tr>
                         <tr>
 							<td>62.5</td>
-							<td>
-								<img src="images/stat_restoration_potion.png" alt="Stat restoration Potion">
-								<br>Stat Restore (22)
-							</td>
+							<td><img src="images/stat_restoration_potion.png" alt="Stat restoration Potion"><br>Stat Restore (22)</td>
 							<td id="stat_pot_need">0</td>
 						</tr>
                         <tr>
 							<td>80</td>
-							<td>
-								<img src="images/blamish_oil.png" alt="Blamish Oil">
-								<br>Blamish Oil (25)
-							</td>
+							<td><img src="images/blamish_oil.png" alt="Blamish Oil"><br>Blamish Oil (25)</td>
 							<td id="blamish_oil_need">0</td>
 						</tr>
                         <tr>
 							<td>75</td>
-							<td>
-								<img src="images/defense_potion.png" alt="Defense Potion">
-								<br>Defense (30)
-							</td>
+							<td><img src="images/defense_potion.png" alt="Defense Potion"><br>Defense (30)</td>
 							<td id="def_pot_need">0</td>
 						</tr>
                         <tr>
 							<td>87.5</td>
-							<td>
-								<img src="images/restore_prayer_potion.png" alt="Restore prayer Potion">
-								<br>Restore prayer<br> Potion (38)
-							</td>
+							<td><img src="images/restore_prayer_potion.png" alt="Restore prayer Potion"><br>Restore prayer<br> Potion (38)</td>
 							<td id="pray_pot_need">0</td>
 						</tr>
                     </table>
@@ -522,66 +535,42 @@
 						</tr>
                         <tr>
 							<td>100</td>
-							<td>
-								<img src="images/super_attack_potion.png" alt="Super attack Potion">
-								<br>Super attack<br> Potion (45)
-							</td>
+							<td><img src="images/super_attack_potion.png" alt="Super attack Potion"><br>Super attack<br> Potion (45)	</td>
 							<td id="sap_pot_need">0</td>
 						</tr>
                         <tr>
 							<td>106.25</td>
-							<td>
-								<img src="images/poison_antidote.png" alt="Poison antidote">
-								<br>Poison antidote (48)
-							</td>
+							<td><img src="images/poison_antidote.png" alt="Poison antidote"><br>Poison antidote (48)</td>
 							<td id="anti_pot_need">0</td>
 						</tr>
                         <tr>
 							<td>112.5</td>
-							<td>
-								<img src="images/fishing_potion.png" alt="Fishing Potion">
-								<br>Fishing Potion (50)
-							</td>
+							<td><img src="images/fishing_potion.png" alt="Fishing Potion"><br>Fishing Potion (50)	</td>
 							<td id="fish_pot_need">0</td>
 						</tr>
                         <tr>
 							<td>125</td>
-							<td>
-								<img src="images/super_strength_potion.png" alt="Super strength Potion">
-								<br>Super strength <br> Potion (55)
-							</td>
+							<td><img src="images/super_strength_potion.png" alt="Super strength Potion"><br>Super strength <br> Potion (55)	</td>
 							<td id="ssp_pot_need">0</td>
 						</tr>
                         <tr>
 							<td>137.5</td>
-							<td>
-								<img src="images/weapon_poison.png" alt="Weapon Poison">
-								<br>Wepon Poison (60)
-							</td>
+							<td><img src="images/weapon_poison.png" alt="Weapon Poison"><br>Wepon Poison (60)</td>
 							<td id="wep_pot_need">0</td>
 						</tr>
                         <tr>
 							<td>150</td>
-							<td>
-								<img src="images/super_defense_potion.png" alt="Super defense Potion">
-								<br>Super defense <br> Potion (66)
-							</td>
+							<td><img src="images/super_defense_potion.png" alt="Super defense Potion"><br>Super defense <br> Potion (66)</td>
 							<td id="sdp_pot_need">0</td>
 						</tr>
                         <tr>
 							<td>162.5</td>
-							<td>
-								<img src="images/ranging_potion.png" alt="Ranging Potion">
-								<br>Ranging Potion (72)
-							</td>
+							<td><img src="images/ranging_potion.png" alt="Ranging Potion"><br>Ranging Potion (72)</td>
 							<td id="range_pot_need">0</td>
 						</tr>
                         <tr>
 							<td>175</td>
-							<td>
-								<img src="images/potion_of_zamorak.png" alt="Potion of Zamorak">
-								<br>Potion of <br> Zamorak (78)
-							</td>
+							<td><img src="images/potion_of_zamorak.png" alt="Potion of Zamorak"><br>Potion of <br> Zamorak (78)</td>
 							<td id="zammy_pot_need">0</td>
 						</tr>
                     </table>
@@ -596,74 +585,47 @@
 						</tr>
                         <tr>
 							<td>27.5</td>
-							<td>
-								<img src="images/attack_potion.png" alt="Attack Potion">
-								<br>Attack (3)
-							</td>
+							<td><img src="images/attack_potion.png" alt="Attack Potion"><br>Attack (3)</td>
 							<td id="att_c_pot_need">0</td>
 						</tr>
                         <tr>
 							<td>41.25</td>
-							<td>
-								<img src="images/cure_poison_potion.png" alt="Cure poison Potion">
-								<br>Cure poison<br> Potion (5)
-							</td>
+							<td><img src="images/cure_poison_potion.png" alt="Cure poison Potion"><br>Cure poison<br> Potion (5)</td>
 							<td id="cure_c_pot_need">0</td>
 						</tr>
                         <tr>
 							<td>18.75</td>
-							<td>
-								<img src="images/explosive_compound.png" alt="Explosive Compound">
-								<br>Explosive <br> Compound (10)
-							</td>
+							<td><img src="images/explosive_compound.png" alt="Explosive Compound"><br>Explosive <br> Compound (10)</td>
 							<td id="exp_c_pot_need">0</td>
 						</tr>
                         <tr>
 							<td>55</td>
-							<td>
-								<img src="images/strength_potion.png" alt="Strength Potion">
-								<br>Strength (12)
-							</td>
+							<td><img src="images/strength_potion.png" alt="Strength Potion"><br>Strength (12)</td>
 							<td id="str_c_pot_need">0</td>
 						</tr>
                         <tr>
 							<td>62.5</td>
-							<td>
-								<img src="images/ogre_potion.png" alt="Ogre Potion">
-								<br>Ogre potion (14)
-							</td>
+							<td><img src="images/ogre_potion.png" alt="Ogre Potion"><br>Ogre potion (14)</td>
 							<td id="ogre_c_pot_need">0</td>
 						</tr>
                         <tr>
 							<td>68.75</td>
-							<td>
-								<img src="images/stat_restoration_potion.png" alt="Stat restoration Potion">
-								<br>Stat Restore (22)
-							</td>
+							<td><img src="images/stat_restoration_potion.png" alt="Stat restoration Potion"><br>Stat Restore (22)</td>
 							<td id="stat_c_pot_need">0</td>
 						</tr>
                         <tr>
 							<td>86.25</td>
-							<td>
-								<img src="images/blamish_oil.png" alt="Blamish Oil">
-								<br>Blamish Oil (25)
-							</td>
+							<td><img src="images/blamish_oil.png" alt="Blamish Oil"><br>Blamish Oil (25)</td>
 							<td id="blamish_oil_c_need">0</td>
 						</tr>
                         <tr>
 							<td>82.5</td>
-							<td>
-								<img src="images/defense_potion.png" alt="Defense Potion">
-								<br>Defense (30)
-							</td>
+							<td><img src="images/defense_potion.png" alt="Defense Potion"><br>Defense (30)</td>
 							<td id="def_c_pot_need">0</td>
 						</tr>
                         <tr>
 							<td>112.5</td>
-							<td>
-								<img src="images/restore_prayer_potion.png" alt="Restore prayer Potion">
-								<br>Restore prayer<br> Potion (38)
-							</td>
+							<td><img src="images/restore_prayer_potion.png" alt="Restore prayer Potion"><br>Restore prayer<br> Potion (38)</td>
 							<td id="pray_c_pot_need">0</td>
 						</tr>
                     </table>
@@ -678,66 +640,42 @@
 						</tr>
                         <tr>
 							<td>108.75</td>
-							<td>
-								<img src="images/super_attack_potion.png" alt="Super attack Potion">
-								<br>Super attack<br> Potion (45)
-							</td>
+							<td><img src="images/super_attack_potion.png" alt="Super attack Potion"><br>Super attack<br> Potion (45)</td>
 							<td id="sap_c_pot_need">0</td>
 						</tr>
                         <tr>
 							<td>115</td>
-							<td>
-								<img src="images/poison_antidote.png" alt="Poison antidote">
-								<br>Poison antidote (48)
-							</td>
+							<td><img src="images/poison_antidote.png" alt="Poison antidote"><br>Poison antidote (48)</td>
 							<td id="anti_c_pot_need">0</td>
 						</tr>
                         <tr>
 							<td>122.5</td>
-							<td>
-								<img src="images/fishing_potion.png" alt="Fishing Potion">
-								<br>Fishing Potion (50)
-							</td>
+							<td><img src="images/fishing_potion.png" alt="Fishing Potion"><br>Fishing Potion (50)</td>
 							<td id="fish_c_pot_need">0</td>
 						</tr>
                         <tr>
 							<td>136.25</td>
-							<td>
-								<img src="images/super_strength_potion.png" alt="Super strength Potion">
-								<br>Super strength <br> Potion (55)
-							</td>
+							<td><img src="images/super_strength_potion.png" alt="Super strength Potion"><br>Super strength <br> Potion (55)</td>
 							<td id="ssp_c_pot_need">0</td>
 						</tr>
                         <tr>
 							<td>148.75</td>
-							<td>
-								<img src="images/weapon_poison.png" alt="Weapon Poison">
-								<br>Wepon Poison (60)
-							</td>
+							<td><img src="images/weapon_poison.png" alt="Weapon Poison"><br>Wepon Poison (60)</td>
 							<td id="wep_c_pot_need">0</td>
 						</tr>
                         <tr>
 							<td>162.5</td>
-							<td>
-								<img src="images/super_defense_potion.png" alt="Super defense Potion">
-								<br>Super defense <br> Potion (66)
-							</td>
+							<td><img src="images/super_defense_potion.png" alt="Super defense Potion"><br>Super defense <br> Potion (66)</td>
 							<td id="sdp_c_pot_need">0</td>
 						</tr>
                         <tr>
 							<td>176.25</td>
-							<td>
-								<img src="images/ranging_potion.png" alt="Ranging Potion">
-								<br>Ranging Potion (72)
-							</td>
+							<td><img src="images/ranging_potion.png" alt="Ranging Potion"><br>Ranging Potion (72)</td>
 							<td id="range_c_pot_need">0</td>
 						</tr>
                         <tr>
 							<td>190</td>
-							<td>
-								<img src="images/potion_of_zamorak.png" alt="Potion of Zamorak">
-								<br>Potion of <br> Zamorak (78)
-							</td>
+							<td><img src="images/potion_of_zamorak.png" alt="Potion of Zamorak"><br>Potion of <br> Zamorak (78)</td>
 							<td id="zammy_c_pot_need">0</td>
 						</tr>
                     </table>

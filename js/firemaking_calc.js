@@ -77,7 +77,7 @@ document.getElementById("calc_firemaking_lvl").addEventListener("click", functio
 
     xp_total = Math.max(xp_total,0);
     firemaking_xp_needed.innerHTML = "Your need " + xp_total + " more xp for your desired Firemaking Level.<br> You need to make " + total_fires + " more fires to get that level.";
-
+    //test
 })
 
 

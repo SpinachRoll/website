@@ -1,18 +1,15 @@
 //This javascript file sets up all the formula's and such for the smithing.html page
 
 document.getElementById("calc_smithing_lvl").addEventListener("click", function() {
-    var cur_smithing_lvl = document.getElementById("cur_smithing_lvl");
-    var cur_smithing_lvl_value = parseInt(cur_smithing_lvl.value);
-    var cur_smithing_xp = document.getElementById("cur_smithing_xp");
-    var cur_smithing_xp_value = parseInt(cur_smithing_xp.value);
-    var des_smithing_level = document.getElementById("des_smithing_lvl");
-    var des_smithing_lvl_value = parseInt(des_smithing_level.value);
-    var des_smithing_xp = document.getElementById("des_smithing_xp");
-    var des_smithing_xp_value = parseInt(des_smithing_xp.value);
+    var cur_smithing_lvl_value = parseInt(document.getElementById("cur_smithing_lvl").value);
+    var cur_smithing_xp_value = parseInt(document.getElementById("cur_smithing_xp").value);
+    var des_smithing_lvl_value = parseInt(document.getElementById("des_smithing_lvl").value);
+    var des_smithing_xp_value = parseInt(document.getElementById("des_smithing_xp").value);
     var total;
     var c_s_l_xp;
     var d_s_l_xp;
     var c_s_l_f_xp;
+    var gold_ore_xp_cur = document.getElementById("gold_ore_xp");
 
     //get the corrosponding xp from the level input into the calculator
     c_s_l_xp = parseInt(xpforlvl[cur_smithing_lvl_value]);
@@ -47,40 +44,24 @@ document.getElementById("calc_smithing_lvl").addEventListener("click", function(
     }
 
     //variables to get the values put into the stock table for ore
-    var cur_tin_o_have =  document.getElementById("tin_o_have");
-    var cur_tin_o_have_value = parseInt(cur_tin_o_have.value);
-    var cur_copper_o_have =  document.getElementById("copper_o_have");
-    var cur_copper_o_have_value = parseInt(cur_copper_o_have.value);
-    var cur_iron_o_have =  document.getElementById("iron_o_have");
-    var cur_iron_o_have_value = parseInt(cur_iron_o_have.value);
-    var cur_silv_o_have =  document.getElementById("silv_o_have");
-    var cur_silv_o_have_value = parseInt(cur_silv_o_have.value);
-    var cur_coal_o_have =  document.getElementById("coal_o_have");
-    var cur_coal_o_have_value = parseInt(cur_coal_o_have.value);
-    var cur_gold_o_have =  document.getElementById("gold_o_have");
-    var cur_gold_o_have_value = parseInt(cur_gold_o_have.value);
-    var cur_mith_o_have =  document.getElementById("mith_o_have");
-    var cur_mith_o_have_value = parseInt(cur_mith_o_have.value);
-    var cur_addy_o_have =  document.getElementById("addy_o_have");
-    var cur_addy_o_have_value = parseInt(cur_addy_o_have.value);
-    var cur_rune_o_have =  document.getElementById("rune_o_have");
-    var cur_rune_o_have_value = parseInt(cur_rune_o_have.value);
+    var cur_tin_o_have_value =  parseInt(document.getElementById("tin_o_have").value);
+    var cur_copper_o_have_value =  parseInt(document.getElementById("copper_o_have").value);
+    var cur_iron_o_have_value =  parseInt(document.getElementById("iron_o_have").value);
+    var cur_silv_o_have_value =  parseInt(document.getElementById("silv_o_have").value);
+    var cur_coal_o_have_value =  parseInt(document.getElementById("coal_o_have").value);
+    var cur_gold_o_have_value =  parseInt(document.getElementById("gold_o_have").value);
+    var cur_mith_o_have_value =  parseInt(document.getElementById("mith_o_have").value);
+    var cur_addy_o_have_value =  parseInt(document.getElementById("addy_o_have").value);
+    var cur_rune_o_have_value =  parseInt(document.getElementById("rune_o_have").value);
 
     //variables to get the values put into the stock table for bars
-    var cur_bronze_b_have =  document.getElementById("bronze_b_have");
-    var cur_bronze_b_have_value = parseInt(cur_bronze_b_have.value);
-    var cur_iron_b_have =  document.getElementById("iron_b_have");
-    var cur_iron_b_have_value = parseInt(cur_iron_b_have.value);
-    var cur_steel_b_have =  document.getElementById("steel_b_have");
-    var cur_steel_b_have_value = parseInt(cur_steel_b_have.value);
-    var cur_gold_b_have =  document.getElementById("gold_b_have");
-    var cur_gold_b_have_value = parseInt(cur_gold_b_have.value);
-    var cur_mith_b_have =  document.getElementById("mith_b_have");
-    var cur_mith_b_have_value = parseInt(cur_mith_b_have.value);
-    var cur_addy_b_have =  document.getElementById("addy_b_have");
-    var cur_addy_b_have_value = parseInt(cur_addy_b_have.value);
-    var cur_rune_b_have =  document.getElementById("rune_b_have");
-    var cur_rune_b_have_value = parseInt(cur_rune_b_have.value);
+    var cur_bronze_b_have_value = parseInt(document.getElementById("bronze_b_have").value);
+    var cur_iron_b_have_value = parseInt(document.getElementById("iron_b_have").value);
+    var cur_steel_b_have_value = parseInt(document.getElementById("steel_b_have").value);
+    var cur_gold_b_have_value = parseInt(document.getElementById("gold_b_have").value);
+    var cur_mith_b_have_value = parseInt(document.getElementById("mith_b_have").value);
+    var cur_addy_b_have_value = parseInt(document.getElementById("addy_b_have").value);
+    var cur_rune_b_have_value = parseInt(document.getElementById("rune_b_have").value);
 
     //variables to get the total xp for the items we already have from the stock table
     var have_total = 0;
@@ -106,7 +87,7 @@ document.getElementById("calc_smithing_lvl").addEventListener("click", function(
     //variable to check for gauntlets equiped
     var gauntsOn = document.getElementById('gauntlets');
 
-    //formula to check the LIST and set the flagf to true if there are any values greater than 0 in the stock table
+    //formula to check the LIST and set the flag to true if there are any values greater than 0 in the stock table
     for ( i = 0; i < have_values.length; i++ ) {
         if (have_values[i] > 0) {
             flag = true;
@@ -187,8 +168,10 @@ document.getElementById("calc_smithing_lvl").addEventListener("click", function(
     steel_coal_need = Math.max(Math.ceil(((total + steel_total)/17.5)*2) - cur_coal_o_have_value, 0);
     if (gauntsOn.checked) {
         gold_smelt_need = Math.max(Math.ceil(total/33.75), 0);
+        gold_ore_xp.innerHTML = "33.75";
     } else {
         gold_smelt_need = Math.max(Math.ceil(total/22.5), 0);
+        gold_ore_xp.innerHTML = "22.5";
     }
     mith_smelt_need = Math.max(Math.ceil((total + mith_total)/30) - cur_mith_o_have_value, 0);
     mith_coal_need = Math.max(Math.ceil(((total + mith_total)/30)*4) - cur_coal_o_have_value, 0);
@@ -260,7 +243,7 @@ document.getElementById("calc_smithing_lvl").addEventListener("click", function(
         rune_c_need.innerHTML = rune_combine_need + " / " + rune_coal_combine_need;        
     }    
     //show the remaining xp needed below the form(calculator)
-    smithing_xp_needed.innerHTML = "Your need " + total + " more xp for your desired Smithing Level.";
+    smithing_xp_needed.innerHTML = "Your need " + total + " more xp for your desired Smithing Level.<br><br>" + "You have " + have_total + " xp banked in ores and bars.";
 
 })
 
