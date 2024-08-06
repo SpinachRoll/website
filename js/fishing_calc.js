@@ -1,12 +1,8 @@
 document.getElementById("calc_fishing_lvl").addEventListener("click", function() {
-    var cur_fishing_lvl = document.getElementById("cur_fishing_lvl");
-    var cur_fishing_lvl_value = parseInt(cur_fishing_lvl.value);
-    var des_fishing_level = document.getElementById("des_fishing_lvl");
-    var des_fishing_lvl_value = parseInt(des_fishing_level.value);
-    var cur_fishing_xp = document.getElementById("cur_fishing_xp");
-    var cur_fishing_xp_value = parseInt(cur_fishing_xp.value);
-    var des_fishing_xp = document.getElementById("des_fishing_xp");
-    var des_fishing_xp_value = parseInt(des_fishing_xp.value);
+    var cur_fishing_lvl_value = parseInt(document.getElementById("cur_fishing_lvl").value);
+    var des_fishing_lvl_value = parseInt(document.getElementById("des_fishing_lvl").value);
+    var cur_fishing_xp_value = parseInt(document.getElementById("cur_fishing_xp").value);
+    var des_fishing_xp_value = parseInt(document.getElementById("des_fishing_xp").value);
     var total;
     var c_f_l_xp;
     var d_f_l_xp;
