@@ -7,14 +7,20 @@ document.getElementById("range_max_hit_btn").addEventListener("click", function(
     var start = range_pot.checked;
     var mh_range;
     var mh_range_maxroll;
-	mh_range_maxroll = Math.floor((range_lvl_value + 8) * (mh_range_weapon_value + 1 + 64))
-	if (range_pot.checked) {
-		mh_range = ((mh_range_maxroll + (mh_range_maxroll * .1) + 4) + 319) / 640
-		range_max_hit.innerHTML = "Your Range Max Hit is " + String(mh_range);
-	} else {
-		mh_range = (mh_range_maxroll + 319) / 640
-		range_max_hit.innerHTML = "Your Range Max Hit is " + String(mh_range);
-	};
+    if (mh_range_weapon_value == 999) {
+        mh_range = (range_lvl_value/3)+2
+		range_max_hit.innerHTML = "Your Cannonball Max Hit is " + String(mh_range);
+    }
+    else {	
+        mh_range_maxroll = Math.floor((range_lvl_value + 8) * (mh_range_weapon_value + 1 + 64))
+        if (range_pot.checked) {
+            mh_range = ((mh_range_maxroll + (mh_range_maxroll * .1) + 4) + 319) / 640
+            range_max_hit.innerHTML = "Your Range Max Hit is " + String(mh_range);
+        } else {
+            mh_range = (mh_range_maxroll + 319) / 640
+            range_max_hit.innerHTML = "Your Range Max Hit is " + String(mh_range);
+        };
+    };
 });
 
 
