@@ -1,18 +1,21 @@
 document.getElementById("calc_woodcutting_lvl").addEventListener("click", function() {
-    var cur_woodcutting_lvl = document.getElementById("cur_woodcutting_lvl");
-    var cur_woodcutting_lvl_value = parseInt(cur_woodcutting_lvl.value);
-    var des_woodcutting_level = document.getElementById("des_woodcutting_lvl");
-    var des_woodcutting_lvl_value = parseInt(des_woodcutting_level.value);
-    var cur_woodcutting_xp = document.getElementById("cur_woodcutting_xp");
-    var cur_woodcutting_xp_value = parseInt(cur_woodcutting_xp.value);
-    var des_woodcutting_xp = document.getElementById("des_woodcutting_xp");
-    var des_woodcutting_xp_value = parseInt(des_woodcutting_xp.value);
+    var cur_woodcutting_lvl_value = parseInt(document.getElementById("cur_woodcutting_lvl").value);
+    var des_woodcutting_lvl_value = parseInt(document.getElementById("des_woodcutting_lvl").value);
+    var cur_woodcutting_xp_value = parseInt(document.getElementById("cur_woodcutting_xp").value);
+    var des_woodcutting_xp_value = parseInt(document.getElementById("des_woodcutting_xp").value);
+    var axe_type_value = parseInt(document.getElementById("axe_type").value);
     var total;
     var c_w_l_xp;
     var d_w_l_xp;
     var chance;
     var c_w_l_f_xp;
     var c_w_l;
+    const normal_tree = [64, 200, 96, 300, 128, 400, 144, 450, 160, 500, 192, 600, 224, 700];
+    const oak_tree = [32, 100, 48, 150, 64, 200, 72, 225, 80, 250, 96, 300, 112, 350];
+    const willow_tree = [16, 50, 24, 75, 32, 100, 36, 112, 40, 125, 48, 150, 56, 175];
+    const maple_tree = [8, 25, 12, 37, 16, 50, 18, 56, 20, 62, 24, 75, 28, 87];
+    const yew_tree = [4, 12, 6, 19, 8, 25, 9, 28, 10, 31, 12, 37, 14, 44];
+    const magic_tree = [2, 6, 3, 9, 4, 12, 5, 13, 5, 15, 6, 18, 7, 21];
 
     //get the corrosponding level from the xp input into the calculator
     c_w_l_xp = parseInt(xpforlvl[cur_woodcutting_lvl_value]);
@@ -70,8 +73,56 @@ document.getElementById("calc_woodcutting_lvl").addEventListener("click", functi
         yew_need.innerHTML = yew_logs_need;
         magic_need.innerHTML = magic_logs_need;
     }
+
+    tree_success = (Math.min(Math.max((Math.floor(normal_tree[axe_type_value]*(99-c_w_l)/98)+Math.floor(normal_tree[axe_type_value+1]*(c_w_l-1)/98)+1)/256, 0),1)*100).toFixed(2);
+    oak_success = (Math.min(Math.max((Math.floor(oak_tree[axe_type_value]*(99-c_w_l)/98)+Math.floor(oak_tree[axe_type_value+1]*(c_w_l-1)/98)+1)/256, 0),1)*100).toFixed(2);
+    willow_success = (Math.min(Math.max((Math.floor(willow_tree[axe_type_value]*(99-c_w_l)/98)+Math.floor(willow_tree[axe_type_value+1]*(c_w_l-1)/98)+1)/256, 0),1)*100).toFixed(2);
+    maple_success = (Math.min(Math.max((Math.floor(maple_tree[axe_type_value]*(99-c_w_l)/98)+Math.floor(maple_tree[axe_type_value+1]*(c_w_l-1)/98)+1)/256, 0),1)*100).toFixed(2);
+    yew_success = (Math.min(Math.max((Math.floor(yew_tree[axe_type_value]*(99-c_w_l)/98)+Math.floor(yew_tree[axe_type_value+1]*(c_w_l-1)/98)+1)/256, 0),1)*100).toFixed(2);
+    magic_success = (Math.min(Math.max((Math.floor(magic_tree[axe_type_value]*(99-c_w_l)/98)+Math.floor(magic_tree[axe_type_value+1]*(c_w_l-1)/98)+1)/256, 0),1)*100).toFixed(2);
+
+    if (c_w_l >= 75) {
+        chance = "Chance to cut if you have the required level<br><br>"
+        + "Magic " + magic_success + "%<br>"
+        + "Yew " + yew_success + "%<br>"
+        + "Maple " + maple_success + "%<br>"
+        + "Willow " + willow_success + "%<br>"
+        + "Oak " + oak_success + "%<br>"
+        + "Regular Tree " + tree_success + "%<br>";
+    }
+    else if (c_w_l >= 60 && c_w_l < 75) {
+        chance = "Chance to cut if you have the required level<br><br>"
+        + "Yew " + yew_success + "%<br>"
+        + "Maple " + maple_success + "%<br>"
+        + "Willow " + willow_success + "%<br>"
+        + "Oak " + oak_success + "%<br>"
+        + "Regular Tree " + tree_success + "%<br>";
+    }
+    else if (c_w_l >= 45 && c_w_l < 60) {
+        chance = "Chance to cut if you have the required level<br><br>"
+        + "Maple " + maple_success + "%<br>"
+        + "Willow " + willow_success + "%<br>"
+        + "Oak " + oak_success + "%<br>"
+        + "Regular Tree " + tree_success + "%<br>";
+    }
+    else if (c_w_l >= 30 && c_w_l < 45) {
+        chance = "Chance to cut if you have the required level<br><br>"
+        + "Willow " + willow_success + "%<br>"
+        + "Oak " + oak_success + "%<br>"
+        + "Regular Tree " + tree_success + "%<br>";
+    }
+    else if (c_w_l >= 15 && c_w_l < 30) {
+        chance = "Chance to cut if you have the required level<br><br>"
+        + "Oak " + oak_success + "%<br>"
+        + "Regular Tree " + tree_success + "%<br>";
+    }
+    else if (c_w_l < 15) {
+        chance = "Chance to cut if you have the required level<br><br>"
+        + "Regular Tree " + tree_success + "%<br>";
+    }
+
     total = Math.max(total,0);
-    woodcutting_xp_needed.innerHTML = "Your need " + total + " more xp for your desired Woodcutting Level.";
+    woodcutting_xp_needed.innerHTML = "Your need " + total + " more xp for your desired Woodcutting Level.<br><br>" + chance;
 
 })
 

@@ -298,6 +298,18 @@
 									<input type="number" id="des_woodcutting_xp" name="des_woodcutting_xp" value="0" min="0" max="536870911">
 								</li>
 								<li>
+									<label for="axe_type">Axe Type</label>
+									<select name="axe_type" id="axe_type">
+										<option value="0">Bronze</option>
+										<option value="2">Iron</option>
+										<option value="4">Steel</option>
+										<option value="6">Black</option>
+										<option value="8">Mithril</option>
+										<option value="10">Adamantite</option>
+										<option value="12">Runite</option>
+									</select>
+								</li>
+								<li>
 									<button type="button" id="calc_woodcutting_lvl">Calculate</button>
 									<input type="reset" value="Reset" id="woodcutting_lvl_reset">
 								</li>
@@ -366,7 +378,7 @@
 						</tr>
 					</table>
 				</div>
-				<p>Data for these calculators comes from <a href="https://classic.runescape.wiki/w/woodcutting" target="_blank" rel="noopener noreferrer">here</a>
+				<p>Data for these calculators comes from <a href="https://classic.runescape.wiki/w/woodcutting" target="_blank" rel="noopener noreferrer">here</a> and <a href="https://gitlab.com/openrsc/openrsc/-/blob/develop/server/conf/server/defs/extras/ObjectWoodcutting.xml" target="_blank" rel="noopener noreferrer">here</a> and <a href="https://gitlab.com/openrsc/openrsc/-/blob/develop/server/src/com/openrsc/server/util/rsc/Formulae.java" target="_blank" rel="noopener noreferrer">here</a>
 				</p>
 			</div>
 			<div class="footer">
