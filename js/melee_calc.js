@@ -1,6 +1,3 @@
-//test test test 2 2 2
-
-
 var att = document.getElementById("att_lvl");
 var def = document.getElementById("def_lvl");
 var str = document.getElementById("str_lvl");
@@ -85,19 +82,13 @@ document.getElementById("calc_hits_lvl_btn").addEventListener("click", function(
 
 //str pot is 10% + 3; ssp is 15% + 5; zammy pot is 12% + 2
 document.getElementById("calc_max_hit_btn").addEventListener("click", function() {
-	var mh_str_calc = document.getElementById("mh_str_lvl");
-	var mh_str_calc_value = parseInt(mh_str_calc.value);
-	var mh_weap_pwr_calc = document.getElementById("mh_weap_pwr");
-	var mh_weap_pwr_calc_value = parseInt(mh_weap_pwr_calc.value);
-	var mh_ammy_calc = document.getElementById("mh_ammy");
-	var mh_ammy_calc_value = parseInt(mh_ammy_calc.value);
-	var mh_gaunlets_calc = document.getElementById("mh_gaunlets");
-	var mh_gaunlets_calc_value = parseInt(mh_gaunlets_calc.value);
+	var mh_str_calc_value = parseInt(document.getElementById("mh_str_lvl").value);
+	var mh_weap_pwr_calc_value = parseInt(document.getElementById("mh_weap_pwr").value);
+	var mh_ammy_calc_value = parseInt(document.getElementById("mh_ammy").value);
+	var mh_gaunlets_calc_value = parseInt(document.getElementById("mh_gaunlets").value);
 	var mh_pot_calc = document.getElementById("mh_potions");
-	var mh_pray_calc = document.getElementById("mh_prayer");
-	var mh_pray_bonus_calc = parseFloat(mh_pray_calc.value);
-	var mh_cmb_style_calc = document.getElementById("mh_cmb_style");
-	var mh_cmb_style_calc_value = parseInt(mh_cmb_style_calc.value);
+	var mh_pray_bonus_calc = parseFloat(document.getElementById("mh_prayer").value);
+	var mh_cmb_style_calc_value = parseInt(document.getElementById("mh_cmb_style").value);
 	var max_hit_base;
 	if (parseInt(mh_pot_calc.value) === 0) {
 		max_hit_base = (Math.floor((Math.floor(mh_str_calc_value * mh_pray_bonus_calc) + 8 + mh_cmb_style_calc_value) * (mh_weap_pwr_calc_value + mh_ammy_calc_value + mh_gaunlets_calc_value + 64)) + 319) / 640;
@@ -115,6 +106,76 @@ document.getElementById("calc_max_hit_btn").addEventListener("click", function()
 });
 
 
+/*show prayer and cmb style for attacker when a player*/
+document.getElementById("att_acc_choice").addEventListener("change", function() {
+    var att_type = document.getElementById("att_acc_choice");
+    var att_prayer = document.getElementById("att_prayer");
+    var att_cmb_style = document.getElementById("att_cmb_style");
+
+    if (att_type.value == "8") {
+        att_prayer.style.display = "block";
+        att_cmb_style.style.display = "block";
+    } else {
+        att_prayer.style.display = "none";
+        att_cmb_style.style.display = "none";
+    }
+});
+
+/*show prayer and cmb style for defender when a player*/
+document.getElementById("def_acc_choice").addEventListener("change", function() {
+    var def_type = document.getElementById("def_acc_choice");
+    var def_prayer = document.getElementById("def_prayer");
+    var def_cmb_style = document.getElementById("def_cmb_style");
+
+    if (def_type.value == "8") {
+        def_prayer.style.display = "block";
+        def_cmb_style.style.display = "block";
+    } else {
+        def_prayer.style.display = "none";
+        def_cmb_style.style.display = "none";
+    }
+});
+
+/*accuracy % based on att lvl, aim, prayer, and style*/
+document.getElementById("calc_acc_btn").addEventListener("click", function() {
+	var att_type = parseInt(document.getElementById("att_acc_choice").value);
+	var att_acc_lvl_calc = parseInt(document.getElementById("att_acc_lvl").value);
+	var att_aim_calc = parseInt(document.getElementById("att_acc_aim").value);
+	var att_prayer_calc = parseFloat(document.getElementById("att_acc_prayer").value);
+	var att_cmb_style_calc = parseInt(document.getElementById("att_acc_cmb_style").value);
+	var def_type = parseInt(document.getElementById("def_acc_choice").value);
+	var def_acc_lvl_calc = parseInt(document.getElementById("def_acc_lvl").value);
+	var def_arm_calc = parseInt(document.getElementById("def_acc_arm").value);
+	var def_prayer_calc = parseFloat(document.getElementById("def_acc_prayer").value);
+	var def_cmb_style_calc = parseInt(document.getElementById("def_acc_cmb_style").value);
+
+	var getMeleeAccuracy;
+	if (att_type == "8") {
+		getMeleeAccuracy = Math.floor((att_acc_lvl_calc * att_prayer_calc) + 8 + att_cmb_style_calc)*(att_aim_calc + 64);
+	}
+	else if (att_type == "0") {
+		getMeleeAccuracy = Math.floor((att_acc_lvl_calc * 1) + 0 + 0) * (0 + 64);
+	};
+
+	var getMeleeDefence;
+	if (def_type == "8") {
+		getMeleeDefence = Math.floor((def_acc_lvl_calc * def_prayer_calc) + 8 + def_cmb_style_calc) * (def_arm_calc + 64);
+	}
+	else if (def_type == "0") {
+		getMeleeDefence = Math.floor((def_acc_lvl_calc * 1) + 0 + 0) * (0 + 64);
+	};
+	
+	var hitChance;
+	if (getMeleeAccuracy > getMeleeDefence) {
+		hitChance = ((1 - ((getMeleeDefence + 2) / (2 * (getMeleeAccuracy + 1))))*100).toFixed(5);
+	} else {
+		hitChance = ((getMeleeAccuracy / (2 * (getMeleeDefence + 1)))*100).toFixed(3);
+	};
+
+	max_acc_round.innerHTML = "Attacker Accuracy is: " + hitChance + "%";
+
+
+});
 
 
 var xpforlvl = new Array(100)

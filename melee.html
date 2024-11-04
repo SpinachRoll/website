@@ -187,35 +187,41 @@
 
 			#calc_hits_lvl_btn,
 			#calc_cmb_lvl_btn,
-			#cmb_reset {
+			#cmb_reset,
+			#calc_max_hit_btn,
+			#calc_acc_btn {
 				font-family: "RSFont";
 				font-size: 1em;
 			}
 
-			form#melee_max_hit {
+			#melee_max_hit, 
+			#melee_accuracy {
 				margin: 0;
 				text-align: right;
 				font-size: 1em;
 			}
 
-			form#melee_max_hit li {
+			#melee_max_hit li, 
+			#melee_accuracy li {
 				padding-top: 3px;
 			}
 
-			form#melee_max_hit label {
+			#melee_max_hit label,
+			#melee_accuracy label {
 				display: inline;
 				width: 70px;
 				text-align: right;
 			}
 
-			form#melee_max_hit input {
-				width: 157px;
+			#melee_max_hit input,
+			#melee_accuracy input {
+				width: 163px;
 				text-align: center;
 			}
 
-			form#melee_max_hit select {
+			#melee_max_hit select,
+			#melee_accuracy select {
 				width: 165px;
-				/* add this line */
 				text-align: center;
 			}
 
@@ -227,8 +233,14 @@
 				font-size: 1em;
 			}
 
-			#max_hit_round {
-				text-align: left;
+			#max_hit_round,
+			#max_acc_round{
+				text-align: center;
+			}
+
+			#attacker,
+    		#defender {
+			text-align: center;
 			}
 
 			/* this is where all the footer style goes */
@@ -414,15 +426,87 @@
 							</ul>
 						</fieldset>
 					</form>
+					<form id="melee_accuracy" style="flex-basis: 18em">
+						<fieldset>
+							<legend id="melee_accuracy_calc_form" style="text-align: center;">Melee Accuracy Calculator</legend>
+							<ul>
+								<li id="attacker">Attacker Stats</li>
+								<li id="att_acc">
+									<label for="att_acc_type">Type</label>
+									<select name="att_acc_choice" id="att_acc_choice">
+										<option value="0">NPC</option>
+										<option value="8">Player</option>
+									</select>
+								</li>
+								<li>
+									<label for="att_acc_lvl">Att Level</label>
+									<input type="number" id="att_acc_lvl" name="att_acc_lvl" value="1" min="1" max="250">
+								</li>
+								<li>
+									<label for="att_acc_aim">Aim</label>
+									<input type="number" id="att_acc_aim" name="att_acc_aim" value="1" min="0" max="84">
+								</li>
+								<li id="att_prayer" style="display:none">
+									<label for="att_acc_prayer">Prayer</label>
+									<select name="att_acc_prayer" id="att_acc_prayer">
+										<option value="1.00">No Prayer</option>
+										<option value="1.05">Clarity of thought</option>
+										<option value="1.10">Improved reflexes</option>
+										<option value="1.15">Incredible reflexes</option>
+									</select>
+								</li>
+								<li id="att_cmb_style" style="display:none">
+									<label for="att_acc_cmb_style">Cmb Style</label>
+									<select name="att_acc_cmb_style" id="att_acc_cmb_style">
+										<option value="1">Controlled</option>
+										<option value="0">Aggressive</option>
+										<option value="3">Accurate</option>
+										<option value="0">Defensive</option>
+									</select>
+								</li>
+								<li id="defender"><br>Defender Stats</li>
+								<li id="def_acc">
+									<label for="def_acc_type">Type</label>
+									<select name="def_acc_choice" id="def_acc_choice">
+										<option value="0">NPC</option>
+										<option value="8">Player</option>
+									</select>
+								</li>
+								<li>
+									<label for="def_acc_lvl">Def Level</label>
+									<input type="number" id="def_acc_lvl" name="def_acc_lvl" value="1" min="1" max="240">
+								</li>
+								<li>
+									<label for="def_acc_arm">Armour</label>
+									<input type="number" id="def_acc_arm" name="def_acc_arm" value="1" min="0" max="234">
+								</li>
+								<li id="def_prayer" style="display:none">
+									<label for="def_acc_prayer">Prayer</label>
+									<select name="def_acc_prayer" id="def_acc_prayer">
+										<option value="1.00">No Prayer</option>
+										<option value="1.05">Clarity of thought</option>
+										<option value="1.10">Improved reflexes</option>
+										<option value="1.15">Incredible reflexes</option>
+									</select>
+								</li>
+								<li id="def_cmb_style" style="display:none">
+									<label for="def_acc_cmb_style">Cmb Style</label>
+									<select name="def_acc_cmb_style" id="def_acc_cmb_style">
+										<option value="1">Controlled</option>
+										<option value="0">Aggressive</option>
+										<option value="0">Accurate</option>
+										<option value="3">Defensive</option>
+									</select>
+								</li>
+								<li>
+									<button type="button" id="calc_acc_btn">Calculate Accuracy</button>
+								<li>
+									<p id="max_acc_round">Your accuracy is a lie</p>
+								</li>
+							</ul>
+						</fieldset>
+					</form>
 				</div>
-				<p>Data for these calculators comes from OpenRSC gitlab code, using formula's from line 32, and 215 <a href="https://gitlab.com/open-runescape-classic/core/-/blob/develop/server/src/com/openrsc/server/event/rsc/impl/combat/CombatFormula.java" target="_blank" rel="noopener noreferrer">here</a>
-					<ul id="explain">
-						<li>As there were still questions regarding the formula, here it is for Super Strength Pot, so you don't have to inspect source code:</li>
-						<li>max_hit_base = (Math.floor((Math.floor((mh_str_calc_value + (mh_str_calc_value * 0.15) + 5) * mh_pray_bonus_calc) + 8 + mh_cmb_style_calc_value) * (mh_weap_pwr_calc_value + mh_ammy_calc_value + mh_gaunlets_calc_value + 64)) + 319) / 640</li>
-						<li>It takes your str level(str + pot if any) * pray(1.0, 1.05, 1.10, 1.15) and rounds down(Math.floor) to an integer, adds the constant 8, and the cmb style your using(0, 1, 3). It then multiplies by the (power of all your items combined + 64) and rounds down(Math.floor) to an integer. It subtracts 1 from that by adding 319 instead of 320(because of nextInt), then divides by 640.</li>
-						<li>I will concede that the formula was off by 1 in the maxRoll area because I was unaware how nextInt worked. I adjusted it, and the max possible hit dropped by 1/640th, or 0.015. Thanks to the user AE for helping.</li>
-					</ul>
-				</p>
 			</div>
 			<div class="footer">
 				<p>SpinachRoll is made by kRiStOf for his family and friends, and is not affiliated with JaGeX, OpenRSC, Trogdor the Burninator, or NASA's Mars rovers.</p>
