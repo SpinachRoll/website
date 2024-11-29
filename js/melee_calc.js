@@ -106,31 +106,37 @@ document.getElementById("calc_max_hit_btn").addEventListener("click", function()
 });
 
 
-/*show prayer and cmb style for attacker when a player*/
+/*show aim and prayer and cmb style for attacker when a player*/
 document.getElementById("att_acc_choice").addEventListener("change", function() {
     var att_type = document.getElementById("att_acc_choice");
+	var att_aim = document.getElementById("att_aim");
     var att_prayer = document.getElementById("att_prayer");
     var att_cmb_style = document.getElementById("att_cmb_style");
 
     if (att_type.value == "8") {
+		att_aim.style.display = "block";
         att_prayer.style.display = "block";
         att_cmb_style.style.display = "block";
     } else {
+		att_aim.style.display = "none";
         att_prayer.style.display = "none";
         att_cmb_style.style.display = "none";
     }
 });
 
-/*show prayer and cmb style for defender when a player*/
+/*show armour and prayer and cmb style for defender when a player*/
 document.getElementById("def_acc_choice").addEventListener("change", function() {
     var def_type = document.getElementById("def_acc_choice");
+	var def_arm = document.getElementById("def_arm");
     var def_prayer = document.getElementById("def_prayer");
     var def_cmb_style = document.getElementById("def_cmb_style");
 
     if (def_type.value == "8") {
+		def_arm.style.display = "block";
         def_prayer.style.display = "block";
         def_cmb_style.style.display = "block";
     } else {
+		def_arm.style.display = "none";
         def_prayer.style.display = "none";
         def_cmb_style.style.display = "none";
     }

@@ -215,7 +215,7 @@
 
 			#melee_max_hit input,
 			#melee_accuracy input {
-				width: 163px;
+				width: 157px;
 				text-align: center;
 			}
 
@@ -442,7 +442,7 @@
 									<label for="att_acc_lvl">Att Level</label>
 									<input type="number" id="att_acc_lvl" name="att_acc_lvl" value="1" min="1" max="250">
 								</li>
-								<li>
+								<li id="att_aim" style="display:none">
 									<label for="att_acc_aim">Aim</label>
 									<input type="number" id="att_acc_aim" name="att_acc_aim" value="1" min="0" max="84">
 								</li>
@@ -476,17 +476,17 @@
 									<label for="def_acc_lvl">Def Level</label>
 									<input type="number" id="def_acc_lvl" name="def_acc_lvl" value="1" min="1" max="240">
 								</li>
-								<li>
+								<li id="def_arm" style="display:none">
 									<label for="def_acc_arm">Armour</label>
 									<input type="number" id="def_acc_arm" name="def_acc_arm" value="1" min="0" max="234">
 								</li>
-								<li id="def_prayer" style="display:none">
+								<li id="def_prayer" style="display:none"> <!--hijo found the wrong prayer names here-->
 									<label for="def_acc_prayer">Prayer</label>
 									<select name="def_acc_prayer" id="def_acc_prayer">
 										<option value="1.00">No Prayer</option>
-										<option value="1.05">Clarity of thought</option>
-										<option value="1.10">Improved reflexes</option>
-										<option value="1.15">Incredible reflexes</option>
+										<option value="1.05">Thick Skin</option>
+										<option value="1.10">Rock Skin</option>
+										<option value="1.15">Steel Skin</option>
 									</select>
 								</li>
 								<li id="def_cmb_style" style="display:none">
