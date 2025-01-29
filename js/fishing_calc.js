@@ -52,7 +52,7 @@ document.getElementById("calc_fishing_lvl").addEventListener("click", function()
     }
 
     //set the total to either the most desired xp, or xp 
-    //for the input level minus(-) the current xp or xp for level
+    //for the input level minus(-) the current xp or xp for level.
     if (c_f_l_xp >= cur_fishing_xp_value) {
         if (d_f_l_xp >= des_fishing_xp_value){
             total = d_f_l_xp - c_f_l_xp;
