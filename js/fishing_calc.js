@@ -132,7 +132,7 @@ document.getElementById("calc_fishing_lvl").addEventListener("click", function()
     shrimp_success_cascade = (((1-(anchovy_success/100))*(Math.floor(shrimp[1]*(99-pot_c_f_l)/98)+Math.floor(shrimp[2]*(pot_c_f_l-1)/98)+1)/256)*100).toFixed(2);
     
     if (pot_c_f_l >= 76) {
-        chance = "Chance to catch if you have the required level<br><br>"
+        chance = "Yer odds to snatch a fish be this good, if ye've got the guts, matey!<br><br>"
         + "Shark " + shark_success + "%<br>"
         + "Lava Eel " + lava_eel_success + "%<br>"
         + "Swordfish " + swordfish_success + "%<br>"
@@ -154,7 +154,7 @@ document.getElementById("calc_fishing_lvl").addEventListener("click", function()
         + "Shrimp " + shrimp_success_cascade + "%<br>";
     }
     else if (pot_c_f_l >= 53 && pot_c_f_l < 76) {
-        chance = "Chance to catch if you have the required level<br><br>"
+        chance = "Yer odds to snatch a fish be this good, if ye've got the guts, matey!<br><br>"
         + "Lava Eel " + lava_eel_success + "%<br>"
         + "Swordfish " + swordfish_success + "%<br>"
         + "Bass " + bass_success + "%<br>"
@@ -175,7 +175,7 @@ document.getElementById("calc_fishing_lvl").addEventListener("click", function()
         + "Shrimp " + shrimp_success_cascade + "%<br>";
     }
     else if (pot_c_f_l >= 50 && pot_c_f_l < 53) {
-        chance = "Chance to catch if you have the required level<br><br>"
+        chance = "Yer odds to snatch a fish be this good, if ye've got the guts, matey!<br><br>"
         + "Swordfish " + swordfish_success + "%<br>"
         + "Bass " + bass_success + "%<br>"
         + "Lobster " + lobster_success + "%<br>"
@@ -195,7 +195,7 @@ document.getElementById("calc_fishing_lvl").addEventListener("click", function()
         + "Shrimp " + shrimp_success_cascade + "%<br>";
     }
     else if (pot_c_f_l >= 46 && pot_c_f_l < 50) {
-        chance = "Chance to catch if you have the required level<br><br>"
+        chance = "Yer odds to snatch a fish be this good, if ye've got the guts, matey!<br><br>"
         + "Bass " + bass_success + "%<br>"
         + "Lobster " + lobster_success + "%<br>"
         + "Tuna " + tuna_success_interp + "%<br>"
@@ -214,7 +214,7 @@ document.getElementById("calc_fishing_lvl").addEventListener("click", function()
         + "Shrimp " + shrimp_success_cascade + "%<br>";
     }
     else if (pot_c_f_l >= 40 && pot_c_f_l < 46) {
-        chance = "Chance to catch if you have the required level<br><br>"
+        chance = "Yer odds to snatch a fish be this good, if ye've got the guts, matey!<br><br>"
         + "Lobster " + lobster_success + "%<br>"
         + "Tuna " + tuna_success_interp + "%<br>"
         + "Salmon " + salmon_success + "%<br>"
@@ -232,7 +232,7 @@ document.getElementById("calc_fishing_lvl").addEventListener("click", function()
         + "Shrimp " + shrimp_success_cascade + "%<br>";
     }
     else if (pot_c_f_l >= 35 && pot_c_f_l < 40) {
-        chance = "Chance to catch if you have the required level<br><br>"
+        chance = "Yer odds to snatch a fish be this good, if ye've got the guts, matey!<br><br>"
         + "Tuna " + tuna_success_interp + "%<br>"
         + "Salmon " + salmon_success + "%<br>"
         + "Pike " + pike_success + "%<br>"
@@ -249,7 +249,7 @@ document.getElementById("calc_fishing_lvl").addEventListener("click", function()
         + "Shrimp " + shrimp_success_cascade + "%<br>";
     }
     else if (pot_c_f_l >= 30 && pot_c_f_l < 35) {
-        chance = "Chance to catch if you have the required level<br><br>"
+        chance = "Yer odds to snatch a fish be this good, if ye've got the guts, matey!<br><br>"
         + "Salmon " + salmon_success + "%<br>"
         + "Pike " + pike_success + "%<br>"
         + "Cod " + cod_success + "%<br>"
@@ -265,7 +265,7 @@ document.getElementById("calc_fishing_lvl").addEventListener("click", function()
         + "Shrimp " + shrimp_success_cascade + "%<br>";
     }
     else if (pot_c_f_l >= 25 && pot_c_f_l < 30) {
-        chance = "Chance to catch if you have the required level<br><br>"
+        chance = "Yer odds to snatch a fish be this good, if ye've got the guts, matey!<br><br>"
         + "Pike " + pike_success + "%<br>"
         + "Cod " + cod_success + "%<br>"
         + "Trout " + trout_success_interp + "%<br>"
@@ -280,7 +280,7 @@ document.getElementById("calc_fishing_lvl").addEventListener("click", function()
         + "Shrimp " + shrimp_success_cascade + "%<br>";
     }
     else if (pot_c_f_l >= 23 && pot_c_f_l < 25) {
-        chance = "Chance to catch if you have the required level<br><br>"
+        chance = "Yer odds to snatch a fish be this good, if ye've got the guts, matey!<br><br>"
         + "Cod " + cod_success + "%<br>"
         + "Trout " + trout_success_interp + "%<br>"
         + "Casket " + casket_success + "%<br>"
@@ -294,7 +294,7 @@ document.getElementById("calc_fishing_lvl").addEventListener("click", function()
         + "Shrimp " + shrimp_success_cascade + "%<br>";
     }
     else if (pot_c_f_l >= 20 && pot_c_f_l < 23) {
-        chance = "Chance to catch if you have the required level<br><br>"
+        chance = "Yer odds to snatch a fish be this good, if ye've got the guts, matey!<br><br>"
         + "Trout " + trout_success_interp + "%<br>"
         + "Casket " + casket_success + "%<br>"
         + "Oyster " + oyster_success + "%<br>"
@@ -307,7 +307,7 @@ document.getElementById("calc_fishing_lvl").addEventListener("click", function()
         + "Shrimp " + shrimp_success_cascade + "%<br>";
     }
     else if (pot_c_f_l >= 16 && pot_c_f_l < 20) {
-        chance = "Chance to catch if you have the required level<br><br>"
+        chance = "Yer odds to snatch a fish be this good, if ye've got the guts, matey!<br><br>"
         + "Casket " + casket_success + "%<br>"
         + "Oyster " + oyster_success + "%<br>"
         + "Seaweed " + seaweed_success + "%<br>"
@@ -319,32 +319,32 @@ document.getElementById("calc_fishing_lvl").addEventListener("click", function()
         + "Shrimp " + shrimp_success_cascade + "%<br>";
     }
     else if (pot_c_f_l >= 15 && pot_c_f_l < 16) {
-        chance = "Chance to catch if you have the required level<br><br>"
+        chance = "Yer odds to snatch a fish be this good, if ye've got the guts, matey!<br><br>"
         + "Anchovy " + anchovy_success + "%<br>"
         + "Herring " + herring_success + "%<br>"
         + "Sardine " + sardine_success_cascade + "%<br>"
         + "Shrimp " + shrimp_success_cascade + "%<br>";
     }
     else if (pot_c_f_l >= 10 && pot_c_f_l < 15) {
-        chance = "Chance to catch if you have the required level<br><br>"
+        chance = "Yer odds to snatch a fish be this good, if ye've got the guts, matey!<br><br>"
         + "Herring " + herring_success + "%<br>"
         + "Sardine " + sardine_success_cascade + "%<br>"
         + "Shrimp " + shrimp_success_interp + "%<br>";
     }
     else if (pot_c_f_l >= 5 && pot_c_f_l < 10) {
-        chance = "Chance to catch if you have the required level<br><br>"
+        chance = "Yer odds to snatch a fish be this good, if ye've got the guts, matey!<br><br>"
         + "Sardine " + sardine_success_interp + "%<br>"
         + "Shrimp " + shrimp_success_interp + "%<br>";
     }
     else if (pot_c_f_l >= 1 && pot_c_f_l < 5) {
-        chance = "Chance to catch if you have the required level<br><br>"
+        chance = "Yer odds to snatch a fish be this good, if ye've got the guts, matey!<br><br>"
         + "Shrimp " + shrimp_success_interp + "%<br>";
     }
         
 
     total = Math.max(total,0);
-    fishing_xp_needed.innerHTML = "Yer need " + total + 
-    " more xp fer yer desired Fishing Level.<br><br>" + chance;
+    fishing_xp_needed.innerHTML = "Ye need " + total + 
+    " more xp fer yar desired Fishing Level, ye scurvy dog!<br><br>" + chance;
 
 })
 
