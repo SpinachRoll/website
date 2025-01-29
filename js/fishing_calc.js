@@ -343,8 +343,8 @@ document.getElementById("calc_fishing_lvl").addEventListener("click", function()
         
 
     total = Math.max(total,0);
-    fishing_xp_needed.innerHTML = "Your need " + total + 
-    " more xp for your desired Fishing Level.<br><br>" + chance;
+    fishing_xp_needed.innerHTML = "Yer need " + total + 
+    " more xp fer yer desired Fishing Level.<br><br>" + chance;
 
 })
 
