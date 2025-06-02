@@ -10,6 +10,8 @@ var adsh_left;
 var r_left;
 var mp_left;
 var dh_left;
+var latestMaxHitBase = 0;
+var latestHitChance = 0;
 
 document.getElementById("calc_cmb_lvl_btn").addEventListener("click", function() {
 	var melee_cmb = ((parseInt(att.value) * 0.25) + (parseInt(str.value) * 0.25) + (parseInt(def.value) * 0.25) + (parseInt(hits.value) * 0.25) + (parseInt(magic.value) * 0.125) + (parseInt(pray.value) * 0.125));
@@ -103,6 +105,7 @@ document.getElementById("calc_max_hit_btn").addEventListener("click", function()
 		max_hit_base = (Math.floor((Math.floor((mh_str_calc_value + (mh_str_calc_value * 0.12) + 2) * mh_pray_bonus_calc) + 8 + mh_cmb_style_calc_value) * (mh_weap_pwr_calc_value + mh_ammy_calc_value + mh_gaunlets_calc_value + 64)) + 319) / 640;
 		max_hit_round.innerHTML = "Your Max Hit is: " + max_hit_base;
 	};
+	latestMaxHitBase = max_hit_base;
 });
 
 
@@ -179,10 +182,23 @@ document.getElementById("calc_acc_btn").addEventListener("click", function() {
 	};
 
 	max_acc_round.innerHTML = "Attacker Accuracy is: " + hitChance + "%";
-
+	latestHitChance = hitChance / 100;
 
 });
 
+/*calculate damage per attack based on max hit and accuracy formulas*/
+document.getElementById("calc_dpa_btn").addEventListener("click", function() {
+	var avg_hit = latestMaxHitBase/2;
+	var dpa = (avg_hit * latestHitChance).toFixed(2);
+	dpa_final.innerHTML = "Your DPA is: " + dpa;
+});
+
+/*calculate dps based on max hit and accuracy formulas*/
+document.getElementById("calc_dps_btn").addEventListener("click", function() {
+	var avg_hit = latestMaxHitBase/2;
+	var dps = ((avg_hit * latestHitChance)/2.4).toFixed(2);
+	dps_final.innerHTML = "Your DPS is: " + dps;
+});
 
 var xpforlvl = new Array(100)
 xpforlvl[1] = 0

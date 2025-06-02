@@ -189,7 +189,9 @@
 			#calc_cmb_lvl_btn,
 			#cmb_reset,
 			#calc_max_hit_btn,
-			#calc_acc_btn {
+			#calc_acc_btn,
+			#calc_dpa_btn,
+			#calc_dps_btn {
 				font-family: "RSFont";
 				font-size: 1em;
 			}
@@ -202,25 +204,29 @@
 			}
 
 			#melee_max_hit li, 
-			#melee_accuracy li {
+			#melee_accuracy li,
+			#dps li {
 				padding-top: 3px;
 			}
 
 			#melee_max_hit label,
-			#melee_accuracy label {
+			#melee_accuracy label,
+			#dps label {
 				display: inline;
 				width: 70px;
 				text-align: right;
 			}
 
 			#melee_max_hit input,
-			#melee_accuracy input {
+			#melee_accuracy input,
+			#dps input {
 				width: 157px;
 				text-align: center;
 			}
 
 			#melee_max_hit select,
-			#melee_accuracy select {
+			#melee_accuracy select,
+			#dps select {
 				width: 165px;
 				text-align: center;
 			}
@@ -234,7 +240,10 @@
 			}
 
 			#max_hit_round,
-			#max_acc_round{
+			#max_acc_round,
+			#dpa_final,
+			#dps_final,
+			#cmb_lvl {
 				text-align: center;
 			}
 
@@ -502,6 +511,26 @@
 									<button type="button" id="calc_acc_btn">Calculate Accuracy</button>
 								<li>
 									<p id="max_acc_round">Your accuracy is a lie</p>
+								</li>
+							</ul>
+						</fieldset>
+					</form>
+					<form id="dps" style="flex-basis: 18em">
+						<fieldset>
+							<legend id="melee_dps_calc_form" style="text-align: center;">Melee DPS</legend>
+							<ul>
+								<li>
+									<p>Calculator your Max Hit and Accuracy first, then calculate Damage Per Attack and Damage Per Second</p>
+								</li>
+								<li>
+									<button type="button" id="calc_dpa_btn">Calculate DPA</button>
+								<li>
+									<p id="dpa_final">Your DPA is not worth mentioning</p>
+								</li>								
+								<li>
+									<button type="button" id="calc_dps_btn">Calculate DPS</button>
+								<li>
+									<p id="dps_final">Your DPS is not worth mentioning</p>
 								</li>
 							</ul>
 						</fieldset>
