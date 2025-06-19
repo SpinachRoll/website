@@ -100,7 +100,7 @@ document.getElementById("calc_thieving_lvl").addEventListener("click", function(
 
     chance = "Chance to pickpocket if you have the required level<br><br>";
     switch (true) {
-        case (c_t_l >= 85):
+        case (c_t_l >= 80):
             chance +=  "Man " + man_success +"%<br>"
             + "Farmer " + farmer_success + "%<br>"
             + "Warrior " + warrior_success + "%<br>"
@@ -112,7 +112,7 @@ document.getElementById("calc_thieving_lvl").addEventListener("click", function(
             + "Gnomes " + gnome_success + "%<br>"
             + "Hero " + hero_success + "%<br>";
             break;
-        case (c_t_l < 85 && c_t_l >= 75):
+        case (c_t_l < 80 && c_t_l >= 75):
             chance +=  "Man " + man_success +"%<br>"
             + "Farmer " + farmer_success + "%<br>"
             + "Warrior " + warrior_success + "%<br>"
