@@ -24,21 +24,67 @@ document.getElementById("calc_cmb_lvl_btn").addEventListener("click", function()
 		cmb_lvl.innerHTML = "LOL! Get real my friend.";
 	}
 	else if ((parseInt(att.value) == 99) & (parseInt(str.value) == 99) & (parseInt(def.value) == 1) & (parseInt(hits.value) == 99) & (parseInt(magic.value) == 1) & (parseInt(pray.value) == 40)) {
-		cmb_lvl.innerHTML = "Nice";
+		cmb_lvl.innerHTML = "Noice";
 	}
-	else if (melee_cmb > range_cmb) {
+	else if (melee_cmb >= range_cmb) {
 		cmb = melee_cmb;
 		next_lvl = Math.max(Math.ceil(cmb), Math.floor(cmb + 1));
 		adsh_left = Math.ceil((next_lvl - cmb) / .25);
 		mp_left = Math.ceil((next_lvl - cmb) / .125);
-		cmb_lvl.innerHTML = "Your Combat Level is " + cmb + ". <br/><br/>You are a Melee based account.<br/><br/>" + "You need " + adsh_left + " more Att, Def, Str, or Hits levels, or " + mp_left + " more Mage or Pray levels for your next Combat Level";
+		diff = (melee_cmb-range_cmb) + (next_lvl - cmb);
+		next = (next_lvl - cmb);
+		attstr = (parseInt(att.value) + parseInt(str.value));
+		r_left = parseInt(attstr / 1.5) + 1;
+		if ((parseInt(range.value) + 1) > 99) {
+			big_cmb_lvl.innerHTML = "Combat lvl " + Math.floor(cmb);
+			cmb_lvl.innerHTML = "Those stats calculate to be " + cmb + 
+			"<br/>----------<br/>" + 
+			"You need: <br/>" + 
+			adsh_left + " Att, Def, Str, or Hits lvls" + 
+			"<br/><br/>OR " + mp_left + " Magic or Prayer lvls" + 
+			"<br/>to advance to your next combat lvl." + 
+			"<br/>----------<br/>"+
+			"You are a <u>Fighter</u>" + 
+			"<br/>Based on your STR and ATT lvls" + 
+			"<br/>your ranged lvl will NEVER have" + 
+			"<br/>any effect on your combat lvl";
+		}
+		else {
+			big_cmb_lvl.innerHTML = "Combat lvl " + Math.floor(cmb);
+			cmb_lvl.innerHTML = "Those stats calculate to be " + cmb + 
+			"<br/>----------<br/>" + 
+			"You need: <br/>" + 
+			adsh_left + " Att, Def, Str, or Hits lvls" + 
+			"<br/><br/>OR " + mp_left + " Magic or Prayer lvls" + 
+			"<br/>to advance to your next combat lvl." + 
+			"<br/>----------<br/>" + 
+			"You are a <u>Fighter</u>" + 
+			"<br/> If you do not raise your att and str," + 
+			"<br/>your ranged lvl will have NO effect" + 
+			"<br/>on your combat lvl until " + r_left + " ranged";
+		}
 	} else {
 		cmb = range_cmb;
 		next_lvl = Math.max(Math.ceil(cmb), Math.floor(cmb + 1));
 		dh_left = Math.ceil((next_lvl - cmb) / .25);
 		r_left = Math.ceil((next_lvl - cmb) / .375);
 		mp_left = Math.ceil((next_lvl - cmb) / .125);
-		cmb_lvl.innerHTML = "Your Combat Level is " + cmb + ". <br/><br/>You are a Range based account.<br/><br/>" + "You need " + dh_left + " more Def, or Hits levels, or " + r_left + " more Range levels, or " + mp_left + " more Mage or Pray levels for your next Combat Level";
+		attstr = Math.floor(range.value * 1.5);
+		diff = (melee_cmb-range_cmb);
+		next = (next_lvl - cmb);
+		big_cmb_lvl.innerHTML = "Combat lvl " + Math.floor(cmb);
+		cmb_lvl.innerHTML = "Those stats calculate to be " + cmb + 
+		"<br/>----------<br/>" + 
+		"You need: <br/>" + dh_left + " Defense or Hits lvls" + 
+		"<br/><br/>OR " + r_left + " Ranged lvls," + 
+		"<br/><br/>OR " + mp_left + " Magic or Prayer lvls" + 
+		"<br/>to advance to your next combat lvl." + 
+		"<br/>----------<br/>" + 
+		"You are an <u>Archer</u>" + 
+		"<br/>If your ranged lvl does not change, " + 
+		"<br/>your attack and strength will have" + 
+		"<br/>NO effect on your combat lvl until" + 
+		"<br/>after they add to " + attstr;
 	};
 });
 
@@ -56,7 +102,7 @@ function calculateTotalExperience(attack, defense, strength) {
 
 
 function calculateHpLevel(total) {
-	if ((total/3) < 1154) {
+	if ((total/3) < 204) {
 		return 10;
 	}
 	else if ((total/3) >= xpforlvl[99]) {

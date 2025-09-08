@@ -243,8 +243,27 @@ document.getElementById("calc_smithing_lvl").addEventListener("click", function(
         rune_c_need.innerHTML = rune_combine_need + " / " + rune_coal_combine_need;        
     }    
     //show the remaining xp needed below the form(calculator)
-    smithing_xp_needed.innerHTML = "Your need " + total + " more xp for your desired Smithing Level.<br><br>" + "You have " + have_total + " xp banked in ores and bars.";
-
+    if (cur_tin_o_have_value == 0 &&
+        cur_copper_o_have_value == 0 &&
+        cur_iron_o_have_value > 0 &&
+        cur_silv_o_have_value ==  0 &&
+        cur_coal_o_have_value > 0 &&
+        cur_gold_o_have_value ==  0 &&
+        cur_mith_o_have_value ==  0 &&
+        cur_addy_o_have_value ==  0 &&
+        cur_rune_o_have_value ==  0 &&
+        cur_bronze_b_have_value == 0 &&
+        cur_iron_b_have_value == 0 &&
+        cur_steel_b_have_value == 0 &&
+        cur_gold_b_have_value == 0 &&
+        cur_mith_b_have_value == 0 &&
+        cur_addy_b_have_value == 0 &&
+        cur_rune_b_have_value == 0) {
+            smithing_xp_needed.innerHTML = "You need " + total + " more xp for your desired Smithing Level.<br><br>" + "You have " + have_total + " xp banked in ores and bars. <br/><br/>HOWEVER, if you use the <br/>SLAM<br/> method, you can gain exponentially more XP!!!1!11!!1!";
+        }
+    else{
+        smithing_xp_needed.innerHTML = "You need " + total + " more xp for your desired Smithing Level.<br><br>" + "You have " + have_total + " xp banked in ores and bars.";
+    }
 })
 
 var stock_table = document.getElementById("stock_table");
