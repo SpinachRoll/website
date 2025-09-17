@@ -259,7 +259,7 @@ document.getElementById("calc_smithing_lvl").addEventListener("click", function(
         cur_mith_b_have_value == 0 &&
         cur_addy_b_have_value == 0 &&
         cur_rune_b_have_value == 0) {
-            smithing_xp_needed.innerHTML = "You need " + total + " more xp for your desired Smithing Level.<br><br>" + "You have " + have_total + " xp banked in ores and bars. <br/><br/>HOWEVER, if you use the <br/>SLAM<br/> method, you can gain exponentially more XP!!!1!11!!1!";
+            smithing_xp_needed.innerHTML = "You need " + total + " more xp for your desired Smithing Level.<br><br>" + "You have " + have_total + " xp banked in ores and bars. <br/><br/>HOWEVER, IF YOU USE THE <br/><a href='https://www.youtube.com/watch?v=PbAJHQQxH5o' target='_blank'>SLAM! METHOD</a>,</br> YOU CAN GAIN EXPONENTIALLY MORE XP!!!1!11!!1!";
         }
     else{
         smithing_xp_needed.innerHTML = "You need " + total + " more xp for your desired Smithing Level.<br><br>" + "You have " + have_total + " xp banked in ores and bars.";
