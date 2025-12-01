@@ -106,22 +106,33 @@ document.getElementById("calc_cooking_lvl").addEventListener("click", function()
         wormhole_need.innerHTML = Math.ceil(total/30);
     }
 
-    if (document.getElementById('cook_gauntlets').checked) {
-        lobster_success = Math.min(100,((Math.floor(64 + (c_c_l + 11 - 1) * (19200/ (75 * 98)))/256)*100).toFixed(2));
-        swordfish_success = Math.min(100,((Math.floor(64 + (c_c_l + 6 - 1) * (19200/ (80 * 98)))/256)*100).toFixed(2));
-        shark_success = Math.min(100,((Math.floor(64 + (c_c_l + 11 - 1) * (19200/ (115 * 98)))/256)*100).toFixed(2));
-    } else {
-        lobster_success = Math.min(100,((Math.floor(64 + (c_c_l - 1) * (19200/ (75 * 98)))/256)*100).toFixed(2));
-        swordfish_success = Math.min(100,((Math.floor(64 + (c_c_l - 1) * (19200/ (80 * 98)))/256)*100).toFixed(2));
-        shark_success = Math.min(100,((Math.floor(64 + (c_c_l - 1) * (19200/ (115 * 98)))/256)*100).toFixed(2));
+    function cookSuccess(level, reqLevel, bonus = 0) {
+        var effectiveLevel = level + bonus;
+        var levelStopFail = reqLevel + 35;
+        if (effectiveLevel >= levelStopFail) {
+            return 100;
+        }
+        var numerator = Math.floor(64 +(effectiveLevel - 1) * (19200 / (levelStopFail* 98)));
+        var pct = (numerator / 256) * 100;
+        return parseFloat(Math.min(100, pct).toFixed(2));
     }
 
-    meat_success = Math.min(100,((Math.floor(64 + (c_c_l - 1) * (19200/ (36 * 98)))/256)*100).toFixed(2));
-    red_b_success = Math.min(100,((Math.floor(64 + (c_c_l - 1) * (19200/ (45 * 98)))/256)*100).toFixed(2));
-    trout_success = Math.min(100,((Math.floor(64 + (c_c_l - 1) * (19200/ (50 * 98)))/256)*100).toFixed(2));
-    salmon_success = Math.min(100,((Math.floor(64 + (c_c_l - 1) * (19200/ (60 * 98)))/256)*100).toFixed(2));
-    tuna_success = Math.min(100,((Math.floor(64 + (c_c_l - 1) * (19200/ (75 * 98)))/256)*100).toFixed(2));
-    lava_eel_success = Math.min(100,((Math.floor(64 + (c_c_l - 1) * (19200/ (88 * 98)))/256)*100).toFixed(2));
+    if(document.getElementById('cook_gauntlets').checked) {
+        lobster_success = cookSuccess(c_c_l, 40, 11);
+        swordfish_success = cookSuccess(c_c_l, 45, 6);
+        shark_success = cookSuccess(c_c_l, 80, 11);
+    } else {
+        lobster_success = cookSuccess(c_c_l, 40);
+        swordfish_success = cookSuccess(c_c_l, 45);
+        shark_success = cookSuccess(c_c_l, 80);
+    }
+
+    meat_success = cookSuccess(c_c_l, 1);
+    red_b_success = cookSuccess(c_c_l, 10);
+    trout_success = cookSuccess(c_c_l, 15);
+    salmon_success = cookSuccess(c_c_l, 25);
+    tuna_success = cookSuccess(c_c_l, 30);
+    lava_eel_success = cookSuccess(c_c_l, 53);
 
     chance = "Chance to cook if you have the required level<br><br>";
     switch (true) {
