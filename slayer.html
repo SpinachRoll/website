@@ -335,6 +335,32 @@
 							<td colspan="4" id="link">Zombie Boy Wiki Link</td>
 						</tr>
 					</table>
+					<form id="slayer_task_notes" style="flex-basis: 18em">
+						<fieldset>
+							<legend id="slayer_task_notes_form" style="text-align: center">SLAYER TASK NOTES</legend>
+							<ul>
+								<li>
+									<label for="notes_explanation">Generate your Slayer Task, and then use the NPC highscores 
+										to check your current kill count for that NPC. Enter it here to keep track of how many you have 
+										until you have completed the task.</label>
+								</li>
+								<li><Label></Label></br></Label></li>
+								<li>
+									<label for="current_kills">Your Current Kill Count</label>
+									<input type="number" id="current_kills" name="current_kills" value="0" min="0" max="4206969">
+								</li>
+								<li><Label></Label></br></Label></li>
+								<li>
+									<button type="button" id="calc_kills_remaining">Calculate Final Count</button>
+								</li>
+								<li><Label></Label></br></Label></li>
+								<li>
+									<label for="slayer_task_count">Final Kill Count</label>
+									<input type="number" id="slayer_task_count" name="slayer_task_count" value="0" min="0" max="5000">
+								</li>
+							</ul>
+						</fieldset>
+					</form>
 				</div>
 				<p>The easiest way to use this system is to aquire a Slayer Task, then pull up your player on the NPC highscores to see your current kill count. Pls refrain from killing the Zombie Boy.
 				</p>

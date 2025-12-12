@@ -1,6 +1,6 @@
-var _slayerBtn = document.getElementById("calc_slayer_task");
-if (_slayerBtn) {
-    _slayerBtn.addEventListener("click", function(e) {
+var slayerBtn = document.getElementById("calc_slayer_task");
+if (slayerBtn) {
+    slayerBtn.addEventListener("click", function(e) {
         e.preventDefault();
     var combat_lvl = document.getElementById("combat_lvl");
     var cur_combat_lvl_value = parseInt(combat_lvl.value);
@@ -117,9 +117,20 @@ if (_slayerBtn) {
       linkCell.innerHTML = '<a href="' + random_npc.link + '" target="_blank" rel="noopener noreferrer">' + random_npc.name + ' Wiki</a>';
     }
 
-
-});
+  });
 }
+
+var calc_kills_remaining = document.getElementById("calc_kills_remaining");
+if (calc_kills_remaining) {
+      calc_kills_remaining.addEventListener("click", function(e) {
+      e.preventDefault();
+      var cur_kills_value = parseInt(document.getElementById("current_kills").value);
+      var task_quantity = parseInt(document.getElementById("task_quantity").innerText);
+      var kills_remaining = task_quantity + cur_kills_value;
+      document.getElementById("slayer_task_count").value = kills_remaining;
+  });
+}
+
 
 const NPCS = [
   { name: "Spider", level: 2.5, locations:[
