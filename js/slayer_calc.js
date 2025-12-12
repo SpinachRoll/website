@@ -74,8 +74,8 @@ if (_slayerBtn) {
     var random_npc = filtered_npcs[Math.floor(Math.random() * filtered_npcs.length)];
 
     // calculate quantity based on combat levels and task amount
-    var high_qty = Math.round(10 * (cur_combat_lvl_value / random_npc.level)* task_amount_value);
-    var low_qty = Math.round(10 * (cur_combat_lvl_value / random_npc.level)* (task_amount_value / 5));
+    var high_qty = Math.round(40 * (cur_combat_lvl_value / random_npc.level)* task_amount_value);
+    var low_qty = Math.round(10 * (cur_combat_lvl_value / random_npc.level)* task_amount_value);
     var quantity = Math.ceil(Math.random( ) * (high_qty - low_qty));
 
     
