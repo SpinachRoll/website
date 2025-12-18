@@ -899,7 +899,7 @@ const NPCS = [
     ], link: "https://classic.runescape.wiki/w/Tree_Spirit"},
   { name: "Ogre guard", level: 96, locations:[
     {place: "Gu'tanoth", wild: false, f2p: false},
-    ], link: "https://classic.runescape.wiki/w/Ogre_Guard"},
+    ], link: "https://classic.runescape.wiki/w/Ogre_Guard#Level_96"},
   { name: "Doomion", level: 98, locations:[
     {place: "Underground Pass", wild: false, f2p: false}
     ], link: "https://classic.runescape.wiki/w/Doomion"},
@@ -924,9 +924,6 @@ const NPCS = [
     {place: "Taverley Dungeon", wild: false, f2p: false},
     {place: "Pillars of Zanash", wild: false, f2p: false}
     ], link: "https://classic.runescape.wiki/w/Hellhound"},
-  { name: "Chronozon", level: 121, locations:[
-    {place: "Edgeville Dungeon", wild: false, f2p: false}
-   ], link: "https://classic.runescape.wiki/w/Chronozon"},
   { name: "Red Dragon", level: 140, locations:[
     {place: "Red Dragon Isle", wild: true, f2p: false},
     ], link: "https://classic.runescape.wiki/w/Red_Dragon"},
