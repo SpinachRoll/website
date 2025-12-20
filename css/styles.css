@@ -179,6 +179,7 @@ ul {
 /* Per-page UL margin overrides */
 body.home-page ul {
 	margin: 0 0 0 30px;
+    list-style-type: disc;
 }
 
 body.hstracker-page ul {
