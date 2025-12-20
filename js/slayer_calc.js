@@ -8,8 +8,8 @@ if (slayerBtn) {
     var risk_level_value = parseInt(cur_risk_level.value);
     var task_amount = document.getElementById("task_amount");
     var task_amount_value = parseInt(task_amount.value);
-    var include_wild = document.getElementById("wild").checked;
-    var f2p_only = document.getElementById("f2p").checked;
+    var wild_value = parseInt(document.getElementById("wild").value); // 0 = no wild, 1 = include wild, 2 = wild only
+    var f2p_value = parseInt(document.getElementById("f2p").value); // 0 = f2p only, 1 = f2p and p2p, 2 = p2p only
 
 
     const HIGHEST_NPC_LEVEL = Math.max.apply(null, NPCS.map(function(npc) { return npc.level; }));
@@ -47,14 +47,21 @@ if (slayerBtn) {
 
     // filter NPCs by level, wild status, and f2p status
     var filtered_npcs = NPCS.filter(function(npc) {
-      if (f2p_only) {
+      if (f2p_value === 0) {
         var npcIsF2P = npc.f2p === true || (Array.isArray(npc.locations) && npc.locations.some(function(loc) { return loc.f2p === true; }));
         if (!npcIsF2P) {
           return false;
         }
+      } else if (f2p_value === 2) {
+        var npcIsP2P = npc.f2p !== true && (Array.isArray(npc.locations) && npc.locations.some(function(loc) { return loc.f2p !== true; }));
+        if (!npcIsP2P) {
+          return false;
+        }
       }
 
-      if (!include_wild) {
+      // wild_value: 0 = no wild, 1 = include wild (both), 2 = wild only
+      if (wild_value === 0) {
+        // No wild: only allow non-wild locations
         if (Array.isArray(npc.locations)) {
           var hasNonWild = npc.locations.some(function(loc) {
             return loc.wild === false || loc.wild === undefined;
@@ -65,7 +72,18 @@ if (slayerBtn) {
         } else if (npc.wild === true) {
           return false;
         }
+      } else if (wild_value === 2) {
+        // Wild only: only allow wild locations
+        if (Array.isArray(npc.locations)) {
+          var hasWild = npc.locations.some(function(loc) { return loc.wild === true; });
+          if (!hasWild) {
+            return false;
+          }
+        } else if (npc.wild !== true) {
+          return false;
+        }
       }
+      // wild_value === 1: include all (no filtering)
 
       return npc.level <= max_npc_level && npc.level >= min_npc_level;
     });
@@ -83,22 +101,33 @@ if (slayerBtn) {
     document.getElementById("task_npc_name").innerText = random_npc.name;
     document.getElementById("task_quantity").innerText = quantity;
 
-    // display location if location checkbox is selected; respect include_wild when picking a spot
+    // display location if location checkbox is selected; respect f2p_value and wild_value when picking a spot
     var show_location = document.getElementById("location").checked;
     var candidate_locations = Array.isArray(random_npc.locations) ? random_npc.locations.slice() : [];
-    if (f2p_only) {
+    if (f2p_value === 0) {
       candidate_locations = candidate_locations.filter(function(loc) { return loc.f2p === true; });
+    } else if (f2p_value === 2) {
+      candidate_locations = candidate_locations.filter(function(loc) { return loc.f2p !== true; });
     }
-    if (!include_wild) {
+    if (wild_value === 0) {
       candidate_locations = candidate_locations.filter(function(loc) {
         return loc.wild === false || loc.wild === undefined;
       });
+    } else if (wild_value === 2) {
+      candidate_locations = candidate_locations.filter(function(loc) {
+        return loc.wild === true;
+      });
     }
 
+    // Always pick a random location if available (for determining wild status), but only display if show_location is checked
     var random_location = null;
-    if (show_location && candidate_locations.length > 0) {
+    if (candidate_locations.length > 0) {
       random_location = candidate_locations[Math.floor(Math.random() * candidate_locations.length)];
-      document.getElementById("exact_location").innerText = "Location: " + random_location.place;
+      if (show_location) {
+        document.getElementById("exact_location").innerText = "Location: " + random_location.place;
+      } else {
+        document.getElementById("exact_location").innerText = "Location: Your Choice";
+      }
     } else {
       document.getElementById("exact_location").innerText = "Location: Your Choice";
     }
@@ -106,6 +135,9 @@ if (slayerBtn) {
     var isWildDisplay = false;
     if (random_location) {
       isWildDisplay = random_location.wild === true;
+    } else if (wild_value === 2) {
+      // Wild only selected: always show Yes
+      isWildDisplay = true;
     } else {
       isWildDisplay = random_npc.wild === true;
     }

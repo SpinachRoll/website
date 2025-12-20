@@ -1,0 +1,752 @@
+/* ================================================================ */
+/* GLOBAL STYLES - BODY & TYPOGRAPHY */
+/* ================================================================ */
+
+body {
+	margin: 0;
+	background: #ababab;
+	font-family: Helvetica, sans-serif;
+}
+
+/* Web font for RuneScape styling */
+@font-face {
+	font-family: RSFont;
+	src: url('../RuneScape-Chat-Bold-07.ttf');
+	font-style: normal;
+	font-weight: normal;
+	font-display: swap;
+}
+
+/* Home page fade-in animation */
+body.home-animation {
+	animation: fadeInAnimation ease 5s;
+	animation-iteration-count: 1;
+	animation-fill-mode: forwards;
+}
+
+@keyframes fadeInAnimation {
+	0% {
+		background: black;
+		opacity: 0;
+	}
+
+	100% {
+		opacity: 1;
+	}
+}
+
+/* ================================================================ */
+/* GLOBAL STYLES - GRID LAYOUT */
+/* ================================================================ */
+
+.grid-container {
+	display: grid;
+	grid-template-columns: 140px 1fr;
+	grid-template-rows: 123px 40px 1fr 3em;
+	grid-template-areas:
+		'header header'
+		'navbar navbar'
+		'menu main'
+		'footer footer';
+	position: relative;
+	gap: 0px;
+	height: 100vh;
+}
+
+.grid-container>div {
+	text-align: center;
+}
+
+/* ================================================================ */
+/* HEADER STYLES */
+/* ================================================================ */
+
+/* this is where all the header style goes */
+.header {
+	background: #B87030;
+	grid-area: header;
+	z-index: 3;
+}
+
+#spinach_roll {
+	position: absolute;
+	grid-area: header;
+	width: 100%;
+	height: 123px;
+	z-index: 1;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	margin: auto;
+}
+
+#king {
+	position: absolute;
+	grid-area: header;
+	height: 73px;
+	width: 73px;
+	right: 0;
+	bottom: 0;
+	z-index: 2;
+}
+
+/* ================================================================ */
+/* NAVBAR STYLES */
+/* ================================================================ */
+
+/* this is where all the top navigation bar style goes */
+.navbar {
+	grid-area: navbar;
+	position: sticky;
+	top: 0;
+	z-index: 3;
+}
+
+#navbar {
+	background-color: #131313;
+}
+
+#navbar a {
+	font-family: RSFont;
+	float: left;
+	padding: 5px 0px 0px 0px;
+	text-decoration: none;
+	color: #005F00;
+	width: 23%;
+	font-size: 1.3em;
+}
+
+#navbar a:hover {
+	color: #B87030;
+}
+
+#navbar img {
+	float: none;
+	margin-bottom: -0.1em;
+}
+
+/* ================================================================ */
+/* LEFT NAVIGATION STYLES */
+/* ================================================================ */
+
+/*position : absolute, margin, padding, height and width to hardcode floating. look into display grid. udemy: python and django full stack web developer bootcamp, by jose portilla*/
+/* this is where all the left navigation bar style goes */
+.leftnav {
+	grid-area: menu;
+}
+
+#leftnav {
+	float: left;
+	height: 100%;
+	background-color: #131313;
+	text-align: center;
+	width: 100%;
+	z-index: 2;
+}
+
+#leftnav a {
+	font-family: RSFont;
+	padding: 0px;
+	float: left;
+	text-decoration: none;
+	font-size: 1.3em;
+	color: #005F00;
+	width: 100%;
+	margin: 17px 3px 3px -5px;
+}
+
+#leftnav a:hover {
+	color: #B87030;
+}
+
+#leftnav img {
+	float: none;
+	margin-bottom: -0.3em;
+}
+
+.sticky_leftnav {
+	position: sticky;
+	top: 40px;
+}
+
+ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+
+/* Per-page UL margin overrides */
+body.home-page ul {
+	margin: 0 0 0 30px;
+}
+
+body.hstracker-page ul {
+	margin: 0 0 0 30px;
+}
+
+/* ================================================================ */
+/* MAIN CONTENT STYLES */
+/* ================================================================ */
+
+/* this is where all the content style goes */
+.main {
+	grid-area: main;
+	position: relative;
+	z-index: 2;
+}
+
+#main {
+	font-family: RSFont;
+	text-align: center;
+	text-decoration: none;
+	padding: 0px 0px 0px 10px;
+}
+
+/* Main padding decision: single default of 10px (no per-page padding overrides) */
+
+/* Home and HSTracker pages: specific text sizing/alignment */
+body.home-page #main,
+body.hstracker-page #main {
+	font-size: 1.223em;
+	text-align: left;
+}
+
+.flex_main {
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: space-around;
+}
+
+/* Ensure forms align with tables when inline styles are removed */
+.flex_main > form {
+	flex-basis: 18em;
+}
+
+/* ================================================================ */
+/* FORM STYLES - SHARED */
+/* ================================================================ */
+
+form {
+	margin: 0;
+	float: left;
+	text-align: center;
+	font-size: 1em;
+	padding-bottom: 50px;
+}
+
+form label {
+	display: inline-block;
+	text-align: center;
+	padding-top: 3px;
+}
+
+form input {
+	box-sizing: border-box;
+	padding-top: 3px;
+	padding-bottom: 3px;
+	text-align: center;
+}
+
+input[type='number'] {
+	width: 70px;
+}
+
+/* Make all selects the same width as number inputs */
+select {
+	width: 70px;
+}
+
+/* Wider dropdowns for wilderness and account type */
+#wild,
+#f2p {
+	width: 83px;
+}
+
+/* Wider number inputs for slayer task form */
+#combat_lvl,
+#risk_level,
+#task_amount {
+	width: 83px;
+}
+
+/* Keep text inputs and selects the same height */
+input[type='number'],
+select {
+	height: 1.9em;
+	padding: 3px 4px;
+	box-sizing: border-box;
+}
+
+/* ================================================================ */
+/* FORM STYLES - SHARED PER-PAGE */
+/* ================================================================ */
+
+form#agility_lvl_calc label,
+form#cooking_lvl_calc label,
+form#crafting_lvl_calc label,
+form#firemaking_lvl_calc label,
+form#fishing_lvl_calc label,
+form#fletching_lvl_calc label,
+form#herblaw_lvl_calc label,
+form#magic_lvl_calc label,
+form#mining_lvl_calc label,
+form#prayer_lvl_calc label,
+form#ranged_lvl_calc label,
+form#slayer_lvl_calc label,
+form#smithing_lvl_calc label,
+form#thieving_lvl_calc label,
+form#woodcutting_lvl_calc label {
+	display: inline-block;
+	width: 200px;
+	text-align: center;
+	padding-top: 3px;
+}
+
+#calc_agility_lvl,
+#agility_lvl_reset,
+#calc_cooking_lvl,
+#cooking_lvl_reset,
+#calc_crafting_lvl,
+#crafting_lvl_reset,
+#calc_firemaking_lvl,
+#firemaking_lvl_reset,
+#calc_fishing_lvl,
+#fishing_lvl_reset,
+#calc_fletching_lvl,
+#fletching_lvl_reset,
+#calc_herblaw_lvl,
+#herblaw_lvl_reset,
+#calc_magic_lvl,
+#magic_lvl_reset,
+#calc_mining_lvl,
+#mining_lvl_reset,
+#calc_prayer_lvl,
+#prayer_lvl_reset,
+#calc_ranged_lvl,
+#ranged_lvl_reset,
+#calc_smithing_lvl,
+#smithing_lvl_reset,
+#calc_thieving_lvl,
+#thieving_lvl_reset,
+#calc_woodcutting_lvl,
+#woodcutting_lvl_reset,
+#fish_button,
+#misc_button,
+#gnome_button,
+#calc_slayer_task,
+#calc_kills_remaining,
+#ranged_max_hit_btn,
+#ranged_max_hit_reset,
+#calc_hits_lvl_btn,
+#calc_cmb_lvl_btn,
+#cmb_reset,
+#calc_max_hit_btn,
+#calc_acc_btn,
+#calc_dpa_btn,
+#calc_dps_btn,
+#toggle_table,
+#combine_button,
+#five_button,
+#six_button,
+#one_button,
+#two_button,
+#three_button,
+#four_button,
+#stall_button,
+#chest_button {
+	font-family: "RSFont";
+	font-size: 1em;
+	height: 1.5em;
+	margin: 3px 0px;
+}
+
+/* ================================================================ */
+/* FORM STYLES - COMBAT (MELEE) */
+/* ================================================================ */
+
+form#combat_level {
+	margin: 0;
+	float: left;
+	text-align: center;
+	font-size: 1em;
+	padding-bottom: 50px;
+}
+
+/* Shared label alignment for combat + melee calculators */
+form#combat_level label,
+form#ranged_max_hit_calc_form label,
+#melee_max_hit label,
+#melee_accuracy label,
+#dps label,
+#calc_hits_lvl_btn,
+#melee_max_hit, 
+#melee_accuracy {
+	display: inline-block;
+	text-align: right;
+	padding-top: 3px;
+    width: 65px;
+}
+
+/* Slayer forms need wider labels for longer text */
+#slayer_task_calc label,
+#slayer_task_notes label {
+	width: 130px;
+}
+
+/* Extra wide label for notes explanation */
+#slayer_task_notes label[for="notes_explanation"] {
+	width: 300px;
+}
+
+/* Add spacing above current kills to separate from explanation */
+#current_kills {
+	margin-top: 15px;
+}
+
+/* Tighten spacing only for the hits calc row so it sits closer to Strength */
+#calc_hits_lvl_btn {
+	margin: -5px 0px 0 0;
+}
+
+#combat_level li,
+#melee_max_hit li, 
+#melee_accuracy li,
+#dps li {
+	padding-top: 3px;
+}
+
+
+#melee_max_hit input,
+#melee_accuracy input,
+#dps input,
+#melee_max_hit select,
+#melee_accuracy select,
+#dps select {
+	width: 157px;
+	text-align: center;
+}
+
+#dpa_final,
+#dps_final,
+#cmb_lvl,
+#max_hit_round,
+#max_acc_round,
+#ranged_max_hit {
+	margin-top: 10px;
+	margin-bottom: 10px;
+	text-align: center;
+}
+
+#big_cmb_lvl {
+	font-size: 2em;
+    color: red;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+/* ================================================================ */
+/* FORM STYLES - SMITHING */
+/* ================================================================ */
+
+#iron_radio, #steel_radio {
+	vertical-align: middle;
+	margin: 0 6px 0 0;
+}
+
+/* Keep checkbox/radio labels snug to their inputs and not the 200px/65px label widths */
+input[type="checkbox"],
+input[type="radio"] {
+	display: inline-block;
+	vertical-align: middle;
+    width: auto !important;
+}
+
+form input[type="checkbox"] + label,
+form input[type="radio"] + label {
+	display: inline-block;
+	vertical-align: middle;
+	width: auto !important;
+	text-align: left;
+}
+
+/* ================================================================ */
+/* TABLE STYLES */
+/* ================================================================ */
+
+table {
+	flex-basis: 18em;
+	margin-bottom: 50px;
+}
+
+table,
+th,
+td {
+	border: 1px solid black;
+	border-collapse: collapse;
+	border-radius: 10px;
+	text-align: center;
+}
+
+th {
+	font-size: 1.3em;
+}
+
+tr {
+	height: 3em;
+}
+
+/* Center all table inputs */
+#agility_table input,
+#magic_table_1 input,
+#magic_table_2 input,
+#prayer_table input,
+#smithing_table input {
+	text-align: center;
+}
+
+.obstacle {
+	width: 75px;
+	height: 50px;
+}
+
+.course {
+	width: 25px;
+	height: 50px;
+}
+
+/* Table visibility: hide secondary tables until toggled */
+#cooking_table_2,
+#cooking_table_3,
+#thieving_table_2,
+#thieving_table_3,
+#crafting_table_1,
+#crafting_table_2,
+#crafting_table_3,
+#crafting_table_4 {
+	display: none;
+}
+
+/* ================================================================ */
+/* FOOTER STYLES */
+/* ================================================================ */
+
+.footer {
+	grid-area: footer;
+	font-family: RSFont;
+	width: 100%;
+	font-size: 1em;
+	color: #818181;
+	background-color: #131313;
+	text-align: center;
+	overflow: hidden;
+	z-index: 3;
+}
+
+/* ================================================================ */
+/* ================================================================ */
+/* PAGE-SPECIFIC STYLES - ORGANIZED BY PAGE */
+/* ================================================================ */
+/* ================================================================ */
+
+/* ================================================================ */
+/* INDEX.HTML - VIDEO PAGE */
+/* ================================================================ */
+
+body.index-page {
+	background-color: black;
+}
+
+#videoContainer {
+	position: relative;
+	width: 100%;
+	max-height: 95vh;
+}
+
+video {
+	width: 100%;
+	max-height: 95vh;
+}
+
+#myButton {
+	position: absolute;
+	bottom: 10px;
+	right: 10px;
+	transform: translate(-50%, -50%);
+	width: 200px;
+	height: 50px;
+	border: none;
+	border-radius: 50%;
+	background: rgba(0, 0, 0, 0.5);
+	color: white;
+	font-size: 23px;
+	cursor: pointer;
+}
+
+#myVideo[data-playing] + #myButton {
+	display: none;
+}
+
+/* ================================================================ */
+/* AGILITY PAGE */
+/* ================================================================ */
+
+.obstacle {
+	width: 75px;
+	height: 50px;
+}
+
+.course {
+	width: 25px;
+	height: 50px;
+}
+
+/* ================================================================ */
+/* COOKING PAGE */
+/* ================================================================ */
+
+#cooking_table_1 img,
+#cooking_table_2 img,
+#cooking_table_3 img {
+	width: 40px;
+	height: 25px;
+}
+
+#cooking_table_2,
+#cooking_table_3 {
+	display: none;
+}
+
+/* ================================================================ */
+/* CRAFTING PAGE */
+/* ================================================================ */
+
+#crafting_table_1,
+#crafting_table_2,
+#crafting_table_3,
+#crafting_table_4 {
+	display: none;
+}
+
+/* ================================================================ */
+/* FISHING PAGE */
+/* ================================================================ */
+
+#eye_patch {
+	width: 25px;
+	height: 25px;
+	margin: 0px 10px 0px 10px;
+}
+
+/* ================================================================ */
+/* FLETCHING PAGE */
+/* ================================================================ */
+
+#stock_table td {
+	vertical-align: top;
+	padding: 5px 0px;
+}
+
+/* ================================================================ */
+/* MAGIC PAGE */
+/* ================================================================ */
+
+#magic_table_1 img,
+#magic_table_2 img {
+	width: 30px;
+	height: 30px;
+}
+
+/* ================================================================ */
+/* PRAYER PAGE */
+/* ================================================================ */
+
+#prayer_table img {
+	width: 40px;
+	height: 25px;
+}
+
+/* ================================================================ */
+/* SMITHING PAGE */
+/* ================================================================ */
+
+#smithing_table input {
+	text-align: center;
+}
+
+/* ================================================================ */
+/* THIEVING PAGE */
+/* ================================================================ */
+
+#thieving_table_1 img {
+	width: 20px;
+	height: 45px;
+}
+
+#thieving_table_2 img,
+#thieving_table_3 img {
+	width: 30px;
+	height: 30px;
+}
+
+#thieving_table_2,
+#thieving_table_3 {
+	display: none;
+}
+
+/* ================================================================ */
+/* WOODCUTTING PAGE */
+/* ================================================================ */
+
+#woodcutting_table img {
+	width: 50px;
+	height: 50px;
+}
+
+/* ================================================================ */
+/* HOME & HSTracker PAGES */
+/* ================================================================ */
+
+body.home-page ul,
+body.hstracker-page ul {
+	margin: 0 0 0 30px;
+}
+
+body.home-page #main,
+body.hstracker-page #main {
+	font-size: 1.223em;
+	text-align: left;
+}
+
+#hs_example {
+	width: 18em;
+}
+
+/* ================================================================ */
+/* MOBILE RESPONSIVE */
+/* ================================================================ */
+
+@media (max-width: 768px) {
+	#navbar a {
+		font-size: 1em;
+		width: 22%;
+		padding: 3px 0px 0px 0px;
+	}
+
+	#navbar img {
+		width: 24px;
+		height: 24px;
+		margin-bottom: -0.15em;
+	}
+
+	#leftnav a {
+		font-size: 1em;
+		margin: 12px 3px 3px -5px;
+	}
+
+	#leftnav img {
+		width: 24px;
+		height: 24px;
+		margin-bottom: -0.15em;
+	}
+}

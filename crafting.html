@@ -5,245 +5,7 @@
 		<link rel="icon" type="image/png" href="favicon.png"/>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<style>
-			/* this is where all the style goes */
-			body {
-				margin: 0;
-				background: #ababab;
-				font-family: Helvetica, sans-serif;
-			}
-
-			/* this is where we make the grid, and determine it's size */
-			.grid-container {
-				display: grid;
-				grid-template-columns: 140px 1fr;
-				grid-template-rows: 123px 40px 1fr 3em;
-				grid-template-areas:
-					'header header'
-					'navbar navbar'
-					'menu main'
-					'footer footer';
-				position: relative;
-				gap: 0px;
-				height: 100vh;
-			}
-
-			.grid-container>div {
-				text-align: center;
-			}
-
-			/* we found a cool font, and include it here */
-			@font-face {
-				font-family: RSFont;
-				src: url(rscbold.ttf);
-			}
-
-			/* this is where all the header style goes */
-			.header {
-				background: #B87030;
-				grid-area: header;
-				z-index: 3;
-			}
-
-			#spinach_roll {
-				position: absolute;
-				grid-area: header;
-				width: 100%;
-				height: 123px;
-				z-index: 1;
-				top: 0;
-				bottom: 0;
-				left: 0;
-				right: 0;
-				margin: auto;
-			}
-
-			#king {
-				position: absolute;
-				grid-area: header;
-				height: 73px;
-				width: 73px;
-				right: 0;
-				bottom: 0;
-				z-index: 2;
-			}
-
-			/* this is where all the top navigation bar style goes */
-			.navbar {
-				grid-area: navbar;
-				position: sticky;
-				top: 0;
-				z-index: 3;
-			}
-
-			#navbar {
-				background-color: #131313;
-			}
-
-			#navbar a {
-				font-family: RSFont;
-				float: left;
-				padding: 5px 0px 0px 0px;
-				text-decoration: none;
-				font-size: 1.3em;
-				color: #005F00;
-				width: 24%;
-			}
-
-			#navbar a:hover {
-				color: #B87030;
-			}
-
-			#navbar img {
-				float: none;
-				margin-bottom: -0.2em;
-			}
-
-			/*position : absolute, margin, padding, height and width to hardcode floating. look into display grid. udemy: python and django full stack web developer bootcamp, by jose portilla*/
-			/* this is where all the left navigation bar style goes */
-			.leftnav {
-				grid-area: menu;
-			}
-
-			#leftnav {
-				float: left;
-				height: 100%;
-				background-color: #131313;
-				text-align: center;
-				width: 100%;
-				z-index: 2;
-			}
-
-			#leftnav a {
-				font-family: RSFont;
-				padding: 0px;
-				float: left;
-				text-decoration: none;
-				font-size: 1.3em;
-				color: #005F00;
-				width: 100%;
-				margin: 17px 3px 3px -5px;
-			}
-
-			#leftnav a:hover {
-				color: #B87030;
-			}
-
-			#leftnav img {
-				float: none;
-				margin-bottom: -0.3em;
-			}
-
-			.sticky_leftnav {
-				position: sticky;
-				top: 40px;
-			}
-
-			ul {
-				list-style-type: none;
-				margin: 0;
-				padding: 0;
-			}
-
-			/* this is where all the content style goes */
-			.main {
-				grid-area: main;
-				position: relative;
-				z-index: 2;
-			}
-
-			#main {
-				font-family: RSFont;
-				text-align: center;
-				text-decoration: none;
-				padding: 0px 0px 0px 10px;
-			}
-
-			.flex_main {
-				display: flex;
-				flex-flow: row wrap;
-				justify-content: space-around;
-			}
-
-			form#crafting_lvl_calc {
-				margin: 0;
-				float: left;
-				text-align: center;
-				font-size: 1em;
-				padding-bottom: 50px;
-			}
-
-			form#crafting_lvl_calc label {
-				display: inline-block;
-				width: 200px;
-				text-align: center;
-				padding-top: 3px;
-			}
-
-			form#crafting_lvl_calc input {
-				box-sizing: border-box;
-				padding-top: 3px;
-				padding-bottom: 3px;
-				text-align: center;
-			}
-
-			#calc_crafting_lvl,
-			#crafting_lvl_reset, 
-            #one_button,
-            #two_button,
-            #three_button,
-            #four_button,
-            #five_button,
-            #six_button
-             {
-				font-family: "RSFont";
-				font-size: 1em;
-				height: 1.5em;
-				margin: 3px 0px;
-			}
-
-            table {
-				flex-basis: 18em;
-			}
-
-			table,
-			th,
-			td {
-				border: 1px solid black;
-				border-collapse: collapse;
-				border-radius: 10px;
-				text-align: center;
-			}
-
-			th {
-				font-size: 1.3em;
-			}
-
-			tr {
-				height: 3em;
-			}
-
-
-
-
-
-			input[type='number'] {
-				width: 70px;
-			}
-
-			/* this is where all the footer style goes */
-			.footer {
-				grid-area: footer;
-				font-family: RSFont;
-				width: 100%;
-				font-size: 1em;
-				color: #818181;
-				background-color: #131313;
-				text-align: center;
-				overflow: hidden;
-				z-index: 3;
-			}
-		</style>
+		<link rel="stylesheet" href="css/styles.css">
 	</head>
 	<body>
 		<div class="grid-container">
@@ -282,9 +44,9 @@
 				<h1>Crafting Calculators</h1>
 				<h2>To use this calculator, put in your current level or XP, and the level you'd like to get to.</h2>
 				<div id="flex_main" class="flex_main">
-					<form id="crafting_lvl_calc" style="display:table">
+					<form id="crafting_lvl_calc">
 						<fieldset>
-							<legend id="crafting_lvl_calc_form" style="text-align: center">CRAFTING LEVEL</legend>
+							<legend id="crafting_lvl_calc_form">Crafting Level</legend>
 							<ul>
 								<li>
 									<label for="cur_crafting_lvl">Current Crafting</label>
@@ -328,7 +90,7 @@
 							</ul>
 						</fieldset>
 					</form>
-					<table id="crafting_table_1" style="display: none">
+					<table id="crafting_table_1">
 						<tr>
 							<th colspan="3">ACTIONS TO LEVEL</th>
 						</tr>
@@ -425,7 +187,7 @@
 							<td id="g_ammy_need">0</td>
 						</tr>
                     </table>
-                    <table id="crafting_table_2" style="display: none">
+					<table id="crafting_table_2">
 						<tr>
 							<th colspan="3">ACTIONS TO LEVEL</th>
 						</tr>
@@ -523,7 +285,7 @@
 							<td id="e_ring_need">0</td>
 						</tr>
 					</table>
-                    <table id="crafting_table_3" style="display: none">
+					<table id="crafting_table_3">
 						<tr>
 							<th colspan="3">ACTIONS TO LEVEL</th>
 						</tr>
@@ -621,7 +383,7 @@
 							<td id="orb_need">0</td>
 						</tr>
                     </table>
-                    <table id="crafting_table_4" style="display: none">
+					<table id="crafting_table_4">
 						<tr>
 							<th colspan="3">ACTIONS TO LEVEL</th>
 						</tr>
@@ -719,7 +481,7 @@
 							<td id="drag_ammy_need">0</td>
 						</tr>
                     </table>
-                    <table id="crafting_table_5" style="display: table">
+					<table id="crafting_table_5">
 						<tr>
 							<th colspan="3">ACTIONS TO LEVEL</th>
 						</tr>
@@ -809,7 +571,7 @@
 							<td id="drag_ammy_2_need">0</td>
 						</tr>
                     </table>
-                    <table id="crafting_table_6" style="display: table">
+					<table id="crafting_table_6">
 						<tr>
 							<th colspan="3">ACTIONS TO LEVEL</th>
 						</tr>

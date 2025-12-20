@@ -5,245 +5,7 @@
 		<link rel="icon" type="image/png" href="favicon.png"/>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<style>
-			/* this is where all the style goes */
-			body {
-				margin: 0;
-				background: #ababab;
-				font-family: Helvetica, sans-serif;
-			}
-
-			/* this is where we make the grid, and determine it's size */
-			.grid-container {
-				display: grid;
-				grid-template-columns: 140px 1fr;
-				grid-template-rows: 123px 40px 1fr 3em;
-				grid-template-areas:
-					'header header'
-					'navbar navbar'
-					'menu main'
-					'footer footer';
-				position: relative;
-				gap: 0px;
-				height: 100vh;
-			}
-
-			.grid-container>div {
-				text-align: center;
-			}
-
-			/* we found a cool font, and include it here */
-			@font-face {
-				font-family: RSFont;
-				src: url(rscbold.ttf);
-			}
-
-			/* this is where all the header style goes */
-			.header {
-				background: #B87030;
-				grid-area: header;
-				z-index: 3;
-			}
-
-			#spinach_roll {
-				position: absolute;
-				grid-area: header;
-				width: 100%;
-				height: 123px;
-				z-index: 1;
-				top: 0;
-				bottom: 0;
-				left: 0;
-				right: 0;
-				margin: auto;
-			}
-
-			#king {
-				position: absolute;
-				grid-area: header;
-				height: 73px;
-				width: 73px;
-				right: 0;
-				bottom: 0;
-				z-index: 2;
-			}
-
-			/* this is where all the top navigation bar style goes */
-			.navbar {
-				grid-area: navbar;
-				position: sticky;
-				top: 0;
-				z-index: 3;
-			}
-
-			#navbar {
-				background-color: #131313;
-			}
-
-			#navbar a {
-				font-family: RSFont;
-				float: left;
-				padding: 5px 0px 0px 0px;
-				text-decoration: none;
-				font-size: 1.25em;
-				color: #005F00;
-				width: 23%;
-			}
-
-			#navbar a:hover {
-				color: #B87030;
-			}
-
-			#navbar img {
-				float: none;
-				margin-bottom: -0.2em;
-			}
-
-			/*position : absolute, margin, padding, height and width to hardcode floating. look into display grid. udemy: python and django full stack web developer bootcamp, by jose portilla*/
-			/* this is where all the left navigation bar style goes */
-			.leftnav {
-				grid-area: menu;
-			}
-
-			#leftnav {
-				float: left;
-				height: 100%;
-				background-color: #131313;
-				text-align: center;
-				width: 100%;
-				z-index: 2;
-			}
-
-			#leftnav a {
-				font-family: RSFont;
-				padding: 0px;
-				float: left;
-				text-decoration: none;
-				font-size: 1.3em;
-				color: #005F00;
-				width: 100%;
-				margin: 17px 3px 3px -5px;
-			}
-
-			#leftnav a:hover {
-				color: #B87030;
-			}
-
-			#leftnav img {
-				float: none;
-				margin-bottom: -0.3em;
-			}
-
-			.sticky_leftnav {
-				position: sticky;
-				top: 40px;
-			}
-
-			ul {
-				list-style-type: none;
-				margin: 0;
-				padding: 0;
-			}
-
-			/* this is where all the content style goes */
-			.main {
-				grid-area: main;
-				position: relative;
-				z-index: 2;
-			}
-
-			#main {
-				font-family: RSFont;
-				text-align: center;
-				text-decoration: none;
-				padding: 0px 0px 0px 10px;
-			}
-
-			.flex_main {
-				display: flex;
-				flex-flow: row wrap;
-				justify-content: space-around;
-			}
-
-			form#agility_lvl_calc {
-				margin: 0;
-				float: left;
-				text-align: center;
-				font-size: 1em;
-				padding-bottom: 50px;
-			}
-
-			form#agility_lvl_calc label {
-				display: inline-block;
-				width: 200px;
-				text-align: center;
-				padding-top: 3px;
-			}
-
-			form#agility_lvl_calc input {
-				box-sizing: border-box;
-				padding-top: 3px;
-				padding-bottom: 3px;
-				text-align: center;
-			}
-
-			#calc_agility_lvl,
-			#agility_lvl_reset {
-				font-family: "RSFont";
-				font-size: 1em;
-				height: 1.5em;
-				margin: 3px 0px;
-			}
-
-			table,
-			th,
-			td {
-				border: 1px solid black;
-				border-collapse: collapse;
-				border-radius: 10px;
-				text-align: center;
-			}
-
-			th {
-				font-size: 1.3em;
-			}
-
-			tr {
-				height: 3em;
-			}
-
-			#agility_table input {
-				text-align: center;
-			}
-
-			.obstacle {
-				width: 75px;
-				height: 50px;
-			}
-
-			.course {
-				width: 25px;
-				height: 50px;
-			}
-
-
-			input[type='number'] {
-				width: 70px;
-			}
-
-			/* this is where all the footer style goes */
-			.footer {
-				grid-area: footer;
-				font-family: RSFont;
-				width: 100%;
-				font-size: 1em;
-				color: #818181;
-				background-color: #131313;
-				text-align: center;
-				overflow: hidden;
-				z-index: 3;
-			}
-		</style>
+		<link rel="stylesheet" href="css/styles.css">
 	</head>
 	<body>
 		<div class="grid-container">
@@ -272,9 +34,9 @@
 				<h1>Slayer Task</h1>
 				<h2>To use this Slayer Tasker, put in your current combat level, and the risk you are willing to take.</h2>
 				<div id="flex_main" class="flex_main">
-					<form id="slayer_task_calc" style="flex-basis: 18em">
+					<form id="slayer_task_calc">
 						<fieldset>
-							<legend id="slayer_task_calc_form" style="text-align: center">SLAYER TASK</legend>
+							<legend id="slayer_task_calc_form">Slayer Task</legend>
 							<ul>
 								<li>
 									<label for="combat_lvl">Your Combat Lvl</label>
@@ -295,12 +57,20 @@
 									<label>(1 = Few, 5 = Many)</label>
 								</li>
 								<li>
-									<input type="checkbox" id="wild" name="wild">
-									<label for="wild">Include Wild</label>
+									<label for="wild">Wilderness</label>
+									<select name="wild" id="wild">
+										<option value="0">No</option>
+										<option value="1">Yes</option>
+										<option value="2">Only</option>
+									</select>
 								</li>
 								<li>
-									<input type="checkbox" id="f2p" name="f2p">
-									<label for="f2p">F2P Only</label>
+									<label for="f2p">Account Type</label>
+									<select name="f2p" id="f2p">
+										<option value="0">F2P</option>
+										<option value="1" selected>F2P/P2P</option>
+										<option value="2">P2P</option>
+									</select>
 								</li>
 								<li>
 									<input type="checkbox" id="location" name="location">
@@ -312,7 +82,7 @@
 							</ul>
 						</fieldset>
 					</form>
-					<table id="slayer_table" style="flex-basis: 18em">
+					<table id="slayer_table">
 						<tr>
 							<th colspan="4">Monster to Slay</th>
 						</tr>
@@ -335,25 +105,22 @@
 							<td colspan="4" id="link">Zombie Boy Wiki Link</td>
 						</tr>
 					</table>
-					<form id="slayer_task_notes" style="flex-basis: 18em">
+					<form id="slayer_task_notes">
 						<fieldset>
-							<legend id="slayer_task_notes_form" style="text-align: center">SLAYER TASK NOTES</legend>
+							<legend id="slayer_task_notes_form">Slayer Task Notes</legend>
 							<ul>
 								<li>
 									<label for="notes_explanation">Generate your Slayer Task, and then use the NPC highscores 
-										to check your current kill count for that NPC. Enter it here to keep track of how many you have 
+										to check your current kill count for that NPC. <br>Enter it here to keep track of how many you have 
 										until you have completed the task.</label>
 								</li>
-								<li><Label></Label></br></Label></li>
 								<li>
-									<label for="current_kills">Your Current Kill Count</label>
+									<label for="current_kills">Current Kill Count</label>
 									<input type="number" id="current_kills" name="current_kills" value="0" min="0" max="4206969">
 								</li>
-								<li><Label></Label></br></Label></li>
 								<li>
 									<button type="button" id="calc_kills_remaining">Calculate Final Count</button>
 								</li>
-								<li><Label></Label></br></Label></li>
 								<li>
 									<label for="slayer_task_count">Final Kill Count</label>
 									<input type="number" id="slayer_task_count" name="slayer_task_count" value="0" min="0" max="5000">
