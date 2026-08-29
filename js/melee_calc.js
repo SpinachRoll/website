@@ -13,6 +13,11 @@ var dh_left;
 var latestMaxHitBase = 0;
 var latestHitChance = 0;
 
+/*update weapon power text box when weapon dropdown changes*/
+document.getElementById("mh_weap_pwr").addEventListener("change", function() {
+	document.getElementById("mh_weap_pwr_custom").value = this.value;
+});
+
 document.getElementById("calc_cmb_lvl_btn").addEventListener("click", function() {
 	var melee_cmb = ((parseInt(att.value) * 0.25) + (parseInt(str.value) * 0.25) + (parseInt(def.value) * 0.25) + (parseInt(hits.value) * 0.25) + (parseInt(magic.value) * 0.125) + (parseInt(pray.value) * 0.125));
 	var range_cmb = (parseInt(range.value) * 0.375) + (parseInt(def.value) * 0.25) + (parseInt(hits.value) * 0.25) + (parseInt(pray.value) * 0.125) + (parseInt(magic.value) * 0.125);
@@ -131,7 +136,7 @@ document.getElementById("calc_hits_lvl_btn").addEventListener("click", function(
 //str pot is 10% + 3; ssp is 15% + 5; zammy pot is 12% + 2
 document.getElementById("calc_max_hit_btn").addEventListener("click", function() {
 	var mh_str_calc_value = parseInt(document.getElementById("mh_str_lvl").value);
-	var mh_weap_pwr_calc_value = parseInt(document.getElementById("mh_weap_pwr").value);
+	var mh_weap_pwr_calc_value = parseInt(document.getElementById("mh_weap_pwr_custom").value);
 	var mh_ammy_calc_value = parseInt(document.getElementById("mh_ammy").value);
 	var mh_gaunlets_calc_value = parseInt(document.getElementById("mh_gaunlets").value);
 	var mh_pot_calc = document.getElementById("mh_potions");
