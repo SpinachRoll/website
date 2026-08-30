@@ -89,7 +89,7 @@
 								</li>
 								<li>
 									<label for="mh_weap_pwr">Weapon</label>
-									<select name="mh_weap_pwr" id="mh_weap_pwr">
+									<select name="mh_weap_pwr" id="mh_weap_pwr" style="display: inline-block;">
 										<option value="1">Fists</option>
 										<option value="4">Stake</option>
 										<option value="11">Silverlight</option>
@@ -124,14 +124,11 @@
 										<option value="51">Enchanted Battlestaff</option>
 										<option value="51">Staff of Iban</option>
 									</select>
-								</li>
-								<li>
-									<label for="mh_weap_pwr_custom">Wpn Powr</label>
-									<input type="number" id="mh_weap_pwr_custom" name="mh_weap_pwr_custom" value="1" min="1">
+									<input type="number" id="mh_weap_pwr_custom" name="mh_weap_pwr_custom" value="1" min="1" style="display: inline-block; width: 6ch;">
 								</li>
 								<li>
 									<label for="mh_ammy">Amulet</label>
-									<select name="mh_ammy" id="mh_ammy">
+									<select name="mh_ammy" id="mh_ammy" style="display: inline-block;">
 										<option value="0">No Ammy</option>
 										<option value="1">Unholy Symbol</option>
 										<option value="1">Beads of the Dead</option>
@@ -139,46 +136,54 @@
 										<option value="6">Power Ammy</option>
 										<option value="6">Dragon Ammy</option>
 									</select>
+									<input type="number" id="mh_ammy_custom" name="mh_ammy_custom" value="0" min="0" style="display: inline-block; width: 6ch;">
 								</li>
 								<li>
 									<label for="mh_gaunlets">Gauntlets</label>
-									<select name="mh_gaunlets" id="mh_gaunlets">
+									<select name="mh_gaunlets" id="mh_gaunlets" style="display: inline-block;">
 										<option value="0">None</option>
 										<option value="2">Gauntlets</option>
 									</select>
+									<input type="number" id="mh_gaunlets_custom" name="mh_gaunlets_custom" value="0" min="0" style="display: inline-block; width: 6ch;">
 								</li>
 								<li>
 									<label for="mh_potions">Potions</label>
-									<select name="mh_potions" id="mh_potions">
-										<option value="0">No Potion</option>
-										<option value="1">Regular Strength Potion</option>
-										<option value="2">Super Strength Potion</option>
-										<option value="3">Potion of Zamorak</option>
+									<select name="mh_potions" id="mh_potions" style="display: inline-block;">
+										<option value="0">No Pot</option>
+										<option value="1">Reg Str Pot (10%+3)</option>
+										<option value="2">Sup Str Pot (15%+5)</option>
+										<option value="3">Pot of Zam (12%+2)</option>
 									</select>
+									<input type="number" id="mh_potions_custom" name="mh_potions_custom" value="0" min="0" step="0.1" style="display: inline-block; width: 6ch;">
 								</li>
 								<li>
 									<label for="mh_prayer">Prayer</label>
-									<select name="mh_prayer" id="mh_prayer">
+									<select name="mh_prayer" id="mh_prayer" style="display: inline-block;">
 										<option value="1.00">No Prayer</option>
 										<option value="1.05">Burst of Strength</option>
 										<option value="1.10">Super Human Strength</option>
 										<option value="1.15">Ultimate Strength</option>
 									</select>
+									<input type="number" id="mh_prayer_custom" name="mh_prayer_custom" value="1.00" min="0" step="0.01" style="display: inline-block; width: 6ch;">
 								</li>
 								<li>
 									<label for="mh_cmb_style">Cmb Style</label>
-									<select name="mh_cmb_style" id="mh_cmb_style">
+									<select name="mh_cmb_style" id="mh_cmb_style" style="display: inline-block;">
 										<option value="1">Controlled</option>
 										<option value="3">Aggressive</option>
 										<option value="0">Accurate</option>
 										<option value="0">Defensive</option>
 									</select>
+									<input type="number" id="mh_cmb_style_custom" name="mh_cmb_style_custom" value="1" min="0" style="display: inline-block; width: 6ch;">
 								</li>
 								<li>
 									<button type="button" id="calc_max_hit_btn">Calculate Max Hit</button>
 								</li>
 								<li>
 									<p id="max_hit_round">Your Max Hit is 1</p>
+								</li>
+								<li>
+									<p id="max_hit_calc">The full calculation will show up here.</p>
 								</li>
 							</ul>
 						</fieldset>

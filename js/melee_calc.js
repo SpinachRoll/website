@@ -13,9 +13,29 @@ var dh_left;
 var latestMaxHitBase = 0;
 var latestHitChance = 0;
 
-/*update weapon power text box when weapon dropdown changes*/
+/*update custom value boxes when dropdowns change*/
 document.getElementById("mh_weap_pwr").addEventListener("change", function() {
 	document.getElementById("mh_weap_pwr_custom").value = this.value;
+});
+
+document.getElementById("mh_ammy").addEventListener("change", function() {
+	document.getElementById("mh_ammy_custom").value = this.value;
+});
+
+document.getElementById("mh_gaunlets").addEventListener("change", function() {
+	document.getElementById("mh_gaunlets_custom").value = this.value;
+});
+
+document.getElementById("mh_potions").addEventListener("change", function() {
+	document.getElementById("mh_potions_custom").value = this.value;
+});
+
+document.getElementById("mh_prayer").addEventListener("change", function() {
+	document.getElementById("mh_prayer_custom").value = this.value;
+});
+
+document.getElementById("mh_cmb_style").addEventListener("change", function() {
+	document.getElementById("mh_cmb_style_custom").value = this.value;
 });
 
 document.getElementById("calc_cmb_lvl_btn").addEventListener("click", function() {
@@ -137,25 +157,40 @@ document.getElementById("calc_hits_lvl_btn").addEventListener("click", function(
 document.getElementById("calc_max_hit_btn").addEventListener("click", function() {
 	var mh_str_calc_value = parseInt(document.getElementById("mh_str_lvl").value);
 	var mh_weap_pwr_calc_value = parseInt(document.getElementById("mh_weap_pwr_custom").value);
-	var mh_ammy_calc_value = parseInt(document.getElementById("mh_ammy").value);
-	var mh_gaunlets_calc_value = parseInt(document.getElementById("mh_gaunlets").value);
-	var mh_pot_calc = document.getElementById("mh_potions");
-	var mh_pray_bonus_calc = parseFloat(document.getElementById("mh_prayer").value);
-	var mh_cmb_style_calc_value = parseInt(document.getElementById("mh_cmb_style").value);
+	var mh_ammy_calc_value = parseInt(document.getElementById("mh_ammy_custom").value);
+	var mh_gaunlets_calc_value = parseInt(document.getElementById("mh_gaunlets_custom").value);
+	var mh_pot_calc_value = parseInt(document.getElementById("mh_potions_custom").value);
+	var mh_pray_bonus_calc = parseFloat(document.getElementById("mh_prayer_custom").value);
+	var mh_cmb_style_calc_value = parseInt(document.getElementById("mh_cmb_style_custom").value);
+	var weapon_total = mh_weap_pwr_calc_value + mh_ammy_calc_value + mh_gaunlets_calc_value + 64;
 	var max_hit_base;
-	if (parseInt(mh_pot_calc.value) === 0) {
-		max_hit_base = (Math.floor((Math.floor(mh_str_calc_value * mh_pray_bonus_calc) + 8 + mh_cmb_style_calc_value) * (mh_weap_pwr_calc_value + mh_ammy_calc_value + mh_gaunlets_calc_value + 64)) + 319) / 640;
+	var calc_text = "";
+	if (parseInt(mh_pot_calc_value) === 0) {
+		var no_pot_strength = Math.floor(mh_str_calc_value * mh_pray_bonus_calc);
+		var no_pot_value = Math.floor((no_pot_strength + 8 + mh_cmb_style_calc_value) * weapon_total) + 319;
+		max_hit_base = no_pot_value / 640;
+		calc_text = "floor((floor((" + mh_str_calc_value + " * " + mh_pray_bonus_calc + ")) + 8 + " + mh_cmb_style_calc_value + ") * (" + mh_weap_pwr_calc_value + " + " + mh_ammy_calc_value + " + " + mh_gaunlets_calc_value + " + 64)) + 319 = " + no_pot_value + " / 640 = " + max_hit_base;
 		max_hit_round.innerHTML = "Your Max Hit is: " + max_hit_base;
-	} else if (parseInt(mh_pot_calc.value) === 1) {
-		max_hit_base = (Math.floor((Math.floor((mh_str_calc_value + (mh_str_calc_value * 0.1) + 3) * mh_pray_bonus_calc) + 8 + mh_cmb_style_calc_value) * (mh_weap_pwr_calc_value + mh_ammy_calc_value + mh_gaunlets_calc_value + 64)) + 319) / 640;
+	} else if (parseInt(mh_pot_calc_value) === 1) {
+		var reg_pot_strength = Math.floor((mh_str_calc_value + (mh_str_calc_value * 0.1) + 3) * mh_pray_bonus_calc);
+		var reg_pot_value = Math.floor((reg_pot_strength + 8 + mh_cmb_style_calc_value) * weapon_total) + 319;
+		max_hit_base = reg_pot_value / 640;
+		calc_text = "floor((floor((" + mh_str_calc_value + " + (" + mh_str_calc_value + " * 0.1) + 3) * " + mh_pray_bonus_calc + ") + 8 + " + mh_cmb_style_calc_value + ") * (" + mh_weap_pwr_calc_value + " + " + mh_ammy_calc_value + " + " + mh_gaunlets_calc_value + " + 64)) + 319 = " + reg_pot_value + " / 640 = " + max_hit_base;
 		max_hit_round.innerHTML = "Your Max Hit is: " + max_hit_base;
-	} else if (parseInt(mh_pot_calc.value) === 2) {
-		max_hit_base = (Math.floor((Math.floor((mh_str_calc_value + (mh_str_calc_value * 0.15) + 5) * mh_pray_bonus_calc) + 8 + mh_cmb_style_calc_value) * (mh_weap_pwr_calc_value + mh_ammy_calc_value + mh_gaunlets_calc_value + 64)) + 319) / 640;
+	} else if (parseInt(mh_pot_calc_value) === 2) {
+		var sup_pot_strength = Math.floor((mh_str_calc_value + (mh_str_calc_value * 0.15) + 5) * mh_pray_bonus_calc);
+		var sup_pot_value = Math.floor((sup_pot_strength + 8 + mh_cmb_style_calc_value) * weapon_total) + 319;
+		max_hit_base = sup_pot_value / 640;
+		calc_text = "floor((floor((" + mh_str_calc_value + " + (" + mh_str_calc_value + " * 0.15) + 5) * " + mh_pray_bonus_calc + ") + 8 + " + mh_cmb_style_calc_value + ") * (" + mh_weap_pwr_calc_value + " + " + mh_ammy_calc_value + " + " + mh_gaunlets_calc_value + " + 64)) + 319 = " + sup_pot_value + " / 640 = " + max_hit_base;
 		max_hit_round.innerHTML = "Your Max Hit is: " + max_hit_base;
-	} else if (parseInt(mh_pot_calc.value) === 3) {
-		max_hit_base = (Math.floor((Math.floor((mh_str_calc_value + (mh_str_calc_value * 0.12) + 2) * mh_pray_bonus_calc) + 8 + mh_cmb_style_calc_value) * (mh_weap_pwr_calc_value + mh_ammy_calc_value + mh_gaunlets_calc_value + 64)) + 319) / 640;
+	} else if (parseInt(mh_pot_calc_value) === 3) {
+		var zam_pot_strength = Math.floor((mh_str_calc_value + (mh_str_calc_value * 0.12) + 2) * mh_pray_bonus_calc);
+		var zam_pot_value = Math.floor((zam_pot_strength + 8 + mh_cmb_style_calc_value) * weapon_total) + 319;
+		max_hit_base = zam_pot_value / 640;
+		calc_text = "floor((floor((" + mh_str_calc_value + " + (" + mh_str_calc_value + " * 0.12) + 2) * " + mh_pray_bonus_calc + ") + 8 + " + mh_cmb_style_calc_value + ") * (" + mh_weap_pwr_calc_value + " + " + mh_ammy_calc_value + " + " + mh_gaunlets_calc_value + " + 64)) + 319 = " + zam_pot_value + " / 640 = " + max_hit_base;
 		max_hit_round.innerHTML = "Your Max Hit is: " + max_hit_base;
 	};
+	document.getElementById("max_hit_calc").innerHTML = calc_text;
 	latestMaxHitBase = max_hit_base;
 });
 

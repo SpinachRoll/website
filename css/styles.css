@@ -410,20 +410,63 @@ form#ranged_max_hit_calc_form label,
 	margin: -5px 0px 0 0;
 }
 
-#combat_level li,
-#melee_max_hit li, 
-#melee_accuracy li,
-#dps li {
-	padding-top: 3px;
+/* Force the melee max-hit rows to behave like a single inline line */
+#melee_max_hit ul {
+	padding-left: 0;
 }
 
+#melee_max_hit li {
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+	gap: 4px;
+}
+
+#melee_max_hit li:nth-last-child(3) {
+	justify-content: center;
+}
+
+#melee_max_hit li:nth-last-child(3) button {
+	margin: 0 0 0 0;
+}
+
+#melee_max_hit li:nth-last-child(2),
+#melee_max_hit li:last-child {
+	justify-content: center;
+}
+
+#melee_max_hit li:last-child p,
+#melee_max_hit li:nth-last-child(2) button {
+	margin: 0 auto;
+}
+
+#melee_max_hit input[type="number"][id$="_custom"],
+#melee_max_hit input[id="mh_prayer_custom"],
+#melee_max_hit input[id="mh_cmb_style_custom"] {
+	width: 6ch;
+	min-width: 6ch;
+	flex: 0 0 auto;
+}
+
+#melee_max_hit select,
+#melee_max_hit input:not([id$="_custom"]) {
+	width: 157px;
+}
+
+#melee_max_hit label {
+	width: 72px;
+	flex: 0 0 auto;
+	white-space: nowrap;
+}
 
 #melee_max_hit input,
+#melee_max_hit select {
+	width: 157px;
+	text-align: center;
+}
+
 #melee_accuracy input,
-#dps input,
-#melee_max_hit select,
-#melee_accuracy select,
-#dps select {
+#melee_accuracy select {
 	width: 157px;
 	text-align: center;
 }
