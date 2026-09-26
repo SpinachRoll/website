@@ -29,11 +29,11 @@ if (slayerBtn) {
     function maxAllowedByRisk(combat_lvl, risk) {
         const uc = Math.max(1, Number(combat_lvl) || 1);
         switch (Number(risk)) {
-            case 1: return Math.floor(uc * 0.50);
-            case 2: return Math.floor(uc * 0.75);
-            case 3: return Math.floor(uc*1.5);
+            case 1: return Math.max(3, Math.floor(uc * 0.5));
+            case 2: return Math.max(4, Math.floor(uc * 0.75));
+            case 3: return Math.floor(uc * 1.5);
             case 4: return Math.floor(uc * 2);
-            case 5: return Math.floor(uc*3);
+            case 5: return Math.floor(uc * 3);
         }
     }
 
@@ -87,6 +87,15 @@ if (slayerBtn) {
 
       return npc.level <= max_npc_level && npc.level >= min_npc_level;
     });
+
+    if (filtered_npcs.length === 0) {
+      filtered_npcs = NPCS.filter(function(npc) {
+        return npc.level <= Math.max(5, max_npc_level + 5) && npc.level >= Math.max(0, min_npc_level - 2);
+      });
+    }
+    if (filtered_npcs.length === 0) {
+      filtered_npcs = NPCS;
+    }
 
     // select a random NPC from the filtered list
     var random_npc = filtered_npcs[Math.floor(Math.random() * filtered_npcs.length)];
