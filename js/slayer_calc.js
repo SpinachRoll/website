@@ -91,12 +91,41 @@ if (slayerBtn) {
     // select a random NPC from the filtered list
     var random_npc = filtered_npcs[Math.floor(Math.random() * filtered_npcs.length)];
 
-    // calculate quantity based on combat levels and task amount
-    var high_qty = Math.round(40 * (cur_combat_lvl_value / random_npc.level)* task_amount_value);
-    var low_qty = Math.round(10 * (cur_combat_lvl_value / random_npc.level)* task_amount_value);
-    var quantity = Math.ceil(Math.random( ) * (high_qty - low_qty));
+    // calculate quantity based on the monster's gap from the player's combat level,
+    // with task multiplier and risk scaling the result without flattening the curve.
+    var level_gap = random_npc.level - cur_combat_lvl_value;
+    var center_quantity = 90 + (task_amount_value * 14) - (Math.max(0, level_gap) * 7) + (Math.min(0, level_gap) * 3) - (risk_level_value * 8);
+    if (cur_combat_lvl_value <= 8) {
+      center_quantity *= 0.18;
+    } else if (cur_combat_lvl_value <= 15) {
+      center_quantity *= 0.32;
+    } else if (cur_combat_lvl_value <= 25) {
+      center_quantity *= 0.58;
+    } else if (cur_combat_lvl_value <= 35) {
+      center_quantity *= 0.8;
+    }
+    if (cur_combat_lvl_value <= 8) {
+      var random_factor = 0.6 + (Math.random() * 0.5); // 0.6x to 1.1x for 3-8 combat
+    } else if (cur_combat_lvl_value <= 15) {
+      var random_factor = 0.7 + (Math.random() * 0.55); // 0.7x to 1.25x for 9-15 combat
+    } else if (cur_combat_lvl_value <= 25) {
+      var random_factor = 0.75 + (Math.random() * 0.65); // 0.75x to 1.4x for 16-25 combat
+    } else if (cur_combat_lvl_value <= 35) {
+      var random_factor = 0.8 + (Math.random() * 0.6); // 0.8x to 1.4x for 26-35 combat
+    } else {
+      var random_factor = 0.75 + (Math.random() * 0.65); // normalized for higher combat
+    }
+    var quantity = Math.round(center_quantity * random_factor);
+    var minimum_quantity = Math.min(Math.max(15, cur_combat_lvl_value), 50);
+    var minimum_quantity_randomized = Math.max(15, Math.min(50, minimum_quantity + Math.round((Math.random() * 8) - 4)));
 
-    
+    if (random_npc.level >= cur_combat_lvl_value * 1.75) {
+      quantity = Math.round(3 + (Math.random() * 12)); // 3 to 15 for notably over-level mobs
+      quantity = Math.min(15, Math.max(3, quantity));
+    } else {
+      quantity = Math.max(minimum_quantity_randomized, Math.min(150, quantity));
+    }
+
     document.getElementById("npc_combat").innerText = random_npc.level;
     document.getElementById("task_npc_name").innerText = random_npc.name;
     document.getElementById("task_quantity").innerText = quantity;
